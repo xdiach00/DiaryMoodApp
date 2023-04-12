@@ -24,9 +24,9 @@ fun AuthenticationScreen(
     oneTapAuthState: OneTapSignInState,
     messageBarState: MessageBarState,
     onAuthClicked: () -> Unit,
+    onTokenIdReceived: (String) -> Unit,
+    onDialogDismissed: (String) -> Unit,
 ) {
-    val context = LocalContext.current
-
     Scaffold(
         content = {
             ContentWithMessageBar(messageBarState = messageBarState) {
@@ -42,16 +42,10 @@ fun AuthenticationScreen(
         state = oneTapAuthState,
         clientId = CLIENT_ID,
         onTokenIdReceived = { tokenId ->
-            Log.d("Auth", tokenId)
-            messageBarState.addSuccess(
-                UiText.StringResource(
-                    resId = R.string.auth_screen_signin_successful
-                ).asString(context)
-            )
+            onTokenIdReceived(tokenId)
         },
         onDialogDismissed = { message ->
-            Log.d("Auth", message)
-            messageBarState.addError(Exception(message))
+            onDialogDismissed(message)
         },
     )
 }
