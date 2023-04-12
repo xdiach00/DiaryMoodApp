@@ -285,3 +285,4 @@ obj/
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio,kotlin,intellij,gradle
 /.idea/deploymentTargetDropDown.xml
 /app/src/main/java/com/xdiach/diarymoodapp/util/Constants.kt
+/.idea/inspectionProfiles/
