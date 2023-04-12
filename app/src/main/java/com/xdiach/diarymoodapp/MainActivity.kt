@@ -8,6 +8,8 @@ import androidx.navigation.compose.rememberNavController
 import com.xdiach.diarymoodapp.navigation.Screen
 import com.xdiach.diarymoodapp.navigation.SetupNavGraph
 import com.xdiach.diarymoodapp.ui.theme.DiaryMoodAppTheme
+import com.xdiach.diarymoodapp.util.Constants.APP_ID
+import io.realm.kotlin.mongodb.App
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,10 +19,19 @@ class MainActivity : ComponentActivity() {
             DiaryMoodAppTheme {
                 val navController = rememberNavController()
                 SetupNavGraph(
-                    startDestination = Screen.Authentication.route,
+                    startDestination = getStartDestination(),
                     navController = navController
                 )
             }
         }
+    }
+}
+
+private fun getStartDestination(): String {
+    val user = App.create(APP_ID).currentUser
+    return if (user != null && user.loggedIn) {
+        Screen.Home.route
+    } else {
+        Screen.Authentication.route
     }
 }

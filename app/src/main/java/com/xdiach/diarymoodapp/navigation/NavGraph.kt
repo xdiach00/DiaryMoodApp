@@ -24,21 +24,30 @@ fun SetupNavGraph(startDestination: String, navController: NavHostController) {
         navController = navController,
         startDestination = startDestination
     ) {
-        authenticationRoute()
+        authenticationRoute(
+            navigateToHome = {
+                navController.popBackStack()
+                navController.navigate(Screen.Home.route)
+            }
+        )
         homeRoute()
         writeRoute()
     }
 }
 
-fun NavGraphBuilder.authenticationRoute() {
+fun NavGraphBuilder.authenticationRoute(
+    navigateToHome: () -> Unit,
+) {
     composable(route = Screen.Authentication.route) {
         val viewModel: AuthenticationViewModel = viewModel()
+        val authenticated by viewModel.authenticated
         val loadingState by viewModel.loadingState
         val oneTapAuthState = rememberOneTapSignInState()
         val messageBarState = rememberMessageBarState()
         val context = LocalContext.current
 
         AuthenticationScreen(
+            authenticated = authenticated,
             loadingState = loadingState,
             oneTapAuthState = oneTapAuthState,
             messageBarState = messageBarState,
@@ -50,23 +59,29 @@ fun NavGraphBuilder.authenticationRoute() {
                 viewModel.signInWithMongoAtlas(
                     tokenId = tokenId,
                     onSuccess = {
-                        if (it) {
-                            messageBarState.addSuccess(
-                                UiText.StringResource(
-                                    resId = R.string.auth_screen_signin_successful
-                                ).asString(context)
-                            )
-                            viewModel.setLoading(false)
-                        }
+                        messageBarState.addSuccess(
+                            UiText.StringResource(
+                                resId = R.string.auth_screen_signin_successful
+                            ).asString(context)
+                        )
+                        viewModel.setLoading(false)
                     },
-                    onError = {
-                        messageBarState.addError(it)
+                    onError = { exception ->
+                        messageBarState.addError(
+                            exception ?: Exception(
+                                UiText.StringResource(R.string.auth_screen_signin_failure)
+                                    .asString(context)
+                            )
+                        )
+                        viewModel.setLoading(false)
                     }
                 )
             },
             onDialogDismissed = { message ->
                 messageBarState.addError(Exception(message))
-            }
+                viewModel.setLoading(false)
+            },
+            navigateToHome = navigateToHome,
         )
     }
 }
