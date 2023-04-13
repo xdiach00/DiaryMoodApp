@@ -15,6 +15,7 @@ import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationScreen
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationViewModel
+import com.xdiach.diarymoodapp.presentation.screens.home.HomeScreen
 import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
 
@@ -30,7 +31,9 @@ fun SetupNavGraph(startDestination: String, navController: NavHostController) {
                 navController.navigate(Screen.Home.route)
             }
         )
-        homeRoute()
+        homeRoute(navigateToWrite = {
+            navController.navigate(Screen.Write.route)
+        })
         writeRoute()
     }
 }
@@ -86,9 +89,14 @@ fun NavGraphBuilder.authenticationRoute(
     }
 }
 
-fun NavGraphBuilder.homeRoute() {
+fun NavGraphBuilder.homeRoute(
+    navigateToWrite: () -> Unit,
+) {
     composable(route = Screen.Home.route) {
-
+        HomeScreen(
+            onMenuClicked = {},
+            navigateToWrite = navigateToWrite,
+        )
     }
 }
 
