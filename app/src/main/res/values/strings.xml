@@ -6,4 +6,8 @@
     <string name="auth_screen_subtitle">Please sign in to continue...</string>
     <string name="auth_screen_signin_successful">Successfully authenticated!</string>
     <string name="auth_screen_signin_failure">User is not logged in!</string>
+    <string name="home_screen_signout">Sign out</string>
+    <string name="home_screen_signout_description">Are you sure you want to Sign Out?</string>
+    <string name="home_screen_yes">Yes</string>
+    <string name="home_screen_no">No</string>
 </resources>
