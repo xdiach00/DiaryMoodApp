@@ -8,4 +8,5 @@ object Dimensions {
     val M = 8.dp
     val L = 16.dp
     val XL = 32.dp
+    val Padding = 14.dp
 }
