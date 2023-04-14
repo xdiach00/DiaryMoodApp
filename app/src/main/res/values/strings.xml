@@ -10,4 +10,6 @@
     <string name="home_screen_signout_description">Are you sure you want to Sign Out?</string>
     <string name="home_screen_yes">Yes</string>
     <string name="home_screen_no">No</string>
+    <string name="home_gallery_hide">Hide Gallery</string>
+    <string name="home_gallery_show">Show Gallery</string>
 </resources>
