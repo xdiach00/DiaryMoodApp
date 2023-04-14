@@ -286,3 +286,4 @@ obj/
 /.idea/deploymentTargetDropDown.xml
 /app/src/main/java/com/xdiach/diarymoodapp/util/Constants.kt
 /.idea/inspectionProfiles/
+/.idea/
