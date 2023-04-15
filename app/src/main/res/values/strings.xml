@@ -12,4 +12,6 @@
     <string name="home_screen_no">No</string>
     <string name="home_gallery_hide">Hide Gallery</string>
     <string name="home_gallery_show">Show Gallery</string>
+    <string name="home_diary_empty_title">Empty Diary</string>
+    <string name="home_diary_empty_subtitle">Write Something</string>
 </resources>
