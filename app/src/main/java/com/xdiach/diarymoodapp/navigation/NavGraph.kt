@@ -16,10 +16,12 @@ import androidx.navigation.navArgument
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.diarymoodapp.R
+import com.xdiach.diarymoodapp.data.repository.MongoDB
 import com.xdiach.diarymoodapp.presentation.components.DisplayAlertDialog
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationScreen
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationViewModel
 import com.xdiach.diarymoodapp.presentation.screens.home.HomeScreen
+import com.xdiach.diarymoodapp.presentation.screens.home.HomeViewModel
 import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.util.Constants.APP_ID
 import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
@@ -110,11 +112,14 @@ fun NavGraphBuilder.homeRoute(
     navigateToAuth: () -> Unit,
 ) {
     composable(route = Screen.Home.route) {
+        val viewModel: HomeViewModel = viewModel()
+        val diaries by viewModel.diaries
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
         var signOutDialogOpened by remember { mutableStateOf(false) }
 
         HomeScreen(
+            diaries = diaries,
             drawerState = drawerState,
             onMenuClicked = {
                 scope.launch {
@@ -126,6 +131,7 @@ fun NavGraphBuilder.homeRoute(
             },
             navigateToWrite = navigateToWrite,
         )
+
         DisplayAlertDialog(
             title = stringResource(id = R.string.home_screen_signout),
             message = stringResource(id = R.string.home_screen_signout_description),
