@@ -40,7 +40,7 @@ fun HomeScreen(
                 }
             },
             content = {
-
+                HomeScreenLayout(diaryNotes = mapOf(), onClick = {})
             }
         )
     }
