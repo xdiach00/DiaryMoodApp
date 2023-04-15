@@ -39,7 +39,7 @@ object MongoDB : MongoRepository {
             )
                 .initialSubscriptions { sub ->
                     add(
-                        query = sub.query("ownerId == $0", user.id),
+                        query = sub.query<Diary>("ownerId == $0", user.id),
                         name = "Personal Diaries",
                     )
                 }
