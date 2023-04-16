@@ -26,6 +26,7 @@ import com.xdiach.diarymoodapp.presentation.screens.authentication.Authenticatio
 import com.xdiach.diarymoodapp.presentation.screens.home.HomeScreen
 import com.xdiach.diarymoodapp.presentation.screens.home.HomeViewModel
 import com.xdiach.diarymoodapp.presentation.screens.write.WriteScreen
+import com.xdiach.diarymoodapp.presentation.screens.write.WriteViewModel
 import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.util.Constants.APP_ID
 import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
@@ -55,6 +56,9 @@ fun SetupNavGraph(
         homeRoute(
             navigateToWrite = {
                 navController.navigate(Screen.Write.route)
+            },
+            navigateToWriteWithArgs = { id ->
+                navController.navigate(Screen.Write.passDiaryId(diaryId = id))
             },
             navigateToAuth = {
                 navController.popBackStack()
@@ -129,6 +133,7 @@ fun NavGraphBuilder.authenticationRoute(
 @OptIn(ExperimentalMaterial3Api::class)
 fun NavGraphBuilder.homeRoute(
     navigateToWrite: () -> Unit,
+    navigateToWriteWithArgs: (String) -> Unit,
     navigateToAuth: () -> Unit,
     onDataLoaded: () -> Unit,
 ) {
@@ -157,6 +162,7 @@ fun NavGraphBuilder.homeRoute(
                 signOutDialogOpened = true
             },
             navigateToWrite = navigateToWrite,
+            navigateToWriteWithArgs = navigateToWriteWithArgs,
         )
 
         DisplayAlertDialog(
@@ -191,6 +197,8 @@ fun NavGraphBuilder.writeRoute(
             defaultValue = null
         })
     ) {
+        val viewModel: WriteViewModel = viewModel()
+        val uiState = viewModel.uiState
         val pagerState = rememberPagerState()
 
         WriteScreen(
