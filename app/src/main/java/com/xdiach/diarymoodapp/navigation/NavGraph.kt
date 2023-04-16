@@ -17,11 +17,13 @@ import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.data.repository.MongoDB
+import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.presentation.components.DisplayAlertDialog
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationScreen
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationViewModel
 import com.xdiach.diarymoodapp.presentation.screens.home.HomeScreen
 import com.xdiach.diarymoodapp.presentation.screens.home.HomeViewModel
+import com.xdiach.diarymoodapp.presentation.screens.write.WriteScreen
 import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.util.Constants.APP_ID
 import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
@@ -58,7 +60,11 @@ fun SetupNavGraph(
             },
             onDataLoaded = onDataLoaded,
         )
-        writeRoute()
+        writeRoute(
+            onBackPressed = {
+                navController.popBackStack()
+            }
+        )
     }
 }
 
@@ -171,7 +177,9 @@ fun NavGraphBuilder.homeRoute(
     }
 }
 
-fun NavGraphBuilder.writeRoute() {
+fun NavGraphBuilder.writeRoute(
+    onBackPressed: () -> Unit,
+) {
     composable(
         route = Screen.Write.route,
         arguments = listOf(navArgument(name = WRITE_SCREEN_ARGUMENT_KEY) {
@@ -180,6 +188,10 @@ fun NavGraphBuilder.writeRoute() {
             defaultValue = null
         })
     ) {
-
+        WriteScreen(
+            selectedDiary = null,
+            onBackPressed = onBackPressed,
+            onDeleteConfirmed = {},
+        )
     }
 }

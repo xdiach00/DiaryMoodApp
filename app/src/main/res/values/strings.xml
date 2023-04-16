@@ -15,4 +15,6 @@
     <string name="home_diary_empty_title">Empty Diary</string>
     <string name="home_diary_empty_subtitle">Write Something</string>
     <string name="home_diary_error_title">Error!</string>
+    <string name="write_diary_delete">Delete</string>
+    <string name="write_diary_delete_alert_message">Are you sure you want to permanently delete this diary note \"%s\"?</string>
 </resources>
