@@ -13,6 +13,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.rememberPagerState
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.diarymoodapp.R
@@ -177,6 +179,7 @@ fun NavGraphBuilder.homeRoute(
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 fun NavGraphBuilder.writeRoute(
     onBackPressed: () -> Unit,
 ) {
@@ -188,8 +191,11 @@ fun NavGraphBuilder.writeRoute(
             defaultValue = null
         })
     ) {
+        val pagerState = rememberPagerState()
+
         WriteScreen(
             selectedDiary = null,
+            pagerState = pagerState,
             onBackPressed = onBackPressed,
             onDeleteConfirmed = {},
         )
