@@ -66,7 +66,7 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
                 interactionSource = remember {
                     MutableInteractionSource()
                 }
-            ) { onClick(diary._id.toString()) },
+            ) { onClick(diary._id.toHexString()) },
     ) {
         Spacer(modifier = Modifier.width(Dimensions.Padding))
         Surface(
