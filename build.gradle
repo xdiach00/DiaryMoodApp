@@ -11,3 +11,14 @@ plugins {
     id 'com.google.dagger.hilt.android' version '2.44' apply false
     // id 'com.google.gms.google-services' version '4.3.15' apply false
 }
+
+task updateTranslations(type: Exec) {
+    commandLine './localazy.exe', 'download'
+    doLast {
+        copy {
+            from 'app/src/main/res/values-en/strings.xml'
+            into 'app/src/main/res/values'
+        }
+        delete 'app/src/main/res/values-en'
+    }
+}
