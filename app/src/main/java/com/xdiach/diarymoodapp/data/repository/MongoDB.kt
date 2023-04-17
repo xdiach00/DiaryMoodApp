@@ -1,12 +1,6 @@
 package com.xdiach.diarymoodapp.data.repository
 
-import android.content.Context
-import android.content.res.Resources
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.model.Diary
-import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.util.Constants.APP_ID
 import com.xdiach.diarymoodapp.util.RequestState
 import com.xdiach.diarymoodapp.util.toInstant
@@ -20,7 +14,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import org.mongodb.kbson.ObjectId
-import java.lang.Exception
 import java.time.ZoneId
 
 object MongoDB : MongoRepository {
@@ -115,6 +108,27 @@ object MongoDB : MongoRepository {
                     RequestState.Success(data = queriedDiary)
                 } else {
                     RequestState.Error(error = Exception("Queried Diary does not exist."))
+                }
+            }
+        } else {
+            RequestState.Error(UserNotAuthenticatedException())
+        }
+    }
+
+    override suspend fun deleteDiary(id: ObjectId): RequestState<Diary> {
+        return if (user != null) {
+            realm.write {
+                val diary = query<Diary>(query = "_id == $0 AND ownerId == $1", id, user.id)
+                    .first().find()
+                if (diary != null) {
+                    try {
+                        delete(diary)
+                        RequestState.Success(data = diary)
+                    } catch (e: Exception) {
+                        RequestState.Error(e)
+                    }
+                } else {
+                    RequestState.Error(Exception("Diary does not exist."))
                 }
             }
         } else {

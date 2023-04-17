@@ -9,11 +9,13 @@ import androidx.lifecycle.viewModelScope
 import com.xdiach.diarymoodapp.data.repository.MongoDB
 import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.Mood
+import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
 import com.xdiach.diarymoodapp.util.RequestState
 import com.xdiach.diarymoodapp.util.toRealmInstant
 import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.mongodb.kbson.ObjectId
@@ -43,14 +45,18 @@ class WriteViewModel(
             viewModelScope.launch(Dispatchers.Main) {
                 MongoDB.getSelectedDiary(
                     diaryId = ObjectId.invoke(uiState.selectedDiaryId!!)
-                ).collect { diary ->
-                    if (diary is RequestState.Success) {
-                        setSelectedDiary(diary = diary.data)
-                        setTitle(title = diary.data.title)
-                        setDescription(description = diary.data.description)
-                        setMood(mood = Mood.valueOf(diary.data.mood))
+                )
+                    .catch {
+                        emit(RequestState.Error(Exception("Diary is already deleted")))
                     }
-                }
+                    .collect { diary ->
+                        if (diary is RequestState.Success) {
+                            setSelectedDiary(diary = diary.data)
+                            setTitle(title = diary.data.title)
+                            setDescription(description = diary.data.description)
+                            setMood(mood = Mood.valueOf(diary.data.mood))
+                        }
+                    }
             }
         }
     }
@@ -138,6 +144,26 @@ class WriteViewModel(
         } else if (result is RequestState.Error) {
             withContext(Dispatchers.Main) {
                 onError(result.error.message.toString())
+            }
+        }
+    }
+
+    fun deleteDiary(
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit,
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            if (uiState.selectedDiaryId != null) {
+                val result = MongoDB.deleteDiary(id = ObjectId.invoke(uiState.selectedDiaryId!!))
+                if (result is RequestState.Success) {
+                    withContext(Dispatchers.Main) {
+                        onSuccess()
+                    }
+                } else if (result is RequestState.Error) {
+                    withContext(Dispatchers.Main) {
+                        onError(result.error.message.toString())
+                    }
+                }
             }
         }
     }

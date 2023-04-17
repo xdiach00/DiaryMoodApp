@@ -1,5 +1,6 @@
 package com.xdiach.diarymoodapp.navigation
 
+import android.widget.Toast
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberDrawerState
@@ -197,6 +198,7 @@ fun NavGraphBuilder.writeRoute(
         })
     ) {
         val viewModel: WriteViewModel = viewModel()
+        val context = LocalContext.current
         val uiState = viewModel.uiState
         val pagerState = rememberPagerState()
         val pageNumber by remember {
@@ -214,13 +216,37 @@ fun NavGraphBuilder.writeRoute(
                 viewModel.setDescription(description = it)
             },
             onBackPressed = onBackPressed,
-            onDeleteConfirmed = {},
+            onDeleteConfirmed = {
+                viewModel.deleteDiary(
+                    onSuccess = {
+                        Toast.makeText(
+                            context,
+                            UiText.StringResource(R.string.write_diary_delete_success).asString(context),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        onBackPressed()
+                    },
+                    onError = { message ->
+                        Toast.makeText(
+                            context,
+                            message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    },
+                )
+            },
             onDateTimeUpdated = { viewModel.updateDateTime(zonedDateTime = it) },
             onSaveClicked = {
                 viewModel.upsertDiary(
                     diary = it.apply { mood = Mood.values()[pageNumber].name },
                     onSuccess = { onBackPressed() },
-                    onError = {},
+                    onError = { message ->
+                        Toast.makeText(
+                            context,
+                            message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    },
                 )
             },
         )
