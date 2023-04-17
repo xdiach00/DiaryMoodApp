@@ -287,3 +287,5 @@ obj/
 /app/src/main/java/com/xdiach/diarymoodapp/util/Constants.kt
 /.idea/inspectionProfiles/
 /.idea/
+/localazy.exe
+/localazy.json
