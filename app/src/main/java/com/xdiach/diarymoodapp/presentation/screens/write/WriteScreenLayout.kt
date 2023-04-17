@@ -24,9 +24,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -39,6 +43,7 @@ import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.Mood
 import com.xdiach.diarymoodapp.ui.UiText
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -53,7 +58,13 @@ fun WriteScreenLayout(
     onSaveClicked: (Diary) -> Unit,
 ) {
     val scrollState = rememberScrollState()
+    val scope = rememberCoroutineScope()
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
+
+    LaunchedEffect(key1 = scrollState.maxValue) {
+        scrollState.scrollTo(scrollState.maxValue)
+    }
 
     Column(
         modifier = Modifier
@@ -102,7 +113,12 @@ fun WriteScreenLayout(
                     imeAction = ImeAction.Next,
                 ),
                 keyboardActions = KeyboardActions(
-                    onNext = {}
+                    onNext = {
+                        scope.launch {
+                            scrollState.animateScrollTo(Int.MAX_VALUE)
+                            focusManager.moveFocus(FocusDirection.Down)
+                        }
+                    }
                 ),
                 maxLines = 1,
                 singleLine = true,
@@ -121,10 +137,12 @@ fun WriteScreenLayout(
                     unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
                 ),
                 keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next,
+                    imeAction = ImeAction.Done,
                 ),
                 keyboardActions = KeyboardActions(
-                    onNext = {}
+                    onNext = {
+                        focusManager.clearFocus()
+                    }
                 ),
             )
         }
