@@ -28,14 +28,59 @@ import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.presentation.components.DisplayAlertDialog
 import com.xdiach.diarymoodapp.ui.UiText
+import com.xdiach.diarymoodapp.util.toInstant
+import java.text.DateFormat
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WriteTopBar(
     selectedDiary: Diary?,
+    moodName: () -> String,
     onBackPressed: () -> Unit,
     onDeleteConfirmed: () -> Unit,
 ) {
+    val currentDate by remember {
+        mutableStateOf(LocalDate.now())
+    }
+    val currentTime by remember {
+        mutableStateOf(LocalTime.now())
+    }
+    val formattedDate = remember(key1 = currentDate) {
+        DateTimeFormatter
+            .ofPattern("dd MMM yyyy")
+            .format(currentDate).uppercase()
+    }
+    val formattedTime = remember(key1 = currentTime) {
+        DateFormat.getTimeInstance(DateFormat.SHORT, Locale.getDefault())
+            .format(
+                Date.from(
+                    currentTime.atDate(currentDate)
+                        .atZone(ZoneId.systemDefault())
+                        .toInstant()
+                )
+            )
+    }
+    val selectedDiaryDateTime = remember(selectedDiary) {
+        if (selectedDiary != null) {
+            DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault())
+                .format(
+                    Date.from(
+                        selectedDiary
+                            .date.toInstant()
+                    )
+                )
+                .uppercase()
+        } else {
+            "$formattedDate, $formattedTime"
+        }
+    }
+
     CenterAlignedTopAppBar(
         navigationIcon = {
             IconButton(onClick = onBackPressed) {
@@ -49,7 +94,7 @@ fun WriteTopBar(
             Column {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = "Happy",
+                    text = moodName(),
                     style = TextStyle(
                         fontSize = MaterialTheme.typography.titleLarge.fontSize,
                         fontWeight = FontWeight.Bold
@@ -58,7 +103,7 @@ fun WriteTopBar(
                 )
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = "10 JAN 2023, 10:00 AM",
+                    text = selectedDiaryDateTime,
                     style = TextStyle(
                         fontSize = MaterialTheme.typography.bodySmall.fontSize
                     ),
@@ -76,7 +121,7 @@ fun WriteTopBar(
             }
             if (selectedDiary != null) {
                 DeleteDiaryAction(
-                   selectedDiary = selectedDiary,
+                    selectedDiary = selectedDiary,
                     onDeleteConfirmed = onDeleteConfirmed,
                 )
             }

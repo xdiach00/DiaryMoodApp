@@ -14,7 +14,7 @@ import com.xdiach.diarymoodapp.model.Mood
 @Composable
 fun WriteScreen(
     uiState: UiState,
-    selectedDiary: Diary?,
+    moodName: () -> String,
     pagerState: PagerState,
     onTitleChanged: (String) -> Unit,
     onDescriptionChanged: (String) -> Unit,
@@ -28,7 +28,8 @@ fun WriteScreen(
     Scaffold(
         topBar = {
             WriteTopBar(
-                selectedDiary = selectedDiary,
+                selectedDiary = uiState.selectedDiary,
+                moodName = moodName,
                 onBackPressed = onBackPressed,
                 onDeleteConfirmed = onDeleteConfirmed,
             )

@@ -20,6 +20,7 @@ import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.data.repository.MongoDB
 import com.xdiach.diarymoodapp.model.Diary
+import com.xdiach.diarymoodapp.model.Mood
 import com.xdiach.diarymoodapp.presentation.components.DisplayAlertDialog
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationScreen
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationViewModel
@@ -200,10 +201,13 @@ fun NavGraphBuilder.writeRoute(
         val viewModel: WriteViewModel = viewModel()
         val uiState = viewModel.uiState
         val pagerState = rememberPagerState()
+        val pageNumber by remember {
+            derivedStateOf { pagerState.currentPage }
+        }
 
         WriteScreen(
             uiState = uiState,
-            selectedDiary = null,
+            moodName = { Mood.values()[pageNumber].name },
             pagerState = pagerState,
             onTitleChanged = {
                 viewModel.setTitle(title = it)
