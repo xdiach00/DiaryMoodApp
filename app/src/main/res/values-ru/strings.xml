@@ -16,7 +16,6 @@
   <string name="home_screen_signout">"Выйти"</string>
   <string name="home_screen_signout_description">"Вы уверены, что хотите выйти?"</string>
   <string name="home_screen_yes">"Да"</string>
-  <string name="test_transaltion">"Test Test Test"</string>
   <string name="write_diary_button_save">"Сохранить"</string>
   <string name="write_diary_delete">"Удалить"</string>
   <string name="write_diary_delete_alert_message">"Вы действительно хотите навсегда удалить заметку «%s»?"</string>

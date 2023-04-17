@@ -16,7 +16,6 @@
   <string name="home_screen_signout">"Odhlásit se"</string>
   <string name="home_screen_signout_description">"Jste si jisti, že se chcete odhlásit?"</string>
   <string name="home_screen_yes">"Ano"</string>
-  <string name="test_transaltion">"Test Test Test"</string>
   <string name="write_diary_button_save">"Uložit"</string>
   <string name="write_diary_delete">"Smazat"</string>
   <string name="write_diary_delete_alert_message">"Opravdu chcete trvale smazat poznámku „%s“?"</string>

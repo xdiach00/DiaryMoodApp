@@ -16,7 +16,6 @@
   <string name="home_screen_signout">"Sign out"</string>
   <string name="home_screen_signout_description">"Are you sure you want to Sign Out?"</string>
   <string name="home_screen_yes">"Yes"</string>
-  <string name="test_transaltion">"Test Test Test"</string>
   <string name="write_diary_button_save">"Save"</string>
   <string name="write_diary_delete">"Delete"</string>
   <string name="write_diary_delete_alert_message">"Are you sure you want to permanently delete this diary note \"%s\"?"</string>

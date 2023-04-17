@@ -1,0 +1,10 @@
+{
+  "upload": {
+    "type": "android",
+    "files": "app/src/main/res/values/strings.xml"
+  },
+  "download": {
+    "files": "app/src/main/res/values-${langAndroidRes}/${file}",
+    "includeSourceLang": true
+  }
+}
