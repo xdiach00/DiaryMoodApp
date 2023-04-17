@@ -11,10 +11,13 @@ import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.Mood
 import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
 import com.xdiach.diarymoodapp.util.RequestState
+import com.xdiach.diarymoodapp.util.toRealmInstant
+import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.mongodb.kbson.ObjectId
+import java.time.ZonedDateTime
 
 class WriteViewModel(
     private val savedStateHandle: SavedStateHandle,
@@ -68,6 +71,10 @@ class WriteViewModel(
         uiState = uiState.copy(mood = mood)
     }
 
+    fun updateDateTime(zonedDateTime: ZonedDateTime) {
+        uiState = uiState.copy(updatedDateTime = zonedDateTime.toInstant().toRealmInstant())
+    }
+
     fun upsertDiary(
         diary: Diary,
         onSuccess: () -> Unit,
@@ -95,7 +102,11 @@ class WriteViewModel(
         onSuccess: () -> Unit,
         onError: (String) -> Unit,
     ) {
-        val result = MongoDB.insertDiary(diary = diary)
+        val result = MongoDB.insertDiary(diary = diary.apply {
+            if (uiState.updatedDateTime != null) {
+                date = uiState.updatedDateTime!!
+            }
+        })
         if (result is RequestState.Success) {
             withContext(Dispatchers.Main) {
                 onSuccess()
@@ -114,7 +125,11 @@ class WriteViewModel(
     ) {
         val result = MongoDB.updateDiary(diary = diary.apply {
             _id = ObjectId.invoke(uiState.selectedDiaryId!!)
-            date = uiState.selectedDiary!!.date
+            date = if (uiState.updatedDateTime != null) {
+                uiState.updatedDateTime!!
+            } else {
+                uiState.selectedDiary!!.date
+            }
         })
         if (result is RequestState.Success) {
             withContext(Dispatchers.Main) {
@@ -134,4 +149,5 @@ data class UiState(
     val title: String = "",
     val description: String = "",
     val mood: Mood = Mood.Neutral,
+    val updatedDateTime: RealmInstant? = null,
 )
