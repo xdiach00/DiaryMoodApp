@@ -1,5 +1,6 @@
 package com.xdiach.diarymoodapp.presentation.screens.write
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -33,19 +34,24 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.xdiach.diarymoodapp.R
+import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.Mood
+import com.xdiach.diarymoodapp.ui.UiText
 
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun WriteScreenLayout(
+    uiState: UiState,
     pagerState: PagerState,
     title: String,
     onTitleChanged: (String) -> Unit,
     description: String,
     onDescriptionChanged: (String) -> Unit,
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    onSaveClicked: (Diary) -> Unit,
 ) {
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -125,7 +131,22 @@ fun WriteScreenLayout(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(54.dp),
-                onClick = { /*TODO*/ },
+                onClick = {
+                    if (uiState.title.isNotEmpty() && uiState.description.isNotEmpty()) {
+                        onSaveClicked(
+                            Diary().apply {
+                                this.title = uiState.title
+                                this.description = uiState.description
+                            }
+                        )
+                    } else {
+                        Toast.makeText(
+                            context,
+                            UiText.StringResource(R.string.write_diary_empty_fields_toast).asString(context),
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
+                },
                 shape = Shapes().small,
             ) {
                 Text(text = stringResource(id = R.string.write_diary_button_save))
