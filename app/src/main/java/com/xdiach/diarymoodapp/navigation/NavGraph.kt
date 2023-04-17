@@ -218,7 +218,7 @@ fun NavGraphBuilder.writeRoute(
             onBackPressed = onBackPressed,
             onDeleteConfirmed = {},
             onSaveClicked = {
-                viewModel.insertDiary(
+                viewModel.upsertDiary(
                     diary = it.apply { mood = Mood.values()[pageNumber].name },
                     onSuccess = { onBackPressed() },
                     onError = {},
