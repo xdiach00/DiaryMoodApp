@@ -31,6 +31,8 @@ import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.presentation.components.DiaryHolder
 import com.xdiach.diarymoodapp.ui.values.Dimensions
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -67,6 +69,16 @@ fun HomeScreenLayout(
 
 @Composable
 fun DateHeader(localDate: LocalDate) {
+    val dateDayOfWeekLocalized = localDate.format(
+        DateTimeFormatter.ofPattern("EEEE")
+            .withLocale(Locale.getDefault())
+    ).take(3).uppercase()
+    val dateMonthLocalized =
+        localDate.format(DateTimeFormatter.ofPattern("MMMM").withLocale(Locale.getDefault())).lowercase()
+            .replaceFirstChar {
+                it.uppercase()
+            }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -83,7 +95,7 @@ fun DateHeader(localDate: LocalDate) {
                 )
             )
             Text(
-                text = localDate.dayOfWeek.toString().take(3),
+                text = dateDayOfWeekLocalized,
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.bodySmall.fontSize,
                     fontWeight = FontWeight.Light,
@@ -93,9 +105,7 @@ fun DateHeader(localDate: LocalDate) {
         Spacer(modifier = Modifier.width(Dimensions.Padding))
         Column(horizontalAlignment = Alignment.Start) {
             Text(
-                text = localDate.month.toString().lowercase().replaceFirstChar {
-                    it.uppercase()
-                },
+                text = dateMonthLocalized,
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
                     fontWeight = FontWeight.Light,

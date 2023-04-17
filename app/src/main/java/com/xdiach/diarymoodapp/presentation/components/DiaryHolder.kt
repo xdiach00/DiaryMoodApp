@@ -25,9 +25,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,7 +46,7 @@ import com.xdiach.diarymoodapp.ui.theme.DiaryMoodAppTheme
 import com.xdiach.diarymoodapp.ui.values.Dimensions
 import com.xdiach.diarymoodapp.ui.values.Elevation
 import com.xdiach.diarymoodapp.util.toInstant
-import java.text.SimpleDateFormat
+import java.text.DateFormat
 import java.time.Instant
 import java.util.Date
 import java.util.Locale
@@ -149,7 +149,7 @@ fun DiaryHeader(
             )
         }
         Text(
-            text = SimpleDateFormat("hh:mm a", Locale.US)
+            text = DateFormat.getTimeInstance(DateFormat.SHORT, Locale.getDefault())
                 .format(Date.from(time)),
             color = mood.contentColor,
             style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize)
