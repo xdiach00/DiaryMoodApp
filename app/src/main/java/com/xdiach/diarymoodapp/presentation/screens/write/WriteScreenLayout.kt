@@ -46,6 +46,7 @@ import com.xdiach.diarymoodapp.model.GalleryState
 import com.xdiach.diarymoodapp.model.Mood
 import com.xdiach.diarymoodapp.presentation.components.GalleryUploader
 import com.xdiach.diarymoodapp.ui.UiText
+import io.realm.kotlin.ext.toRealmList
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
@@ -186,6 +187,9 @@ fun WriteScreenLayout(
                             Diary().apply {
                                 this.title = uiState.title
                                 this.description = uiState.description
+                                this.images = galleryState.images.map {
+                                    it.remoteImagePath
+                                }.toRealmList()
                             }
                         )
                     } else {

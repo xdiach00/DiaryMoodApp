@@ -11,6 +11,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 import com.xdiach.diarymoodapp.data.repository.MongoDB
 import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.GalleryImage
@@ -123,6 +124,7 @@ class WriteViewModel(
             }
         )
         if (result is RequestState.Success) {
+            uploadImagesToFirebase()
             withContext(Dispatchers.Main) {
                 onSuccess()
             }
@@ -149,6 +151,7 @@ class WriteViewModel(
             }
         )
         if (result is RequestState.Success) {
+            uploadImagesToFirebase()
             withContext(Dispatchers.Main) {
                 onSuccess()
             }
@@ -192,6 +195,14 @@ class WriteViewModel(
                 remoteImagePath = remoteImagePath
             )
         )
+    }
+
+    private fun uploadImagesToFirebase() {
+        val storage = FirebaseStorage.getInstance().reference
+        galleryState.images.forEach { galleryImage ->
+            val imagePath = storage.child(galleryImage.remoteImagePath)
+            imagePath.putFile(galleryImage.image)
+        }
     }
 }
 
