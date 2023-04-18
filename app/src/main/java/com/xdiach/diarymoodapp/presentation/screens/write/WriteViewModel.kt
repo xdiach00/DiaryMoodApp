@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package com.xdiach.diarymoodapp.presentation.screens.write
 
 import androidx.compose.runtime.getValue

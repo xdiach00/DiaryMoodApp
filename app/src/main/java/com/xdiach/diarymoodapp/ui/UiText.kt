@@ -1,3 +1,5 @@
+@file:Suppress("SpreadOperator")
+
 package com.xdiach.diarymoodapp.ui
 
 import android.content.Context

@@ -89,7 +89,7 @@ fun DateHeader(localDate: LocalDate) {
     ) {
         Column(horizontalAlignment = Alignment.End) {
             Text(
-                text = String.format("%02d", localDate.dayOfMonth),
+                text = String.format(Locale.getDefault(), "%02d", localDate.dayOfMonth),
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
                     fontWeight = FontWeight.Light

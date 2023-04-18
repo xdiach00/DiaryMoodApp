@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber")
+
 package com.xdiach.diarymoodapp.presentation.screens.authentication
 
 import androidx.compose.foundation.Image

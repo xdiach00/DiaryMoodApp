@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod")
+
 package com.xdiach.diarymoodapp.navigation
 
 import android.widget.Toast

@@ -1,3 +1,5 @@
+@file:Suppress("VariableNaming")
+
 package com.xdiach.diarymoodapp.model
 
 import com.xdiach.diarymoodapp.util.toRealmInstant
