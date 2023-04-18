@@ -1,12 +1,14 @@
 package com.xdiach.diarymoodapp.presentation.screens.write
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.xdiach.diarymoodapp.model.Diary
+import com.xdiach.diarymoodapp.model.GalleryState
 import com.xdiach.diarymoodapp.model.Mood
 import java.time.ZonedDateTime
 
@@ -17,12 +19,14 @@ fun WriteScreen(
     uiState: UiState,
     moodName: () -> String,
     pagerState: PagerState,
+    galleryState: GalleryState,
     onTitleChanged: (String) -> Unit,
     onDescriptionChanged: (String) -> Unit,
     onBackPressed: () -> Unit,
     onDeleteConfirmed: () -> Unit,
     onDateTimeUpdated: (ZonedDateTime) -> Unit,
-    onSaveClicked: (Diary) -> Unit
+    onSaveClicked: (Diary) -> Unit,
+    onImageSelect: (Uri) -> Unit
 ) {
     LaunchedEffect(key1 = uiState.mood) {
         pagerState.scrollToPage(Mood.valueOf(uiState.mood.name).ordinal)
@@ -42,12 +46,14 @@ fun WriteScreen(
             WriteScreenLayout(
                 uiState = uiState,
                 pagerState = pagerState,
+                galleryState = galleryState,
                 title = uiState.title,
                 onTitleChanged = onTitleChanged,
                 description = uiState.description,
                 onDescriptionChanged = onDescriptionChanged,
                 paddingValues = paddingValues,
-                onSaveClicked = onSaveClicked
+                onSaveClicked = onSaveClicked,
+                onImageSelect = onImageSelect
             )
         }
     )

@@ -1,5 +1,6 @@
 package com.xdiach.diarymoodapp.presentation.screens.write
 
+import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -41,7 +42,9 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.model.Diary
+import com.xdiach.diarymoodapp.model.GalleryState
 import com.xdiach.diarymoodapp.model.Mood
+import com.xdiach.diarymoodapp.presentation.components.GalleryUploader
 import com.xdiach.diarymoodapp.ui.UiText
 import kotlinx.coroutines.launch
 
@@ -50,12 +53,14 @@ import kotlinx.coroutines.launch
 fun WriteScreenLayout(
     uiState: UiState,
     pagerState: PagerState,
+    galleryState: GalleryState,
     title: String,
     onTitleChanged: (String) -> Unit,
     description: String,
     onDescriptionChanged: (String) -> Unit,
     paddingValues: PaddingValues,
-    onSaveClicked: (Diary) -> Unit
+    onSaveClicked: (Diary) -> Unit,
+    onImageSelect: (Uri) -> Unit
 ) {
     val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
@@ -163,6 +168,13 @@ fun WriteScreenLayout(
             )
         }
         Column(verticalArrangement = Arrangement.Bottom) {
+            Spacer(modifier = Modifier.height(12.dp))
+            GalleryUploader(
+                galleryState = galleryState,
+                onAddClicked = { focusManager.clearFocus() },
+                onImageSelect = onImageSelect,
+                onImageClicked = {}
+            )
             Spacer(modifier = Modifier.height(12.dp))
             Button(
                 modifier = Modifier

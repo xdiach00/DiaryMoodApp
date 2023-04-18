@@ -21,8 +21,10 @@ import com.google.accompanist.pager.rememberPagerState
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.diarymoodapp.R
+import com.xdiach.diarymoodapp.model.GalleryImage
 import com.xdiach.diarymoodapp.model.Mood
 import com.xdiach.diarymoodapp.model.RequestState
+import com.xdiach.diarymoodapp.model.rememberGalleryState
 import com.xdiach.diarymoodapp.presentation.components.DisplayAlertDialog
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationScreen
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationViewModel
@@ -205,6 +207,7 @@ fun NavGraphBuilder.writeRoute(
         val context = LocalContext.current
         val uiState = viewModel.uiState
         val pagerState = rememberPagerState()
+        val galleryState = rememberGalleryState()
         val pageNumber by remember {
             derivedStateOf { pagerState.currentPage }
         }
@@ -213,6 +216,7 @@ fun NavGraphBuilder.writeRoute(
             uiState = uiState,
             moodName = { Mood.values()[pageNumber].name },
             pagerState = pagerState,
+            galleryState = galleryState,
             onTitleChanged = {
                 viewModel.setTitle(title = it)
             },
@@ -253,6 +257,14 @@ fun NavGraphBuilder.writeRoute(
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+                )
+            },
+            onImageSelect = { imageUri ->
+                galleryState.addImage(
+                    GalleryImage(
+                        image = imageUri,
+                        remoteImagePath = ""
+                    )
                 )
             }
         )
