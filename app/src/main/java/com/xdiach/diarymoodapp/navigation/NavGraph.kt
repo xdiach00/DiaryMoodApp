@@ -2,6 +2,7 @@
 
 package com.xdiach.diarymoodapp.navigation
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,10 +22,8 @@ import com.google.accompanist.pager.rememberPagerState
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.diarymoodapp.R
-import com.xdiach.diarymoodapp.model.GalleryImage
 import com.xdiach.diarymoodapp.model.Mood
 import com.xdiach.diarymoodapp.model.RequestState
-import com.xdiach.diarymoodapp.model.rememberGalleryState
 import com.xdiach.diarymoodapp.presentation.components.DisplayAlertDialog
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationScreen
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationViewModel
@@ -211,7 +210,7 @@ fun NavGraphBuilder.writeRoute(
         val context = LocalContext.current
         val uiState = viewModel.uiState
         val pagerState = rememberPagerState()
-        val galleryState = rememberGalleryState()
+        val galleryState = viewModel.galleryState
         val pageNumber by remember {
             derivedStateOf { pagerState.currentPage }
         }
@@ -263,12 +262,12 @@ fun NavGraphBuilder.writeRoute(
                     }
                 )
             },
-            onImageSelect = { imageUri ->
-                galleryState.addImage(
-                    GalleryImage(
-                        image = imageUri,
-                        remoteImagePath = ""
-                    )
+            onImageSelect = {
+                val type = context.contentResolver.getType(it)?.split("/")?.last() ?: "jpg"
+                Log.d("WriteViewModel", "URI: $it")
+                viewModel.addImage(
+                    image = it,
+                    imageType = type
                 )
             }
         )
