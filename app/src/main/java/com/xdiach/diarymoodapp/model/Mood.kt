@@ -7,7 +7,7 @@ import com.xdiach.diarymoodapp.ui.theme.*
 enum class Mood(
     val icon: Int,
     val contentColor: Color,
-    val containerColor: Color,
+    val containerColor: Color
 ) {
     Neutral(
         icon = R.drawable.neutral,

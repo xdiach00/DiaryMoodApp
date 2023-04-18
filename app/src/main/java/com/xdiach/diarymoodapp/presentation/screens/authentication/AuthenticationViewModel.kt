@@ -3,8 +3,6 @@ package com.xdiach.diarymoodapp.presentation.screens.authentication
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.xdiach.diarymoodapp.R
-import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.util.Constants.APP_ID
 import io.realm.kotlin.mongodb.App
 import io.realm.kotlin.mongodb.Credentials
@@ -16,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 private const val NAVIGATION_DELAY = 600L
 
-class AuthenticationViewModel: ViewModel() {
+class AuthenticationViewModel : ViewModel() {
     var authenticated = mutableStateOf(false)
         private set
     var loadingState = mutableStateOf(false)
@@ -29,7 +27,7 @@ class AuthenticationViewModel: ViewModel() {
     fun signInWithMongoAtlas(
         tokenId: String,
         onSuccess: () -> Unit,
-        onError: (Exception?) -> Unit,
+        onError: (Exception?) -> Unit
     ) {
         viewModelScope.launch {
             try {

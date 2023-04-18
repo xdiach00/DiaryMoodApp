@@ -9,20 +9,19 @@ import androidx.lifecycle.viewModelScope
 import com.xdiach.diarymoodapp.data.repository.MongoDB
 import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.Mood
-import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
 import com.xdiach.diarymoodapp.util.RequestState
 import com.xdiach.diarymoodapp.util.toRealmInstant
 import io.realm.kotlin.types.RealmInstant
+import java.time.ZonedDateTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.mongodb.kbson.ObjectId
-import java.time.ZonedDateTime
 
 class WriteViewModel(
-    private val savedStateHandle: SavedStateHandle,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     var uiState by mutableStateOf(UiState())
         private set
@@ -84,7 +83,7 @@ class WriteViewModel(
     fun upsertDiary(
         diary: Diary,
         onSuccess: () -> Unit,
-        onError: (String) -> Unit,
+        onError: (String) -> Unit
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             if (uiState.selectedDiaryId != null) {
@@ -97,7 +96,7 @@ class WriteViewModel(
                 insertDiary(
                     diary = diary,
                     onSuccess = onSuccess,
-                    onError = onError,
+                    onError = onError
                 )
             }
         }
@@ -106,13 +105,15 @@ class WriteViewModel(
     private suspend fun insertDiary(
         diary: Diary,
         onSuccess: () -> Unit,
-        onError: (String) -> Unit,
+        onError: (String) -> Unit
     ) {
-        val result = MongoDB.insertDiary(diary = diary.apply {
-            if (uiState.updatedDateTime != null) {
-                date = uiState.updatedDateTime!!
+        val result = MongoDB.insertDiary(
+            diary = diary.apply {
+                if (uiState.updatedDateTime != null) {
+                    date = uiState.updatedDateTime!!
+                }
             }
-        })
+        )
         if (result is RequestState.Success) {
             withContext(Dispatchers.Main) {
                 onSuccess()
@@ -127,16 +128,18 @@ class WriteViewModel(
     private suspend fun updateDiary(
         diary: Diary,
         onSuccess: () -> Unit,
-        onError: (String) -> Unit,
+        onError: (String) -> Unit
     ) {
-        val result = MongoDB.updateDiary(diary = diary.apply {
-            _id = ObjectId.invoke(uiState.selectedDiaryId!!)
-            date = if (uiState.updatedDateTime != null) {
-                uiState.updatedDateTime!!
-            } else {
-                uiState.selectedDiary!!.date
+        val result = MongoDB.updateDiary(
+            diary = diary.apply {
+                _id = ObjectId.invoke(uiState.selectedDiaryId!!)
+                date = if (uiState.updatedDateTime != null) {
+                    uiState.updatedDateTime!!
+                } else {
+                    uiState.selectedDiary!!.date
+                }
             }
-        })
+        )
         if (result is RequestState.Success) {
             withContext(Dispatchers.Main) {
                 onSuccess()
@@ -150,7 +153,7 @@ class WriteViewModel(
 
     fun deleteDiary(
         onSuccess: () -> Unit,
-        onError: (String) -> Unit,
+        onError: (String) -> Unit
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             if (uiState.selectedDiaryId != null) {
@@ -175,5 +178,5 @@ data class UiState(
     val title: String = "",
     val description: String = "",
     val mood: Mood = Mood.Neutral,
-    val updatedDateTime: RealmInstant? = null,
+    val updatedDateTime: RealmInstant? = null
 )

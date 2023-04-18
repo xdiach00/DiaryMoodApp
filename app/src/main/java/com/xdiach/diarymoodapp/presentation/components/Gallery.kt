@@ -32,14 +32,14 @@ fun Gallery(
     images: List<String>,
     imageSize: Dp = 40.dp,
     spaceBetween: Dp = 10.dp,
-    imageShape: CornerBasedShape = Shapes().small,
+    imageShape: CornerBasedShape = Shapes().small
 ) {
     BoxWithConstraints(modifier = modifier) {
         val numberOfVisibleImages = remember {
             derivedStateOf {
                 max(
                     a = 0,
-                    b = this.maxWidth.div(spaceBetween + imageSize).toInt().minus(1),
+                    b = this.maxWidth.div(spaceBetween + imageSize).toInt().minus(1)
                 )
             }
         }
@@ -60,7 +60,7 @@ fun Gallery(
                         .data(image)
                         .crossfade(true)
                         .build(),
-                    contentDescription = "Gallery Image",
+                    contentDescription = "Gallery Image"
                 )
                 Spacer(modifier = Modifier.width(spaceBetween))
             }
@@ -79,7 +79,7 @@ fun Gallery(
 fun LastImageOverlay(
     imageSize: Dp,
     remainingImages: Int,
-    imageShape: CornerBasedShape,
+    imageShape: CornerBasedShape
 ) {
     Box(contentAlignment = Alignment.Center) {
         Surface(
@@ -95,7 +95,7 @@ fun LastImageOverlay(
                 fontSize = MaterialTheme.typography.bodyLarge.fontSize,
                 fontWeight = FontWeight.Medium
             ),
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            color = MaterialTheme.colorScheme.onPrimaryContainer
         )
     }
 }

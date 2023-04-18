@@ -12,7 +12,7 @@ import com.xdiach.diarymoodapp.R
 @Composable
 fun HomeTopBar(
     scrollBehavior: TopAppBarScrollBehavior,
-    onMenuClicked: () -> Unit,
+    onMenuClicked: () -> Unit
 ) {
     TopAppBar(
         scrollBehavior = scrollBehavior,
@@ -32,7 +32,7 @@ fun HomeTopBar(
                 Icon(
                     imageVector = Icons.Default.DateRange,
                     contentDescription = "Date Icon",
-                    tint = MaterialTheme.colorScheme.onSurface,
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
         }

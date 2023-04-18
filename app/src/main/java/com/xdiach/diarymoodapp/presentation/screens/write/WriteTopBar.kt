@@ -52,7 +52,7 @@ fun WriteTopBar(
     moodName: () -> String,
     onDateTimeUpdated: (ZonedDateTime) -> Unit,
     onBackPressed: () -> Unit,
-    onDeleteConfirmed: () -> Unit,
+    onDeleteConfirmed: () -> Unit
 ) {
     val dateDialog = rememberUseCaseState()
     val timeDialog = rememberUseCaseState()
@@ -100,7 +100,7 @@ fun WriteTopBar(
             IconButton(onClick = onBackPressed) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Back Arrow Icon",
+                    contentDescription = "Back Arrow Icon"
                 )
             }
         },
@@ -113,7 +113,7 @@ fun WriteTopBar(
                         fontSize = MaterialTheme.typography.titleLarge.fontSize,
                         fontWeight = FontWeight.Bold
                     ),
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Center
                 )
                 Text(
                     modifier = Modifier.fillMaxWidth(),
@@ -125,7 +125,7 @@ fun WriteTopBar(
                     style = TextStyle(
                         fontSize = MaterialTheme.typography.bodySmall.fontSize
                     ),
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Center
                 )
             }
         },
@@ -139,14 +139,14 @@ fun WriteTopBar(
                         ZonedDateTime.of(
                             currentDate,
                             currentTime,
-                            ZoneId.systemDefault(),
+                            ZoneId.systemDefault()
                         )
                     )
                 }) {
                     Icon(
                         imageVector = Icons.Default.Refresh,
                         contentDescription = "Reset Date Icon",
-                        tint = MaterialTheme.colorScheme.onSurface,
+                        tint = MaterialTheme.colorScheme.onSurface
                     )
                 }
             } else {
@@ -154,14 +154,14 @@ fun WriteTopBar(
                     Icon(
                         imageVector = Icons.Default.DateRange,
                         contentDescription = "Date Icon",
-                        tint = MaterialTheme.colorScheme.onSurface,
+                        tint = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
             if (selectedDiary != null) {
                 DeleteDiaryAction(
                     selectedDiary = selectedDiary,
-                    onDeleteConfirmed = onDeleteConfirmed,
+                    onDeleteConfirmed = onDeleteConfirmed
                 )
             }
         }
@@ -183,7 +183,7 @@ fun WriteTopBar(
                 ZonedDateTime.of(
                     currentDate,
                     currentTime,
-                    ZoneId.systemDefault(),
+                    ZoneId.systemDefault()
                 )
             )
         }
@@ -193,14 +193,14 @@ fun WriteTopBar(
 @Composable
 fun DeleteDiaryAction(
     selectedDiary: Diary,
-    onDeleteConfirmed: () -> Unit,
+    onDeleteConfirmed: () -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
     var openDialog by remember { mutableStateOf(false) }
 
     DropdownMenu(
         expanded = expanded,
-        onDismissRequest = { expanded = false },
+        onDismissRequest = { expanded = false }
     ) {
         DropdownMenuItem(
             text = {
@@ -209,21 +209,24 @@ fun DeleteDiaryAction(
             onClick = {
                 openDialog = true
                 expanded = false
-            },
+            }
         )
     }
     DisplayAlertDialog(
         title = stringResource(id = R.string.write_diary_delete),
-        message = UiText.StringResource(R.string.write_diary_delete_alert_message, selectedDiary.title).asString(),
+        message = UiText.StringResource(
+            R.string.write_diary_delete_alert_message,
+            selectedDiary.title
+        ).asString(),
         dialogOpened = openDialog,
         onCloseDialog = { openDialog = false },
-        onYesClicked = onDeleteConfirmed,
+        onYesClicked = onDeleteConfirmed
     )
     IconButton(onClick = { expanded = !expanded }) {
         Icon(
             imageVector = Icons.Default.MoreVert,
             contentDescription = "Overflow Menu Icon",
-            tint = MaterialTheme.colorScheme.onSurface,
+            tint = MaterialTheme.colorScheme.onSurface
         )
     }
 }
