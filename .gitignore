@@ -289,3 +289,4 @@ obj/
 /.idea/
 /localazy.exe
 /localazy.keys.json
+/app/google-services.json
