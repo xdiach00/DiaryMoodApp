@@ -66,7 +66,7 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
                 interactionSource = remember {
                     MutableInteractionSource()
                 }
-            ) { onClick(diary._id.toHexString()) },
+            ) { onClick(diary._id.toHexString()) }
     ) {
         Spacer(modifier = Modifier.width(Dimensions.Padding))
         Surface(
@@ -74,7 +74,7 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
                 .width(Dimensions.XS)
                 .height(componentHeight + Dimensions.Padding),
             tonalElevation = Elevation.Level1,
-            content = {},
+            content = {}
         )
         Spacer(modifier = Modifier.width(20.dp))
         Surface(
@@ -92,14 +92,14 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
                     text = diary.description,
                     style = TextStyle(fontSize = MaterialTheme.typography.bodyLarge.fontSize),
                     maxLines = 4,
-                    overflow = TextOverflow.Ellipsis,
+                    overflow = TextOverflow.Ellipsis
                 )
                 if (diary.images.isNotEmpty()) {
                     ShowGalleryButton(
                         galleryOpened = galleryOpened,
                         onClick = {
                             galleryOpened = !galleryOpened
-                        },
+                        }
                     )
                 }
                 AnimatedVisibility(
@@ -107,9 +107,9 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
                     enter = fadeIn() + expandVertically(
                         animationSpec = spring(
                             dampingRatio = Spring.DampingRatioMediumBouncy,
-                            stiffness = Spring.StiffnessLow,
+                            stiffness = Spring.StiffnessLow
                         )
-                    ),
+                    )
                 ) {
                     Column(modifier = Modifier.padding(Dimensions.Padding)) {
                         Gallery(images = diary.images)
@@ -133,19 +133,19 @@ fun DiaryHeader(
             .background(mood.containerColor)
             .padding(horizontal = Dimensions.Padding, vertical = 7.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
                 modifier = Modifier.size(18.dp),
                 painter = painterResource(id = mood.icon),
-                contentDescription = "Mood Icon",
+                contentDescription = "Mood Icon"
             )
             Spacer(modifier = Modifier.width(7.dp))
             Text(
                 text = mood.name,
                 color = mood.contentColor,
-                style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize),
+                style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize)
             )
         }
         Text(
@@ -160,16 +160,17 @@ fun DiaryHeader(
 @Composable
 fun ShowGalleryButton(
     galleryOpened: Boolean,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     TextButton(onClick = onClick) {
         Text(
             text =
-            if (galleryOpened)
+            if (galleryOpened) {
                 stringResource(id = R.string.home_gallery_hide)
-            else
-                stringResource(id = R.string.home_gallery_show),
-            style = TextStyle(fontSize = MaterialTheme.typography.bodySmall.fontSize),
+            } else {
+                stringResource(id = R.string.home_gallery_show)
+            },
+            style = TextStyle(fontSize = MaterialTheme.typography.bodySmall.fontSize)
         )
     }
 }
@@ -182,10 +183,18 @@ private fun Preview() {
             diary = Diary().apply {
                 title = "MyDiary"
                 description =
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
+                    " sed do eiusmod tempor incididunt ut labore et " +
+                    "dolore magna aliqua. Ut enim ad minim veniam, " +
+                    "quis nostrud exercitation ullamco laboris nisi " +
+                    "ut aliquip ex ea commodo consequat. Duis aute irure " +
+                    "dolor in reprehenderit in voluptate velit esse cillum" +
+                    " dolore eu fugiat nulla pariatur. Excepteur sint occaecat" +
+                    " cupidatat non proident, sunt in culpa qui officia " +
+                    "deserunt mollit anim id est laborum."
                 mood = Mood.Happy.name
             },
-            onClick = {},
+            onClick = {}
         )
     }
 }

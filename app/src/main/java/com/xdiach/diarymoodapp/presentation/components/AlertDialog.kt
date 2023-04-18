@@ -12,7 +12,7 @@ fun DisplayAlertDialog(
     message: String,
     dialogOpened: Boolean,
     onCloseDialog: () -> Unit,
-    onYesClicked: () -> Unit,
+    onYesClicked: () -> Unit
 ) {
     if (dialogOpened) {
         AlertDialog(
@@ -20,14 +20,14 @@ fun DisplayAlertDialog(
                 Text(
                     text = title,
                     fontSize = MaterialTheme.typography.headlineSmall.fontSize,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Bold
                 )
             },
             text = {
                 Text(
                     text = message,
                     fontSize = MaterialTheme.typography.bodyMedium.fontSize,
-                    fontWeight = FontWeight.Normal,
+                    fontWeight = FontWeight.Normal
                 )
             },
             confirmButton = {
@@ -35,8 +35,8 @@ fun DisplayAlertDialog(
                     onClick = {
                         onYesClicked()
                         onCloseDialog
-                    })
-                {
+                    }
+                ) {
                     Text(text = stringResource(id = R.string.home_screen_yes))
                 }
             },
@@ -45,7 +45,7 @@ fun DisplayAlertDialog(
                     Text(text = stringResource(id = R.string.home_screen_no))
                 }
             },
-            onDismissRequest = onCloseDialog,
+            onDismissRequest = onCloseDialog
         )
     }
 }

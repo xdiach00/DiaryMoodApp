@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber")
+
 package com.xdiach.diarymoodapp.util
 
 import io.realm.kotlin.types.RealmInstant

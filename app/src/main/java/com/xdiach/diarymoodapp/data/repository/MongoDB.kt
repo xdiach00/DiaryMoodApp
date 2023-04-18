@@ -10,11 +10,11 @@ import io.realm.kotlin.log.LogLevel
 import io.realm.kotlin.mongodb.App
 import io.realm.kotlin.mongodb.sync.SyncConfiguration
 import io.realm.kotlin.query.Sort
+import java.time.ZoneId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import org.mongodb.kbson.ObjectId
-import java.time.ZoneId
 
 object MongoDB : MongoRepository {
     private val app = App.Companion.create(APP_ID)
@@ -29,12 +29,12 @@ object MongoDB : MongoRepository {
         if (user != null) {
             val config = SyncConfiguration.Builder(
                 user = user,
-                schema = setOf(Diary::class),
+                schema = setOf(Diary::class)
             )
                 .initialSubscriptions { sub ->
                     add(
                         query = sub.query<Diary>("ownerId == $0", user.id),
-                        name = "Personal Diaries",
+                        name = "Personal Diaries"
                     )
                 }
                 .log(LogLevel.ALL)

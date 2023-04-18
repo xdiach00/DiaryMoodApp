@@ -36,7 +36,7 @@ fun GoogleButton(
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
     borderStrokeWidth: Dp = 1.dp,
     progressIndicatorColor: Color = MaterialTheme.colorScheme.primary,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     var buttonText by remember { mutableStateOf(primaryText) }
 
@@ -49,7 +49,7 @@ fun GoogleButton(
             .clickable(enabled = !loadingState) { onClick() },
         shape = shape,
         border = BorderStroke(width = borderStrokeWidth, color = borderColor),
-        color = backgroundColor,
+        color = backgroundColor
     ) {
         Row(
             modifier = Modifier
@@ -58,28 +58,28 @@ fun GoogleButton(
                 .animateContentSize(
                     animationSpec = tween(
                         durationMillis = ANIMATION_DURATION,
-                        easing = LinearOutSlowInEasing,
+                        easing = LinearOutSlowInEasing
                     )
                 ),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.Center
         ) {
             Icon(
                 painter = painterResource(id = icon),
                 contentDescription = "",
-                tint = Color.Unspecified,
+                tint = Color.Unspecified
             )
             Spacer(modifier = Modifier.width(Dimensions.M))
             Text(
                 text = buttonText,
-                style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize),
+                style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize)
             )
             if (loadingState) {
                 Spacer(modifier.width(Dimensions.L))
                 CircularProgressIndicator(
                     modifier = Modifier.size(Dimensions.L),
                     strokeWidth = 2.dp,
-                    color = progressIndicatorColor,
+                    color = progressIndicatorColor
                 )
             }
         }
@@ -91,7 +91,7 @@ fun GoogleButton(
 private fun Preview() {
     DiaryMoodAppTheme() {
         Column() {
-            GoogleButton{}
+            GoogleButton {}
             Spacer(modifier = Modifier.height(Dimensions.M))
             GoogleButton(loadingState = true) {}
         }

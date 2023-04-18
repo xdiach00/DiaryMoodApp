@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.calculateEndPadding
-import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -25,7 +23,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.model.Diary
@@ -40,7 +37,7 @@ import java.util.Locale
 fun HomeScreenLayout(
     paddingValues: PaddingValues,
     diaryNotes: Map<LocalDate, List<Diary>>,
-    onClick: (String) -> Unit,
+    onClick: (String) -> Unit
 ) {
     if (diaryNotes.isNotEmpty()) {
         LazyColumn(
@@ -56,7 +53,7 @@ fun HomeScreenLayout(
 
                 items(
                     items = diaries,
-                    key = { it._id.toString() },
+                    key = { it._id.toString() }
                 ) {
                     DiaryHolder(diary = it, onClick = onClick)
                 }
@@ -74,7 +71,11 @@ fun DateHeader(localDate: LocalDate) {
             .withLocale(Locale.getDefault())
     ).take(3).uppercase()
     val dateMonthLocalized =
-        localDate.format(DateTimeFormatter.ofPattern("MMMM").withLocale(Locale.getDefault())).lowercase()
+        localDate.format(
+            DateTimeFormatter.ofPattern("MMMM")
+                .withLocale(Locale.getDefault())
+        )
+            .lowercase()
             .replaceFirstChar {
                 it.uppercase()
             }
@@ -84,21 +85,21 @@ fun DateHeader(localDate: LocalDate) {
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.surface)
             .padding(vertical = Dimensions.Padding),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Column(horizontalAlignment = Alignment.End) {
             Text(
-                text = String.format("%02d", localDate.dayOfMonth),
+                text = String.format(Locale.getDefault(), "%02d", localDate.dayOfMonth),
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    fontWeight = FontWeight.Light,
+                    fontWeight = FontWeight.Light
                 )
             )
             Text(
                 text = dateDayOfWeekLocalized,
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.bodySmall.fontSize,
-                    fontWeight = FontWeight.Light,
+                    fontWeight = FontWeight.Light
                 )
             )
         }
@@ -108,7 +109,7 @@ fun DateHeader(localDate: LocalDate) {
                 text = dateMonthLocalized,
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    fontWeight = FontWeight.Light,
+                    fontWeight = FontWeight.Light
                 )
             )
             Text(
@@ -116,7 +117,7 @@ fun DateHeader(localDate: LocalDate) {
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.bodySmall.fontSize,
-                    fontWeight = FontWeight.Light,
+                    fontWeight = FontWeight.Light
                 )
             )
         }
@@ -126,27 +127,27 @@ fun DateHeader(localDate: LocalDate) {
 @Composable
 fun EmptyPage(
     title: String = stringResource(id = R.string.home_diary_empty_title),
-    subtitle: String = stringResource(id = R.string.home_diary_empty_subtitle),
+    subtitle: String = stringResource(id = R.string.home_diary_empty_subtitle)
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(24.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = title,
             style = TextStyle(
                 fontSize = MaterialTheme.typography.titleMedium.fontSize,
-                fontWeight = FontWeight.Medium,
+                fontWeight = FontWeight.Medium
             )
         )
         Text(
             text = subtitle,
             style = TextStyle(
                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
-                fontWeight = FontWeight.Normal,
+                fontWeight = FontWeight.Normal
             )
         )
     }

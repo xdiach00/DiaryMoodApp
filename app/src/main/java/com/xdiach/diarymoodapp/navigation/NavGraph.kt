@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod")
+
 package com.xdiach.diarymoodapp.navigation
 
 import android.widget.Toast
@@ -40,7 +42,7 @@ import kotlinx.coroutines.withContext
 fun SetupNavGraph(
     startDestination: String,
     navController: NavHostController,
-    onDataLoaded: () -> Unit,
+    onDataLoaded: () -> Unit
 ) {
     NavHost(
         navController = navController,
@@ -51,7 +53,7 @@ fun SetupNavGraph(
                 navController.popBackStack()
                 navController.navigate(Screen.Home.route)
             },
-            onDataLoaded = onDataLoaded,
+            onDataLoaded = onDataLoaded
         )
         homeRoute(
             navigateToWrite = {
@@ -64,7 +66,7 @@ fun SetupNavGraph(
                 navController.popBackStack()
                 navController.navigate(Screen.Authentication.route)
             },
-            onDataLoaded = onDataLoaded,
+            onDataLoaded = onDataLoaded
         )
         writeRoute(
             onBackPressed = {
@@ -76,7 +78,7 @@ fun SetupNavGraph(
 
 fun NavGraphBuilder.authenticationRoute(
     navigateToHome: () -> Unit,
-    onDataLoaded: () -> Unit,
+    onDataLoaded: () -> Unit
 ) {
     composable(route = Screen.Authentication.route) {
         val viewModel: AuthenticationViewModel = viewModel()
@@ -125,7 +127,7 @@ fun NavGraphBuilder.authenticationRoute(
                 messageBarState.addError(Exception(message))
                 viewModel.setLoading(false)
             },
-            navigateToHome = navigateToHome,
+            navigateToHome = navigateToHome
         )
     }
 }
@@ -135,7 +137,7 @@ fun NavGraphBuilder.homeRoute(
     navigateToWrite: () -> Unit,
     navigateToWriteWithArgs: (String) -> Unit,
     navigateToAuth: () -> Unit,
-    onDataLoaded: () -> Unit,
+    onDataLoaded: () -> Unit
 ) {
     composable(route = Screen.Home.route) {
         val viewModel: HomeViewModel = viewModel()
@@ -162,7 +164,7 @@ fun NavGraphBuilder.homeRoute(
                 signOutDialogOpened = true
             },
             navigateToWrite = navigateToWrite,
-            navigateToWriteWithArgs = navigateToWriteWithArgs,
+            navigateToWriteWithArgs = navigateToWriteWithArgs
         )
 
         DisplayAlertDialog(
@@ -180,22 +182,24 @@ fun NavGraphBuilder.homeRoute(
                         }
                     }
                 }
-            },
+            }
         )
     }
 }
 
 @OptIn(ExperimentalPagerApi::class)
 fun NavGraphBuilder.writeRoute(
-    onBackPressed: () -> Unit,
+    onBackPressed: () -> Unit
 ) {
     composable(
         route = Screen.Write.route,
-        arguments = listOf(navArgument(name = WRITE_SCREEN_ARGUMENT_KEY) {
-            type = NavType.StringType
-            nullable = true
-            defaultValue = null
-        })
+        arguments = listOf(
+            navArgument(name = WRITE_SCREEN_ARGUMENT_KEY) {
+                type = NavType.StringType
+                nullable = true
+                defaultValue = null
+            }
+        )
     ) {
         val viewModel: WriteViewModel = viewModel()
         val context = LocalContext.current
@@ -221,7 +225,9 @@ fun NavGraphBuilder.writeRoute(
                     onSuccess = {
                         Toast.makeText(
                             context,
-                            UiText.StringResource(R.string.write_diary_delete_success).asString(context),
+                            UiText.StringResource(R.string.write_diary_delete_success).asString(
+                                context
+                            ),
                             Toast.LENGTH_SHORT
                         ).show()
                         onBackPressed()
@@ -232,7 +238,7 @@ fun NavGraphBuilder.writeRoute(
                             message,
                             Toast.LENGTH_SHORT
                         ).show()
-                    },
+                    }
                 )
             },
             onDateTimeUpdated = { viewModel.updateDateTime(zonedDateTime = it) },
@@ -246,9 +252,9 @@ fun NavGraphBuilder.writeRoute(
                             message,
                             Toast.LENGTH_SHORT
                         ).show()
-                    },
+                    }
                 )
-            },
+            }
         )
     }
 }

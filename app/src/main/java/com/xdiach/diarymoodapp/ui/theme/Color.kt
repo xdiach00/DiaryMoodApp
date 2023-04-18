@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber")
+
 package com.xdiach.diarymoodapp.ui.theme
 
 import androidx.compose.ui.graphics.Color

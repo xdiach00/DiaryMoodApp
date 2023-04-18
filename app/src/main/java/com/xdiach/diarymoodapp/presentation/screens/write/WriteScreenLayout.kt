@@ -55,7 +55,7 @@ fun WriteScreenLayout(
     description: String,
     onDescriptionChanged: (String) -> Unit,
     paddingValues: PaddingValues,
-    onSaveClicked: (Diary) -> Unit,
+    onSaveClicked: (Diary) -> Unit
 ) {
     val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
@@ -74,7 +74,7 @@ fun WriteScreenLayout(
             .padding(top = paddingValues.calculateTopPadding())
             .padding(bottom = 24.dp)
             .padding(horizontal = 24.dp),
-        verticalArrangement = Arrangement.SpaceBetween,
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
             modifier = Modifier
@@ -92,7 +92,7 @@ fun WriteScreenLayout(
                         .data(Mood.values()[moodNumber].icon)
                         .crossfade(true)
                         .build(),
-                    contentDescription = "Mood Image",
+                    contentDescription = "Mood Image"
                 )
             }
             Spacer(modifier = Modifier.height(30.dp))
@@ -100,17 +100,25 @@ fun WriteScreenLayout(
                 modifier = Modifier.fillMaxWidth(),
                 value = title,
                 onValueChange = onTitleChanged,
-                placeholder = { Text(text = stringResource(id = R.string.write_diary_title_placeholder)) },
+                placeholder = {
+                    Text(
+                        text = stringResource(id = R.string.write_diary_title_placeholder)
+                    )
+                },
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.Transparent,
                     focusedIndicatorColor = Color.Unspecified,
                     disabledIndicatorColor = Color.Unspecified,
                     unfocusedIndicatorColor = Color.Unspecified,
-                    focusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
-                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+                    focusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(
+                        alpha = 0.38f
+                    ),
+                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(
+                        alpha = 0.38f
+                    )
                 ),
                 keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next,
+                    imeAction = ImeAction.Next
                 ),
                 keyboardActions = KeyboardActions(
                     onNext = {
@@ -121,29 +129,37 @@ fun WriteScreenLayout(
                     }
                 ),
                 maxLines = 1,
-                singleLine = true,
+                singleLine = true
             )
             TextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = description,
                 onValueChange = onDescriptionChanged,
-                placeholder = { Text(text = stringResource(id = R.string.write_diary_description_placeholder)) },
+                placeholder = {
+                    Text(
+                        text = stringResource(id = R.string.write_diary_description_placeholder)
+                    )
+                },
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.Transparent,
                     focusedIndicatorColor = Color.Unspecified,
                     disabledIndicatorColor = Color.Unspecified,
                     unfocusedIndicatorColor = Color.Unspecified,
-                    focusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
-                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+                    focusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(
+                        alpha = 0.38f
+                    ),
+                    unfocusedPlaceholderColor = MaterialTheme.colorScheme.onSurface.copy(
+                        alpha = 0.38f
+                    )
                 ),
                 keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Done,
+                    imeAction = ImeAction.Done
                 ),
                 keyboardActions = KeyboardActions(
                     onNext = {
                         focusManager.clearFocus()
                     }
-                ),
+                )
             )
         }
         Column(verticalArrangement = Arrangement.Bottom) {
@@ -163,12 +179,14 @@ fun WriteScreenLayout(
                     } else {
                         Toast.makeText(
                             context,
-                            UiText.StringResource(R.string.write_diary_empty_fields_toast).asString(context),
-                            Toast.LENGTH_SHORT,
+                            UiText.StringResource(R.string.write_diary_empty_fields_toast).asString(
+                                context
+                            ),
+                            Toast.LENGTH_SHORT
                         ).show()
                     }
                 },
-                shape = Shapes().small,
+                shape = Shapes().small
             ) {
                 Text(text = stringResource(id = R.string.write_diary_button_save))
             }

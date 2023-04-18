@@ -8,9 +8,9 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -31,7 +31,7 @@ fun HomeScreen(
     onMenuClicked: () -> Unit,
     onSignOutClicked: () -> Unit,
     navigateToWrite: () -> Unit,
-    navigateToWriteWithArgs: (String) -> Unit,
+    navigateToWriteWithArgs: (String) -> Unit
 ) {
     var padding by remember {
         mutableStateOf(PaddingValues())
@@ -47,14 +47,14 @@ fun HomeScreen(
             topBar = {
                 HomeTopBar(
                     scrollBehavior = scrollBehavior,
-                    onMenuClicked = onMenuClicked,
+                    onMenuClicked = onMenuClicked
                 )
             },
             floatingActionButton = {
                 FloatingActionButton(
                     modifier = Modifier
                         .padding(end = padding.calculateEndPadding(LayoutDirection.Ltr)),
-                    onClick = navigateToWrite,
+                    onClick = navigateToWrite
                 ) {
                     Icon(
                         imageVector = Icons.Default.Edit,
@@ -69,7 +69,7 @@ fun HomeScreen(
                         HomeScreenLayout(
                             paddingValues = it,
                             diaryNotes = diaries.data,
-                            onClick = navigateToWriteWithArgs,
+                            onClick = navigateToWriteWithArgs
                         )
                     }
 
@@ -101,7 +101,7 @@ fun HomeScreen(
 fun NavigationDrawer(
     drawerState: DrawerState,
     onSignOutClicked: () -> Unit,
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -112,12 +112,12 @@ fun NavigationDrawer(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(250.dp),
-                        contentAlignment = Alignment.Center,
+                        contentAlignment = Alignment.Center
                     ) {
                         Image(
                             modifier = Modifier.size(250.dp),
                             painter = painterResource(id = R.drawable.app_icon),
-                            contentDescription = stringResource(id = R.string.app_name),
+                            contentDescription = stringResource(id = R.string.app_name)
                         )
                     }
                     NavigationDrawerItem(
@@ -130,16 +130,16 @@ fun NavigationDrawer(
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Text(
                                     text = stringResource(id = R.string.home_screen_signout),
-                                    color = MaterialTheme.colorScheme.onSurface,
+                                    color = MaterialTheme.colorScheme.onSurface
                                 )
                             }
                         },
                         selected = false,
-                        onClick = onSignOutClicked,
+                        onClick = onSignOutClicked
                     )
                 }
             )
         },
-        content = content,
+        content = content
     )
 }
