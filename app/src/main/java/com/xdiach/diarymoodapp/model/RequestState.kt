@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.util
+package com.xdiach.diarymoodapp.model
 
 sealed class RequestState<out T> {
     object Idle : RequestState<Nothing>()

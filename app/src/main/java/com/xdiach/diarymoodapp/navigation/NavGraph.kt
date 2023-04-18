@@ -22,6 +22,7 @@ import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.model.Mood
+import com.xdiach.diarymoodapp.model.RequestState
 import com.xdiach.diarymoodapp.presentation.components.DisplayAlertDialog
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationScreen
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationViewModel
@@ -32,7 +33,6 @@ import com.xdiach.diarymoodapp.presentation.screens.write.WriteViewModel
 import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.util.Constants.APP_ID
 import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
-import com.xdiach.diarymoodapp.util.RequestState
 import io.realm.kotlin.mongodb.App
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

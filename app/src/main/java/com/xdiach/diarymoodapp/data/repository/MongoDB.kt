@@ -1,8 +1,8 @@
 package com.xdiach.diarymoodapp.data.repository
 
 import com.xdiach.diarymoodapp.model.Diary
+import com.xdiach.diarymoodapp.model.RequestState
 import com.xdiach.diarymoodapp.util.Constants.APP_ID
-import com.xdiach.diarymoodapp.util.RequestState
 import com.xdiach.diarymoodapp.util.toInstant
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query

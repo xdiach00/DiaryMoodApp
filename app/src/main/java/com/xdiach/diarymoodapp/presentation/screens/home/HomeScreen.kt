@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.data.repository.Diaries
-import com.xdiach.diarymoodapp.util.RequestState
+import com.xdiach.diarymoodapp.model.RequestState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

@@ -11,8 +11,8 @@ import androidx.lifecycle.viewModelScope
 import com.xdiach.diarymoodapp.data.repository.MongoDB
 import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.Mood
+import com.xdiach.diarymoodapp.model.RequestState
 import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
-import com.xdiach.diarymoodapp.util.RequestState
 import com.xdiach.diarymoodapp.util.toRealmInstant
 import io.realm.kotlin.types.RealmInstant
 import java.time.ZonedDateTime
