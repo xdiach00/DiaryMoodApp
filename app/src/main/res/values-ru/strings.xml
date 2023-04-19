@@ -11,7 +11,9 @@
   <string name="home_diary_empty_title">"Пустой дневник"</string>
   <string name="home_diary_error_title">"Ошибка!"</string>
   <string name="home_gallery_hide">"Скрыть галерею"</string>
+  <string name="home_gallery_loading">"Загрузка..."</string>
   <string name="home_gallery_show">"Показать галерею"</string>
+  <string name="home_images_download_failed">"Изображения еще не загружены. Пожалуйста, подождите или попробуйте снова."</string>
   <string name="home_screen_no">"Нет"</string>
   <string name="home_screen_signout">"Выйти"</string>
   <string name="home_screen_signout_description">"Вы уверены, что хотите выйти?"</string>

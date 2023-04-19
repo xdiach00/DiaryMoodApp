@@ -11,7 +11,9 @@
   <string name="home_diary_empty_title">"Žádné poznámky"</string>
   <string name="home_diary_error_title">"Chyba!"</string>
   <string name="home_gallery_hide">"Skrýt galerii"</string>
+  <string name="home_gallery_loading">"Načítání…"</string>
   <string name="home_gallery_show">"Zobrazit galerii"</string>
+  <string name="home_images_download_failed">"Obrázky ještě nebyly nahrány. Počkejte nebo zkuste nahrát znovu."</string>
   <string name="home_screen_no">"Ne"</string>
   <string name="home_screen_signout">"Odhlásit se"</string>
   <string name="home_screen_signout_description">"Jste si jisti, že se chcete odhlásit?"</string>

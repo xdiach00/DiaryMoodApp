@@ -11,7 +11,9 @@
   <string name="home_diary_empty_title">"Empty Diary"</string>
   <string name="home_diary_error_title">"Error!"</string>
   <string name="home_gallery_hide">"Hide Gallery"</string>
+  <string name="home_gallery_loading">"Loading..."</string>
   <string name="home_gallery_show">"Show Gallery"</string>
+  <string name="home_images_download_failed">"Images not uploaded yet. Please wait or try uploading again."</string>
   <string name="home_screen_no">"No"</string>
   <string name="home_screen_signout">"Sign out"</string>
   <string name="home_screen_signout_description">"Are you sure you want to Sign Out?"</string>
