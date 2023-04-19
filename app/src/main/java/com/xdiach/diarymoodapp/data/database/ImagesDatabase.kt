@@ -9,6 +9,6 @@ import com.xdiach.diarymoodapp.data.database.entity.ImageToUpload
     version = 1,
     exportSchema = false
 )
-abstract class ImagesDatabase: RoomDatabase() {
-    abstract fun imageToUploadDao(): ImagesToUploadDao
+abstract class ImagesDatabase : RoomDatabase() {
+    abstract fun imageToUploadDao(): ImageToUploadDao
 }
