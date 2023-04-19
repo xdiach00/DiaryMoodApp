@@ -2,7 +2,6 @@
 
 package com.xdiach.diarymoodapp.navigation
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -10,6 +9,7 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -206,7 +206,7 @@ fun NavGraphBuilder.writeRoute(
             }
         )
     ) {
-        val viewModel: WriteViewModel = viewModel()
+        val viewModel: WriteViewModel = hiltViewModel()
         val context = LocalContext.current
         val uiState = viewModel.uiState
         val pagerState = rememberPagerState()
@@ -264,7 +264,6 @@ fun NavGraphBuilder.writeRoute(
             },
             onImageSelect = {
                 val type = context.contentResolver.getType(it)?.split("/")?.last() ?: "jpg"
-                Log.d("WriteViewModel", "URI: $it")
                 viewModel.addImage(
                     image = it,
                     imageType = type
