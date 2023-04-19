@@ -1,5 +1,7 @@
 package com.xdiach.diarymoodapp.presentation.components
 
+import android.net.Uri
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -24,7 +26,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -32,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -42,9 +47,11 @@ import androidx.compose.ui.unit.dp
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.Mood
+import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.ui.theme.DiaryMoodAppTheme
 import com.xdiach.diarymoodapp.ui.values.Dimensions
 import com.xdiach.diarymoodapp.ui.values.Elevation
+import com.xdiach.diarymoodapp.util.fetchImagesFromFirebase
 import com.xdiach.diarymoodapp.util.toInstant
 import java.text.DateFormat
 import java.time.Instant
@@ -54,9 +61,37 @@ import java.util.Locale
 @Composable
 fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
     val localDensity = LocalDensity.current
+    val context = LocalContext.current
     var componentHeight by remember { mutableStateOf(0.dp) }
-    var galleryOpened by remember {
-        mutableStateOf(false)
+    var galleryOpened by remember { mutableStateOf(false) }
+    var galleryLoading by remember { mutableStateOf(false) }
+    val downloadedImages = remember { mutableStateListOf<Uri>() }
+
+    LaunchedEffect(key1 = galleryOpened) {
+        if (galleryOpened && downloadedImages.isEmpty()) {
+            galleryLoading = true
+            fetchImagesFromFirebase(
+                remoteImagePaths = diary.images,
+                onImageDownload = { image ->
+                    downloadedImages.add(image)
+                },
+                onImageDownloadFailed = {
+                    Toast.makeText(
+                        context,
+                        UiText.StringResource(R.string.home_images_download_failed).asString(
+                            context
+                        ),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    galleryLoading = false
+                    galleryOpened = false
+                },
+                onReadyToDisplay = {
+                    galleryLoading = false
+                    galleryOpened = true
+                }
+            )
+        }
     }
 
     Row(
@@ -97,6 +132,7 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
                 if (diary.images.isNotEmpty()) {
                     ShowGalleryButton(
                         galleryOpened = galleryOpened,
+                        galleryLoading = galleryLoading,
                         onClick = {
                             galleryOpened = !galleryOpened
                         }
@@ -112,7 +148,7 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
                     )
                 ) {
                     Column(modifier = Modifier.padding(Dimensions.Padding)) {
-                        Gallery(images = diary.images)
+                        Gallery(images = downloadedImages)
                     }
                 }
             }
@@ -160,13 +196,18 @@ fun DiaryHeader(
 @Composable
 fun ShowGalleryButton(
     galleryOpened: Boolean,
+    galleryLoading: Boolean,
     onClick: () -> Unit
 ) {
     TextButton(onClick = onClick) {
         Text(
             text =
             if (galleryOpened) {
-                stringResource(id = R.string.home_gallery_hide)
+                if (galleryLoading) {
+                    stringResource(id = R.string.home_gallery_loading)
+                } else {
+                    stringResource(id = R.string.home_gallery_hide)
+                }
             } else {
                 stringResource(id = R.string.home_gallery_show)
             },
