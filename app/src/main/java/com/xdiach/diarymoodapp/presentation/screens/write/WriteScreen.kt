@@ -19,16 +19,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
-import com.xdiach.diarymoodapp.model.Diary
-import com.xdiach.diarymoodapp.model.GalleryImage
-import com.xdiach.diarymoodapp.model.GalleryState
-import com.xdiach.diarymoodapp.model.Mood
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -40,7 +34,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.PagerState
 import com.xdiach.diarymoodapp.R
+import com.xdiach.diarymoodapp.model.Diary
+import com.xdiach.diarymoodapp.model.GalleryImage
+import com.xdiach.diarymoodapp.model.GalleryState
+import com.xdiach.diarymoodapp.model.Mood
 import java.time.ZonedDateTime
 
 @OptIn(ExperimentalPagerApi::class)
@@ -114,7 +114,7 @@ fun WriteScreen(
 fun ZoomableImage(
     selectedGalleryImage: GalleryImage,
     onCloseClicked: () -> Unit,
-    onDeleteClicked: () -> Unit,
+    onDeleteClicked: () -> Unit
 ) {
     var offsetX by remember { mutableStateOf(0f) }
     var offsetY by remember { mutableStateOf(0f) }
