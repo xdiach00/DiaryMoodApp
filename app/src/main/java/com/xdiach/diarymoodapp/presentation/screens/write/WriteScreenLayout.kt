@@ -42,6 +42,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.model.Diary
+import com.xdiach.diarymoodapp.model.GalleryImage
 import com.xdiach.diarymoodapp.model.GalleryState
 import com.xdiach.diarymoodapp.model.Mood
 import com.xdiach.diarymoodapp.presentation.components.GalleryUploader
@@ -61,7 +62,8 @@ fun WriteScreenLayout(
     onDescriptionChanged: (String) -> Unit,
     paddingValues: PaddingValues,
     onSaveClicked: (Diary) -> Unit,
-    onImageSelect: (Uri) -> Unit
+    onImageSelect: (Uri) -> Unit,
+    onImageClicked: (GalleryImage) -> Unit
 ) {
     val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
@@ -174,7 +176,7 @@ fun WriteScreenLayout(
                 galleryState = galleryState,
                 onAddClicked = { focusManager.clearFocus() },
                 onImageSelect = onImageSelect,
-                onImageClicked = {}
+                onImageClicked = onImageClicked
             )
             Spacer(modifier = Modifier.height(12.dp))
             Button(
