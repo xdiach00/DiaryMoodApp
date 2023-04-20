@@ -22,7 +22,7 @@ fun fetchImagesFromFirebase(
                 FirebaseStorage.getInstance().reference.child(remoteImagePath.trim()).downloadUrl
                     .addOnSuccessListener {
                         onImageDownload(it)
-                        if (remoteImagePath.lastIndexOf(remoteImagePath.last()) == index) {
+                        if (remoteImagePaths.lastIndexOf(remoteImagePaths.last()) == index) {
                             onReadyToDisplay()
                         }
                     }.addOnFailureListener {
