@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -109,21 +110,6 @@ fun GalleryUploader(
     }
 
     BoxWithConstraints(modifier = modifier) {
-        val numberOfVisibleImages = remember {
-            derivedStateOf {
-                max(
-                    a = 0,
-                    b = this.maxWidth.div(spaceBetween + imageSize).toInt().minus(2)
-                )
-            }
-        }
-
-        val remainingImages = remember {
-            derivedStateOf {
-                galleryState.images.size - numberOfVisibleImages.value
-            }
-        }
-
         Row {
             AddImageButton(
                 imageSize = imageSize,
@@ -138,27 +124,24 @@ fun GalleryUploader(
                 }
             )
             Spacer(modifier = Modifier.width(spaceBetween))
-            galleryState.images.take(numberOfVisibleImages.value).forEach { galleryImage ->
-                AsyncImage(
-                    modifier = Modifier
-                        .clip(imageShape)
-                        .size(imageSize)
-                        .clickable { onImageClicked(galleryImage) },
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(galleryImage.image)
-                        .crossfade(true)
-                        .build(),
-                    contentScale = ContentScale.Crop,
-                    contentDescription = "Gallery Image"
-                )
-                Spacer(modifier = Modifier.width(spaceBetween))
-            }
-            if (remainingImages.value > 0) {
-                LastImageOverlay(
-                    imageSize = imageSize,
-                    remainingImages = remainingImages.value,
-                    imageShape = imageShape
-                )
+            LazyRow {
+                galleryState.images.forEach { galleryImage ->
+                    item {
+                        AsyncImage(
+                            modifier = Modifier
+                                .clip(imageShape)
+                                .size(imageSize)
+                                .clickable { onImageClicked(galleryImage) },
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(galleryImage.image)
+                                .crossfade(true)
+                                .build(),
+                            contentScale = ContentScale.Crop,
+                            contentDescription = "Gallery Image"
+                        )
+                    }
+                    item { Spacer(modifier = Modifier.width(spaceBetween)) }
+                }
             }
         }
     }
