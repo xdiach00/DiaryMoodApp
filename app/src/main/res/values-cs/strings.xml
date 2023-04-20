@@ -25,4 +25,6 @@
   <string name="write_diary_description_placeholder">"Napište svou poznámku..."</string>
   <string name="write_diary_empty_fields_toast">"Textová pole nesmí být prázdná!"</string>
   <string name="write_diary_title_placeholder">"Název"</string>
+  <string name="write_screen_zoomable_image_close">"Zavřít"</string>
+  <string name="write_screen_zoomable_image_delete">"Smazat"</string>
 </resources>

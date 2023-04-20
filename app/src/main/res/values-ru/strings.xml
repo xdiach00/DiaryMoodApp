@@ -25,4 +25,6 @@
   <string name="write_diary_description_placeholder">"Напишите заметку..."</string>
   <string name="write_diary_empty_fields_toast">"Текстовые поля не могут быть пустыми!"</string>
   <string name="write_diary_title_placeholder">"Заголовок"</string>
+  <string name="write_screen_zoomable_image_close">"Закрыть"</string>
+  <string name="write_screen_zoomable_image_delete">"Удалить"</string>
 </resources>
