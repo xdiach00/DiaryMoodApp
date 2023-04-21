@@ -160,6 +160,9 @@ fun NavGraphBuilder.homeRoute(
         HomeScreen(
             diaries = diaries,
             drawerState = drawerState,
+            dateIsSelected = viewModel.dateIsSelected,
+            onDateSelected = { viewModel.getDiaries(zonedDateTime = it) },
+            onDateReset = { viewModel.getDiaries() },
             onMenuClicked = {
                 scope.launch {
                     drawerState.open()
@@ -202,9 +205,8 @@ fun NavGraphBuilder.homeRoute(
                     onSuccess = {
                         Toast.makeText(
                             context,
-                            UiText.StringResource(R.string.home_screen_all_deleted_successfully).asString(
-                                context
-                            ),
+                            UiText.StringResource(R.string.home_screen_all_deleted_successfully)
+                                .asString(context),
                             Toast.LENGTH_SHORT
                         ).show()
                         scope.launch { drawerState.close() }
