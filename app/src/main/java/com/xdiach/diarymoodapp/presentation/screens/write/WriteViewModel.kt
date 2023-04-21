@@ -13,8 +13,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.xdiach.diarymoodapp.data.database.ImageToDeleteDao
 import com.xdiach.diarymoodapp.data.database.ImageToUploadDao
-import com.xdiach.diarymoodapp.data.database.entity.ImageToUpload
+import com.xdiach.diarymoodapp.data.database.entity.ImageToDeleteEntity
+import com.xdiach.diarymoodapp.data.database.entity.ImageToUploadEntity
 import com.xdiach.diarymoodapp.data.repository.MongoDB
 import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.GalleryImage
@@ -37,7 +39,8 @@ import org.mongodb.kbson.ObjectId
 @HiltViewModel
 class WriteViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val imageToUploadDao: ImageToUploadDao
+    private val imageToUploadDao: ImageToUploadDao,
+    private val imageToDeleteDao: ImageToDeleteDao
 ) : ViewModel() {
     val galleryState = GalleryState()
     var uiState by mutableStateOf(UiState())
@@ -230,7 +233,7 @@ class WriteViewModel @Inject constructor(
                     if (sessionUri != null) {
                         viewModelScope.launch(Dispatchers.IO) {
                             imageToUploadDao.addImageToUpload(
-                                ImageToUpload(
+                                ImageToUploadEntity(
                                     remoteImagePath = galleryImage.remoteImagePath,
                                     imageUri = galleryImage.image.toString(),
                                     sessionUri = sessionUri.toString()
@@ -247,6 +250,13 @@ class WriteViewModel @Inject constructor(
         val imagesToDelete = images ?: galleryState.imagesToBeDeleted.map { it.remoteImagePath }
         imagesToDelete.forEach { remotePath ->
             storage.child(remotePath).delete()
+                .addOnFailureListener {
+                    viewModelScope.launch(Dispatchers.IO) {
+                        imageToDeleteDao.addImageToDelete(
+                            ImageToDeleteEntity(remoteImagePath = remotePath)
+                        )
+                    }
+                }
         }
     }
 
