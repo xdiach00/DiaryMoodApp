@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="all_screens_no_internet">"Нет подключения к Интернету"</string>
   <string name="app_name">"DiaryMoodApp"</string>
   <string name="auth_screen_signin_failure">"Пользователь не вошел в систему!"</string>
   <string name="auth_screen_signin_successful">"Аутентификация успешно завершена!"</string>
@@ -14,6 +15,9 @@
   <string name="home_gallery_loading">"Загрузка..."</string>
   <string name="home_gallery_show">"Показать галерею"</string>
   <string name="home_images_download_failed">"Изображения еще не загружены. Пожалуйста, подождите или попробуйте снова."</string>
+  <string name="home_screen_all_deleted_successfully">"Все записи успешно удалены!"</string>
+  <string name="home_screen_delete_all">"Удалить все записи"</string>
+  <string name="home_screen_delete_all_description">"Вы действительно хотите навсегда удалить все свои записи?"</string>
   <string name="home_screen_no">"Нет"</string>
   <string name="home_screen_signout">"Выйти"</string>
   <string name="home_screen_signout_description">"Вы уверены, что хотите выйти?"</string>

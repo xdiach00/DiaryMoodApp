@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="all_screens_no_internet">"Žádné připojení k internetu"</string>
   <string name="app_name">"DiaryMoodApp"</string>
   <string name="auth_screen_signin_failure">"Uživatel není přihlášen!"</string>
   <string name="auth_screen_signin_successful">"Úspěšně autorizováno!"</string>
@@ -14,6 +15,9 @@
   <string name="home_gallery_loading">"Načítání…"</string>
   <string name="home_gallery_show">"Zobrazit galerii"</string>
   <string name="home_images_download_failed">"Obrázky ještě nebyly nahrány. Počkejte nebo zkuste nahrát znovu."</string>
+  <string name="home_screen_all_deleted_successfully">"Všechny poznámky byly úspěšně smazány!"</string>
+  <string name="home_screen_delete_all">"Smazat všechno"</string>
+  <string name="home_screen_delete_all_description">"Opravdu chcete trvale smazat všechny své poznámky?"</string>
   <string name="home_screen_no">"Ne"</string>
   <string name="home_screen_signout">"Odhlásit se"</string>
   <string name="home_screen_signout_description">"Jste si jisti, že se chcete odhlásit?"</string>

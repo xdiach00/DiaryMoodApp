@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="all_screens_no_internet">"No Internet Connection!"</string>
   <string name="app_name">"DiaryMoodApp"</string>
   <string name="auth_screen_signin_failure">"User is not logged in!"</string>
   <string name="auth_screen_signin_successful">"Successfully authenticated!"</string>
@@ -14,6 +15,9 @@
   <string name="home_gallery_loading">"Loading..."</string>
   <string name="home_gallery_show">"Show Gallery"</string>
   <string name="home_images_download_failed">"Images not uploaded yet. Please wait or try uploading again."</string>
+  <string name="home_screen_all_deleted_successfully">"All diaries successfully deleted!"</string>
+  <string name="home_screen_delete_all">"Delete All Diaries"</string>
+  <string name="home_screen_delete_all_description">"Are you sure you want to permanently delete all your diaries?"</string>
   <string name="home_screen_no">"No"</string>
   <string name="home_screen_signout">"Sign out"</string>
   <string name="home_screen_signout_description">"Are you sure you want to Sign Out?"</string>
