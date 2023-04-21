@@ -66,6 +66,7 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
     var galleryOpened by remember { mutableStateOf(false) }
     var galleryLoading by remember { mutableStateOf(false) }
     val downloadedImages = remember { mutableStateListOf<Uri>() }
+    var toastShown = false
 
     LaunchedEffect(key1 = galleryOpened) {
         if (galleryOpened && downloadedImages.isEmpty()) {
@@ -76,19 +77,23 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
                     downloadedImages.add(image)
                 },
                 onImageDownloadFailed = {
-                    Toast.makeText(
-                        context,
-                        UiText.StringResource(R.string.home_images_download_failed).asString(
-                            context
-                        ),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (!toastShown) {
+                        Toast.makeText(
+                            context,
+                            UiText.StringResource(R.string.home_images_download_failed).asString(
+                                context
+                            ),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    toastShown = true
                     galleryLoading = false
                     galleryOpened = false
                 },
                 onReadyToDisplay = {
                     galleryLoading = false
                     galleryOpened = true
+                    toastShown = false
                 }
             )
         }
