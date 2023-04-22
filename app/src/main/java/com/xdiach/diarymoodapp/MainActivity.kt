@@ -3,19 +3,22 @@ package com.xdiach.diarymoodapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.core.net.toUri
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.FirebaseApp
-import com.xdiach.diarymoodapp.data.database.ImageToDeleteDao
-import com.xdiach.diarymoodapp.data.database.ImageToUploadDao
-import com.xdiach.diarymoodapp.navigation.Screen
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storageMetadata
 import com.xdiach.diarymoodapp.navigation.SetupNavGraph
-import com.xdiach.diarymoodapp.ui.theme.DiaryMoodAppTheme
-import com.xdiach.diarymoodapp.util.Constants.APP_ID
-import com.xdiach.diarymoodapp.util.retryDeletingImageFromFirebase
-import com.xdiach.diarymoodapp.util.retryUploadingImageToFirebase
+import com.xdiach.mongo.database.ImageToDeleteDao
+import com.xdiach.mongo.database.ImageToUploadDao
+import com.xdiach.mongo.database.entity.ImageToDeleteEntity
+import com.xdiach.mongo.database.entity.ImageToUploadEntity
+import com.xdiach.ui.theme.DiaryMoodAppTheme
+import com.xdiach.util.PrivateConstants.APP_ID
+import com.xdiach.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
 import io.realm.kotlin.mongodb.App
 import javax.inject.Inject
@@ -99,4 +102,25 @@ private fun getStartDestination(): String {
     } else {
         Screen.Authentication.route
     }
+}
+
+fun retryUploadingImageToFirebase(
+    imageToUpload: ImageToUploadEntity,
+    onSuccess: () -> Unit
+) {
+    val storage = FirebaseStorage.getInstance().reference
+    storage.child(imageToUpload.remoteImagePath).putFile(
+        imageToUpload.imageUri.toUri(),
+        storageMetadata { },
+        imageToUpload.sessionUri.toUri()
+    ).addOnSuccessListener { onSuccess() }
+}
+
+fun retryDeletingImageFromFirebase(
+    imageToDelete: ImageToDeleteEntity,
+    onSuccess: () -> Unit
+) {
+    val storage = FirebaseStorage.getInstance().reference
+    storage.child(imageToDelete.remoteImagePath).delete()
+        .addOnSuccessListener { onSuccess() }
 }

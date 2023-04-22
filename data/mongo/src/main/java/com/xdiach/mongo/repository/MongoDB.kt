@@ -1,9 +1,9 @@
-package com.xdiach.diarymoodapp.data.repository
+package com.xdiach.mongo.repository
 
 import com.xdiach.util.model.Diary
 import com.xdiach.util.model.RequestState
-import com.xdiach.diarymoodapp.util.Constants.APP_ID
-import com.xdiach.diarymoodapp.util.toInstant
+import com.xdiach.util.PrivateConstants.APP_ID
+import com.xdiach.util.toInstant
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.log.LogLevel

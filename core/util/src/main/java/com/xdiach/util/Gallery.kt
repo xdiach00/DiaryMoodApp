@@ -1,4 +1,4 @@
-package com.xdiach.ui.components
+package com.xdiach.util
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult

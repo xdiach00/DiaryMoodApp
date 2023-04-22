@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.data.repository
+package com.xdiach.mongo.repository
 
 import com.xdiach.util.model.Diary
 import com.xdiach.util.model.RequestState

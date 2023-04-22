@@ -1,10 +1,10 @@
-package com.xdiach.diarymoodapp.data.database
+package com.xdiach.mongo.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.xdiach.diarymoodapp.data.database.entity.ImageToUploadEntity
+import com.xdiach.mongo.database.entity.ImageToUploadEntity
 
 @Dao
 interface ImageToUploadDao {

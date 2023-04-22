@@ -28,16 +28,25 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = ProjectConfig.extensionVersion
+    }
 }
 
 dependencies {
 
     implementation(libs.activity.compose)
     implementation(libs.material3.compose)
+    implementation(libs.compose.tooling.preview)
 
     implementation(libs.core.ktx)
     implementation(libs.realm.sync)
     implementation(libs.coroutines.core)
+
+    implementation(libs.coil)
 
     implementation(libs.firebase.storage)
 

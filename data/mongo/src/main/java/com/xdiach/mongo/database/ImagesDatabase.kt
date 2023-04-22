@@ -1,9 +1,9 @@
-package com.xdiach.diarymoodapp.data.database
+package com.xdiach.mongo.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.xdiach.diarymoodapp.data.database.entity.ImageToDeleteEntity
-import com.xdiach.diarymoodapp.data.database.entity.ImageToUploadEntity
+import com.xdiach.mongo.database.entity.ImageToDeleteEntity
+import com.xdiach.mongo.database.entity.ImageToUploadEntity
 
 @Database(
     entities = [ImageToUploadEntity::class, ImageToDeleteEntity::class],
