@@ -20,7 +20,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
-import com.xdiach.diarymoodapp.R
+import com.xdiach.translations.R
 import com.xdiach.util.model.Mood
 import com.xdiach.util.model.RequestState
 import com.xdiach.ui.components.DisplayAlertDialog

@@ -10,10 +10,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.xdiach.util.connectivity.ConnectivityObserver
 import com.xdiach.util.connectivity.NetworkConnectivityObserver
-import com.xdiach.diarymoodapp.data.database.ImageToDeleteDao
-import com.xdiach.diarymoodapp.data.database.entity.ImageToDeleteEntity
-import com.xdiach.diarymoodapp.data.repository.Diaries
-import com.xdiach.diarymoodapp.data.repository.MongoDB
+import com.xdiach.mongo.database.ImageToDeleteDao
+import com.xdiach.mongo.database.entity.ImageToDeleteEntity
+import com.xdiach.mongo.repository.Diaries
+import com.xdiach.mongo.repository.MongoDB
 import com.xdiach.util.model.RequestState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.ZonedDateTime

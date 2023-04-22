@@ -12,9 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.xdiach.diarymoodapp.R
+import com.xdiach.diarymoodapp.R as RA
+import com.xdiach.translations.R as RT
 import com.xdiach.ui.components.GoogleButton
-import com.xdiach.diarymoodapp.ui.values.Dimensions
+import com.xdiach.ui.values.Dimensions
 
 @Composable
 fun AuthenticationScreenLayout(
@@ -40,16 +41,16 @@ fun AuthenticationScreenLayout(
             ) {
                 Image(
                     modifier = Modifier.size(120.dp),
-                    painter = painterResource(id = R.drawable.google_logo),
-                    contentDescription = stringResource(id = R.string.app_name)
+                    painter = painterResource(id = RA.drawable.google_logo),
+                    contentDescription = stringResource(id = RT.string.app_name)
                 )
                 Spacer(modifier = Modifier.height(Dimensions.L))
                 Text(
-                    text = stringResource(id = R.string.auth_screen_welcome),
+                    text = stringResource(id = RT.string.auth_screen_welcome),
                     fontSize = MaterialTheme.typography.titleLarge.fontSize
                 )
                 Text(
-                    text = stringResource(id = R.string.auth_screen_subtitle),
+                    text = stringResource(id = RT.string.auth_screen_subtitle),
                     fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
                 )

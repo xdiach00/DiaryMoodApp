@@ -3,7 +3,7 @@ package com.xdiach.diarymoodapp.presentation.screens.authentication
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.xdiach.diarymoodapp.util.Constants.APP_ID
+import com.xdiach.util.PrivateConstants.APP_ID
 import io.realm.kotlin.mongodb.App
 import io.realm.kotlin.mongodb.Credentials
 import io.realm.kotlin.mongodb.GoogleAuthType

@@ -23,7 +23,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -33,6 +32,9 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = ProjectConfig.extensionVersion
+    }
+    packagingOptions {
+        resources.excludes.add("META-INF/gradle/incremental.annotation.processors")
     }
 }
 
@@ -44,8 +46,6 @@ dependencies {
 
     implementation(libs.realm.sync)
     implementation(libs.coroutines.core)
-
-    implementation(libs.desugar.jdk)
 
     implementation(project(":core:translations"))
 }

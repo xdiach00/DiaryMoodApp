@@ -26,10 +26,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
     }
 }
 
@@ -41,12 +43,10 @@ dependencies {
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    implementation(libs.room.compiler)
+    kapt(libs.room.compiler)
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.compiler)
-
-    implementation(libs.desugar.jdk)
 
     implementation(project(":core:util"))
 }

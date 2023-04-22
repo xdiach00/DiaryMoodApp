@@ -31,11 +31,11 @@ import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.clock.ClockDialog
 import com.maxkeppeler.sheets.clock.models.ClockSelection
-import com.xdiach.diarymoodapp.R
+import com.xdiach.translations.R
 import com.xdiach.util.model.Diary
 import com.xdiach.ui.components.DisplayAlertDialog
-import com.xdiach.diarymoodapp.ui.UiText
-import com.xdiach.diarymoodapp.util.toInstant
+import com.xdiach.ui.UiText
+import com.xdiach.util.toInstant
 import java.text.DateFormat
 import java.time.LocalDate
 import java.time.LocalTime

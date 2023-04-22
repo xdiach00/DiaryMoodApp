@@ -15,7 +15,7 @@ import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
-import com.xdiach.diarymoodapp.R
+import com.xdiach.translations.R
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId

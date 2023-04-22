@@ -19,8 +19,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import com.xdiach.diarymoodapp.R
-import com.xdiach.diarymoodapp.data.repository.Diaries
+import com.xdiach.translations.R as RT
+import com.xdiach.diarymoodapp.R as RA
+import com.xdiach.mongo.repository.Diaries
 import com.xdiach.util.model.RequestState
 import java.time.ZonedDateTime
 
@@ -85,7 +86,7 @@ fun HomeScreen(
 
                     is RequestState.Error -> {
                         EmptyPage(
-                            title = stringResource(id = R.string.home_diary_error_title),
+                            title = stringResource(id = RT.string.home_diary_error_title),
                             subtitle = "${diaries.error.message}"
                         )
                     }
@@ -106,7 +107,6 @@ fun HomeScreen(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavigationDrawer(
     drawerState: DrawerState,
@@ -127,20 +127,20 @@ fun NavigationDrawer(
                     ) {
                         Image(
                             modifier = Modifier.size(250.dp),
-                            painter = painterResource(id = R.drawable.app_icon),
-                            contentDescription = stringResource(id = R.string.app_name)
+                            painter = painterResource(id = RA.drawable.app_icon),
+                            contentDescription = stringResource(id = RT.string.app_name)
                         )
                     }
                     NavigationDrawerItem(
                         label = {
                             Row(modifier = Modifier.padding(horizontal = 12.dp)) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.google_logo),
+                                    painter = painterResource(id = RA.drawable.google_logo),
                                     contentDescription = "Google logo"
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Text(
-                                    text = stringResource(id = R.string.home_screen_signout),
+                                    text = stringResource(id = RT.string.home_screen_signout),
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                             }
@@ -158,7 +158,7 @@ fun NavigationDrawer(
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Text(
-                                    text = stringResource(id = R.string.home_screen_delete_all),
+                                    text = stringResource(id = RT.string.home_screen_delete_all),
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                             }
