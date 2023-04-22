@@ -17,3 +17,4 @@ rootProject.name = "DiaryMoodApp"
 include ':app'
 include ':core:ui'
 include ':core:translations'
+include ':core:util'
