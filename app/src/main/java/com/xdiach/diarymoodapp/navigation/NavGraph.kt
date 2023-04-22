@@ -30,9 +30,10 @@ import com.xdiach.diarymoodapp.presentation.screens.home.HomeScreen
 import com.xdiach.diarymoodapp.presentation.screens.home.HomeViewModel
 import com.xdiach.diarymoodapp.presentation.screens.write.WriteScreen
 import com.xdiach.diarymoodapp.presentation.screens.write.WriteViewModel
-import com.xdiach.diarymoodapp.ui.UiText
-import com.xdiach.diarymoodapp.util.Constants.APP_ID
-import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
+import com.xdiach.ui.UiText
+import com.xdiach.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
+import com.xdiach.util.PrivateConstants.APP_ID
+import com.xdiach.util.Screen
 import io.realm.kotlin.mongodb.App
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
