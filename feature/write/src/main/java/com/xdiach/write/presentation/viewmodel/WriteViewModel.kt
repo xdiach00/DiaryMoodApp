@@ -1,6 +1,6 @@
 @file:Suppress("TooManyFunctions")
 
-package com.xdiach.diarymoodapp.presentation.screens.write
+package com.xdiach.write.presentation.viewmodel
 
 import android.net.Uri
 import androidx.compose.runtime.getValue

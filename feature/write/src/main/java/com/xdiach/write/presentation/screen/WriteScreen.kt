@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.screens.write
+package com.xdiach.write.presentation.screen
 
 import android.annotation.SuppressLint
 import android.net.Uri
@@ -41,6 +41,8 @@ import com.xdiach.util.model.Diary
 import com.xdiach.ui.GalleryImage
 import com.xdiach.ui.GalleryState
 import com.xdiach.util.model.Mood
+import com.xdiach.write.presentation.components.WriteTopBar
+import com.xdiach.write.presentation.viewmodel.UiState
 import java.time.ZonedDateTime
 
 @OptIn(ExperimentalPagerApi::class)

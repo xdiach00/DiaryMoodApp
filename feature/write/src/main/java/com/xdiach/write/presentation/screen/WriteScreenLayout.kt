@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.screens.write
+package com.xdiach.write.presentation.screen
 
 import android.net.Uri
 import android.widget.Toast
@@ -47,6 +47,7 @@ import com.xdiach.ui.GalleryImage
 import com.xdiach.ui.GalleryState
 import com.xdiach.ui.UiText
 import com.xdiach.util.GalleryUploader
+import com.xdiach.write.presentation.viewmodel.UiState
 import io.realm.kotlin.ext.toRealmList
 import kotlinx.coroutines.launch
 

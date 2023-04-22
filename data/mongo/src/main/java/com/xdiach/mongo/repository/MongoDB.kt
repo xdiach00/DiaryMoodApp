@@ -1,5 +1,6 @@
 package com.xdiach.mongo.repository
 
+import android.annotation.SuppressLint
 import com.xdiach.util.model.Diary
 import com.xdiach.util.model.RequestState
 import com.xdiach.util.PrivateConstants.APP_ID
@@ -45,6 +46,7 @@ object MongoDB : MongoRepository {
         }
     }
 
+    @SuppressLint("NewApi")
     override fun getAllDiaries(): Flow<Diaries> {
         return if (user != null) {
             try {
@@ -68,6 +70,7 @@ object MongoDB : MongoRepository {
         }
     }
 
+    @SuppressLint("NewApi")
     override fun getFilteredDiaries(zonedDateTime: ZonedDateTime): Flow<Diaries> {
         return if (user != null) {
             try {

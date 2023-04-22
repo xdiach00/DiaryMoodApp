@@ -2,6 +2,7 @@
 
 package com.xdiach.util.model
 
+import android.annotation.SuppressLint
 import com.xdiach.util.toRealmInstant
 import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.types.RealmInstant
@@ -19,5 +20,6 @@ open class Diary : RealmObject {
     var title: String = ""
     var description: String = ""
     var images: RealmList<String> = realmListOf()
+    @SuppressLint("NewApi")
     var date: RealmInstant = Instant.now().toRealmInstant()
 }
