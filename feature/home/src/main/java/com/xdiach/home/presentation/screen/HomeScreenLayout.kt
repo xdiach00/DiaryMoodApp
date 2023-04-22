@@ -1,5 +1,6 @@
 package com.xdiach.home.presentation.screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -34,7 +35,7 @@ import java.util.Locale
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreenLayout(
+internal fun HomeScreenLayout(
     paddingValues: PaddingValues,
     diaryNotes: Map<LocalDate, List<Diary>>,
     onClick: (String) -> Unit
@@ -64,8 +65,9 @@ fun HomeScreenLayout(
     }
 }
 
+@SuppressLint("NewApi")
 @Composable
-fun DateHeader(localDate: LocalDate) {
+private fun DateHeader(localDate: LocalDate) {
     val dateDayOfWeekLocalized = localDate.format(
         DateTimeFormatter.ofPattern("EEEE")
             .withLocale(Locale.getDefault())
@@ -125,7 +127,7 @@ fun DateHeader(localDate: LocalDate) {
 }
 
 @Composable
-fun EmptyPage(
+internal fun EmptyPage(
     title: String = stringResource(id = R.string.home_diary_empty_title),
     subtitle: String = stringResource(id = R.string.home_diary_empty_subtitle)
 ) {
@@ -153,6 +155,7 @@ fun EmptyPage(
     }
 }
 
+@SuppressLint("NewApi")
 @Composable
 @Preview(showBackground = true)
 private fun Preview() {

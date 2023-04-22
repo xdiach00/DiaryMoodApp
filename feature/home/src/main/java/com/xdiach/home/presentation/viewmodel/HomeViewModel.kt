@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+internal class HomeViewModel @Inject constructor(
     private val connectivity: NetworkConnectivityObserver,
     private val imageToDeleteDao: ImageToDeleteDao
 ) : ViewModel() {
