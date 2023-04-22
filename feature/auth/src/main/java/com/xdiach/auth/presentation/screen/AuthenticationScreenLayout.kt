@@ -18,7 +18,7 @@ import com.xdiach.ui.components.GoogleButton
 import com.xdiach.ui.values.Dimensions
 
 @Composable
-fun AuthenticationScreenLayout(
+internal fun AuthenticationScreenLayout(
     loadingState: Boolean,
     onAuthClicked: () -> Unit
 ) {

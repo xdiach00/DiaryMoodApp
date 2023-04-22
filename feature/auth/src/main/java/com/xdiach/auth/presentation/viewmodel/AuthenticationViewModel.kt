@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 private const val NAVIGATION_DELAY = 600L
 
-class AuthenticationViewModel : ViewModel() {
+internal class AuthenticationViewModel : ViewModel() {
     var authenticated = mutableStateOf(false)
         private set
     var loadingState = mutableStateOf(false)

@@ -19,7 +19,7 @@ import com.xdiach.util.PrivateConstants.CLIENT_ID
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun AuthenticationScreen(
+internal fun AuthenticationScreen(
     authenticated: Boolean,
     loadingState: Boolean,
     oneTapAuthState: OneTapSignInState,
