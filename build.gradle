@@ -14,8 +14,6 @@ plugins {
     id "io.gitlab.arturbosch.detekt" version "1.23.0-RC1"
 }
 
-subprojects {
-    apply from: "../buildScripts/ktlint.gradle"
-    apply from: "../buildScripts/detekt.gradle"
-}
 apply from: 'buildScripts/translations.gradle'
+apply from: "buildScripts/ktlint.gradle"
+apply from: "buildScripts/detekt.gradle"
