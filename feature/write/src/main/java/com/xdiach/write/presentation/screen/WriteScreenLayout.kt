@@ -53,7 +53,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun WriteScreenLayout(
+internal fun WriteScreenLayout(
     uiState: UiState,
     pagerState: PagerState,
     galleryState: GalleryState,
