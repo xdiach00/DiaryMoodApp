@@ -41,4 +41,5 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.compose.tooling.preview)
     implementation(libs.coil)
+    implementation(project(":core:translations"))
 }

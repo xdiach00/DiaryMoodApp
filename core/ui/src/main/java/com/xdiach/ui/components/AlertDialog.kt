@@ -4,7 +4,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import com.xdiach.diarymoodapp.R
+import com.xdiach.translations.R
 
 @Composable
 fun DisplayAlertDialog(

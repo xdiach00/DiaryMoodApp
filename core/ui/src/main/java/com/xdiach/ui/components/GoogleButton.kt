@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.xdiach.ui.R as RU
+import com.xdiach.translations.R as RT
 import com.xdiach.ui.theme.DiaryMoodAppTheme
 import com.xdiach.ui.values.Dimensions
 
@@ -28,8 +29,8 @@ const val ANIMATION_DURATION = 300
 fun GoogleButton(
     modifier: Modifier = Modifier,
     loadingState: Boolean = false,
-    primaryText: String = stringResource(id = R.string.google_button_signin),
-    secondaryText: String = stringResource(id = R.string.google_button_waiting),
+    primaryText: String = stringResource(id = RT.string.google_button_signin),
+    secondaryText: String = stringResource(id = RT.string.google_button_waiting),
     icon: Int = RU.drawable.google_logo,
     shape: Shape = Shapes().extraSmall,
     borderColor: Color = MaterialTheme.colorScheme.surfaceVariant,
