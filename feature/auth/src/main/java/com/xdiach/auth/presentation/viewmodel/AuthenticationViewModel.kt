@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.screens.authentication
+package com.xdiach.auth.presentation.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

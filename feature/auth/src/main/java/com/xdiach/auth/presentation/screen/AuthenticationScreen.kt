@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.screens.authentication
+package com.xdiach.auth
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background

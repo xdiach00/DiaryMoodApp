@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.xdiach.diarymoodapp.presentation.screens.authentication
+package com.xdiach.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.xdiach.diarymoodapp.R as RA
+import com.xdiach.ui.R as RU
 import com.xdiach.translations.R as RT
 import com.xdiach.ui.components.GoogleButton
 import com.xdiach.ui.values.Dimensions
@@ -41,7 +41,7 @@ fun AuthenticationScreenLayout(
             ) {
                 Image(
                     modifier = Modifier.size(120.dp),
-                    painter = painterResource(id = RA.drawable.google_logo),
+                    painter = painterResource(id = RU.drawable.google_logo),
                     contentDescription = stringResource(id = RT.string.app_name)
                 )
                 Spacer(modifier = Modifier.height(Dimensions.L))
