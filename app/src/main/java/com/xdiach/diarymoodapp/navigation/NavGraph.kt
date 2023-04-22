@@ -23,7 +23,7 @@ import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.model.Mood
 import com.xdiach.diarymoodapp.model.RequestState
-import com.xdiach.diarymoodapp.presentation.components.DisplayAlertDialog
+import com.xdiach.ui.components.DisplayAlertDialog
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationScreen
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationViewModel
 import com.xdiach.diarymoodapp.presentation.screens.home.HomeScreen

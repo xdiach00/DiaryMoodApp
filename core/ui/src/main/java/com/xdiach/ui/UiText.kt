@@ -1,6 +1,6 @@
 @file:Suppress("SpreadOperator")
 
-package com.xdiach.diarymoodapp.ui
+package com.xdiach.ui
 
 import android.content.Context
 import androidx.annotation.StringRes

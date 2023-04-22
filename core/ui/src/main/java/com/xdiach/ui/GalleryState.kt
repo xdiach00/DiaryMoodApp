@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.model
+package com.xdiach.ui
 
 import android.net.Uri
 import androidx.compose.runtime.Composable

@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.ui.values
+package com.xdiach.ui.values
 
 import androidx.compose.ui.unit.dp
 

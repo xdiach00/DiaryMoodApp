@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.components
+package com.xdiach.ui.components
 
 import android.net.Uri
 import android.widget.Toast
@@ -47,12 +47,12 @@ import androidx.compose.ui.unit.dp
 import com.xdiach.diarymoodapp.R
 import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.Mood
-import com.xdiach.diarymoodapp.ui.UiText
-import com.xdiach.diarymoodapp.ui.theme.DiaryMoodAppTheme
-import com.xdiach.diarymoodapp.ui.values.Dimensions
-import com.xdiach.diarymoodapp.ui.values.Elevation
 import com.xdiach.diarymoodapp.util.fetchImagesFromFirebase
 import com.xdiach.diarymoodapp.util.toInstant
+import com.xdiach.ui.UiText
+import com.xdiach.ui.theme.DiaryMoodAppTheme
+import com.xdiach.ui.values.Dimensions
+import com.xdiach.ui.values.Elevation
 import java.text.DateFormat
 import java.time.Instant
 import java.util.Date

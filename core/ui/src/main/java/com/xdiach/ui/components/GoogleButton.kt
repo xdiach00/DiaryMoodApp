@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.components
+package com.xdiach.ui.components
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
@@ -18,9 +18,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.xdiach.diarymoodapp.R
-import com.xdiach.diarymoodapp.ui.theme.DiaryMoodAppTheme
-import com.xdiach.diarymoodapp.ui.values.Dimensions
+import com.xdiach.ui.R as RU
+import com.xdiach.ui.theme.DiaryMoodAppTheme
+import com.xdiach.ui.values.Dimensions
 
 const val ANIMATION_DURATION = 300
 
@@ -30,7 +30,7 @@ fun GoogleButton(
     loadingState: Boolean = false,
     primaryText: String = stringResource(id = R.string.google_button_signin),
     secondaryText: String = stringResource(id = R.string.google_button_waiting),
-    icon: Int = R.drawable.google_logo,
+    icon: Int = RU.drawable.google_logo,
     shape: Shape = Shapes().extraSmall,
     borderColor: Color = MaterialTheme.colorScheme.surfaceVariant,
     backgroundColor: Color = MaterialTheme.colorScheme.surface,

@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.ui.theme
+package com.xdiach.ui.theme
 
 import android.app.Activity
 import android.os.Build

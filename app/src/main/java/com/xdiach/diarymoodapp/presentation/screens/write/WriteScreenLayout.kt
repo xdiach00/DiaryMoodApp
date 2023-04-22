@@ -45,7 +45,7 @@ import com.xdiach.diarymoodapp.model.Diary
 import com.xdiach.diarymoodapp.model.GalleryImage
 import com.xdiach.diarymoodapp.model.GalleryState
 import com.xdiach.diarymoodapp.model.Mood
-import com.xdiach.diarymoodapp.presentation.components.GalleryUploader
+import com.xdiach.ui.components.GalleryUploader
 import com.xdiach.diarymoodapp.ui.UiText
 import io.realm.kotlin.ext.toRealmList
 import kotlinx.coroutines.launch

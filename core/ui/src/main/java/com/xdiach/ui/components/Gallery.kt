@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.components
+package com.xdiach.ui.components
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -35,9 +35,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.xdiach.diarymoodapp.model.GalleryImage
-import com.xdiach.diarymoodapp.model.GalleryState
-import com.xdiach.diarymoodapp.ui.values.Elevation
+import com.xdiach.ui.GalleryImage
+import com.xdiach.ui.GalleryState
+import com.xdiach.ui.values.Elevation
 import kotlin.math.max
 
 @Composable
