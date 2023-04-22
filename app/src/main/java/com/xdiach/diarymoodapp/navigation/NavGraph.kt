@@ -21,8 +21,8 @@ import com.google.accompanist.pager.rememberPagerState
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.diarymoodapp.R
-import com.xdiach.diarymoodapp.model.Mood
-import com.xdiach.diarymoodapp.model.RequestState
+import com.xdiach.util.model.Mood
+import com.xdiach.util.model.RequestState
 import com.xdiach.ui.components.DisplayAlertDialog
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationScreen
 import com.xdiach.diarymoodapp.presentation.screens.authentication.AuthenticationViewModel

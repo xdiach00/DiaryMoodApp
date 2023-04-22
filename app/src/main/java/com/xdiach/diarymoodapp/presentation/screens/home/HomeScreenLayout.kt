@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.xdiach.diarymoodapp.R
-import com.xdiach.diarymoodapp.model.Diary
+import com.xdiach.util.model.Diary
 import com.xdiach.ui.components.DiaryHolder
 import com.xdiach.diarymoodapp.ui.values.Dimensions
 import java.time.LocalDate

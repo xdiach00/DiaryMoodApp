@@ -1,10 +1,6 @@
-package com.xdiach.diarymoodapp.util
+package com.xdiach.util
 
 object Constants {
-
-    const val APP_ID = "diarymoodapp-ksrgj"
-    const val CLIENT_ID = "600652293047-qvc8savn0uapug2c9043drlt8ubhmsod.apps.googleusercontent.com"
-
     const val WRITE_SCREEN_ARGUMENT_KEY = "diaryId"
 
     const val IMAGES_DATABASE = "images_db"

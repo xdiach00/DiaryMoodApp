@@ -8,13 +8,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
-import com.xdiach.diarymoodapp.connectivity.ConnectivityObserver
-import com.xdiach.diarymoodapp.connectivity.NetworkConnectivityObserver
+import com.xdiach.util.connectivity.ConnectivityObserver
+import com.xdiach.util.connectivity.NetworkConnectivityObserver
 import com.xdiach.diarymoodapp.data.database.ImageToDeleteDao
 import com.xdiach.diarymoodapp.data.database.entity.ImageToDeleteEntity
 import com.xdiach.diarymoodapp.data.repository.Diaries
 import com.xdiach.diarymoodapp.data.repository.MongoDB
-import com.xdiach.diarymoodapp.model.RequestState
+import com.xdiach.util.model.RequestState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.ZonedDateTime
 import javax.inject.Inject

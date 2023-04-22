@@ -41,10 +41,10 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.xdiach.diarymoodapp.R
-import com.xdiach.diarymoodapp.model.Diary
+import com.xdiach.util.model.Diary
 import com.xdiach.diarymoodapp.model.GalleryImage
 import com.xdiach.diarymoodapp.model.GalleryState
-import com.xdiach.diarymoodapp.model.Mood
+import com.xdiach.util.model.Mood
 import com.xdiach.ui.components.GalleryUploader
 import com.xdiach.diarymoodapp.ui.UiText
 import io.realm.kotlin.ext.toRealmList

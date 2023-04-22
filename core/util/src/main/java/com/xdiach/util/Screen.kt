@@ -1,6 +1,6 @@
-package com.xdiach.diarymoodapp.navigation
+package com.xdiach.util
 
-import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
+import com.xdiach.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
 
 sealed class Screen(val route: String) {
     object Authentication : Screen(route = "authentication_screen")

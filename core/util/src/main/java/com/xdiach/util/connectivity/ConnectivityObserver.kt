@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.connectivity
+package com.xdiach.util.connectivity
 
 import kotlinx.coroutines.flow.Flow
 

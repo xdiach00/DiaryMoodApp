@@ -18,11 +18,11 @@ import com.xdiach.diarymoodapp.data.database.ImageToUploadDao
 import com.xdiach.diarymoodapp.data.database.entity.ImageToDeleteEntity
 import com.xdiach.diarymoodapp.data.database.entity.ImageToUploadEntity
 import com.xdiach.diarymoodapp.data.repository.MongoDB
-import com.xdiach.diarymoodapp.model.Diary
+import com.xdiach.util.model.Diary
 import com.xdiach.diarymoodapp.model.GalleryImage
 import com.xdiach.diarymoodapp.model.GalleryState
-import com.xdiach.diarymoodapp.model.Mood
-import com.xdiach.diarymoodapp.model.RequestState
+import com.xdiach.util.model.Mood
+import com.xdiach.util.model.RequestState
 import com.xdiach.diarymoodapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
 import com.xdiach.diarymoodapp.util.fetchImagesFromFirebase
 import com.xdiach.diarymoodapp.util.toRealmInstant

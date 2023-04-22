@@ -32,7 +32,7 @@ import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.maxkeppeler.sheets.clock.ClockDialog
 import com.maxkeppeler.sheets.clock.models.ClockSelection
 import com.xdiach.diarymoodapp.R
-import com.xdiach.diarymoodapp.model.Diary
+import com.xdiach.util.model.Diary
 import com.xdiach.ui.components.DisplayAlertDialog
 import com.xdiach.diarymoodapp.ui.UiText
 import com.xdiach.diarymoodapp.util.toInstant

@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.xdiach.diarymoodapp.util
+package com.xdiach.util
 
 import android.net.Uri
 import androidx.core.net.toUri

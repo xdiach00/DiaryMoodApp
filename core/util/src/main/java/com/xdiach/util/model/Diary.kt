@@ -1,8 +1,8 @@
 @file:Suppress("VariableNaming")
 
-package com.xdiach.diarymoodapp.model
+package com.xdiach.util.model
 
-import com.xdiach.diarymoodapp.util.toRealmInstant
+import com.xdiach.util.toRealmInstant
 import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.types.RealmInstant
 import io.realm.kotlin.types.RealmList

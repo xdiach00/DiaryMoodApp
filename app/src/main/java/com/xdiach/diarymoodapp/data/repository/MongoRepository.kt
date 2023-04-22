@@ -1,7 +1,7 @@
 package com.xdiach.diarymoodapp.data.repository
 
-import com.xdiach.diarymoodapp.model.Diary
-import com.xdiach.diarymoodapp.model.RequestState
+import com.xdiach.util.model.Diary
+import com.xdiach.util.model.RequestState
 import java.time.LocalDate
 import java.time.ZonedDateTime
 import kotlinx.coroutines.flow.Flow

@@ -1,8 +1,8 @@
-package com.xdiach.diarymoodapp.model
+package com.xdiach.util.model
 
 import androidx.compose.ui.graphics.Color
-import com.xdiach.diarymoodapp.R
-import com.xdiach.diarymoodapp.ui.theme.*
+import com.xdiach.ui.theme.*
+import com.xdiach.util.R
 
 enum class Mood(
     val icon: Int,
