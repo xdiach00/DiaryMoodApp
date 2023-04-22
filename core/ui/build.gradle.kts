@@ -41,10 +41,13 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.material3.compose)
     implementation(libs.compose.tooling.preview)
+
     implementation(libs.coil)
-    implementation(libs.desugar.jdk)
+
     implementation(libs.realm.sync)
     implementation(libs.coroutines.core)
+
+    implementation(libs.desugar.jdk)
 
     implementation(project(":core:translations"))
     implementation(project(":core:util"))
