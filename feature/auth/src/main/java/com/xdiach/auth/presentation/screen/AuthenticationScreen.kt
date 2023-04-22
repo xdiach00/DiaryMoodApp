@@ -1,4 +1,4 @@
-package com.xdiach.auth
+package com.xdiach.auth.presentation.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background

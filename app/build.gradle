@@ -45,9 +45,9 @@ android {
         kotlinCompilerExtensionVersion ProjectConfig.extensionVersion
     }
     packagingOptions {
-        exclude("/META-INF/{AL2.0,LGPL2.1}")
-        exclude("META-INF/gradle/incremental.annotation.processors")
-        exclude("META-INF/*")
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
     }
 }
 
@@ -122,4 +122,5 @@ dependencies {
     implementation(project(":core:util"))
     implementation(project(":data:mongo"))
     implementation(project(":feature:auth"))
+    implementation(project(":feature:home"))
 }

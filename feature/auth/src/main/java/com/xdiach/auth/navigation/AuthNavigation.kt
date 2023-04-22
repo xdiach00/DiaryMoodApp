@@ -8,7 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
-import com.xdiach.auth.AuthenticationScreen
+import com.xdiach.auth.presentation.screen.AuthenticationScreen
 import com.xdiach.translations.R
 import com.xdiach.auth.presentation.viewmodel.AuthenticationViewModel
 import com.xdiach.ui.UiText
@@ -26,7 +26,7 @@ fun NavGraphBuilder.authenticationRoute(
         val messageBarState = rememberMessageBarState()
         val context = LocalContext.current
 
-        LaunchedEffect(key1 = kotlin.Unit) {
+        LaunchedEffect(key1 = Unit) {
             onDataLoaded()
         }
 

@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.screens.home
+package com.xdiach.home.presentation.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear

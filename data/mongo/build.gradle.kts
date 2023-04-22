@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("dagger.hilt.android.plugin")
     id("io.realm.kotlin")
     id("kotlin-kapt")
 }
@@ -44,9 +43,6 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
-
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.compiler)
 
     implementation(project(":core:util"))
 }

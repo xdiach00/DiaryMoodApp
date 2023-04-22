@@ -3,11 +3,8 @@
 package com.xdiach.diarymoodapp.navigation
 
 import android.widget.Toast
-import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -20,20 +17,12 @@ import com.google.accompanist.pager.rememberPagerState
 import com.xdiach.auth.navigation.authenticationRoute
 import com.xdiach.translations.R
 import com.xdiach.util.model.Mood
-import com.xdiach.util.model.RequestState
-import com.xdiach.ui.components.DisplayAlertDialog
-import com.xdiach.diarymoodapp.presentation.screens.home.HomeScreen
-import com.xdiach.diarymoodapp.presentation.screens.home.HomeViewModel
 import com.xdiach.diarymoodapp.presentation.screens.write.WriteScreen
 import com.xdiach.diarymoodapp.presentation.screens.write.WriteViewModel
+import com.xdiach.home.navigation.homeRoute
 import com.xdiach.ui.UiText
 import com.xdiach.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
-import com.xdiach.util.PrivateConstants.APP_ID
 import com.xdiach.util.Screen
-import io.realm.kotlin.mongodb.App
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 @Composable
 fun SetupNavGraph(
@@ -68,100 +57,6 @@ fun SetupNavGraph(
         writeRoute(
             onBackPressed = {
                 navController.popBackStack()
-            }
-        )
-    }
-}
-
-fun NavGraphBuilder.homeRoute(
-    navigateToWrite: () -> Unit,
-    navigateToWriteWithArgs: (String) -> Unit,
-    navigateToAuth: () -> Unit,
-    onDataLoaded: () -> Unit
-) {
-    composable(route = Screen.Home.route) {
-        val viewModel: HomeViewModel = hiltViewModel()
-        val diaries by viewModel.diaries
-        val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-        val scope = rememberCoroutineScope()
-        val context = LocalContext.current
-        var signOutDialogOpened by remember { mutableStateOf(false) }
-        var deleteAllDialogOpened by remember { mutableStateOf(false) }
-
-        LaunchedEffect(key1 = diaries) {
-            if (diaries !is RequestState.Loading) {
-                onDataLoaded()
-            }
-        }
-
-        HomeScreen(
-            diaries = diaries,
-            drawerState = drawerState,
-            dateIsSelected = viewModel.dateIsSelected,
-            onDateSelected = { viewModel.getDiaries(zonedDateTime = it) },
-            onDateReset = { viewModel.getDiaries() },
-            onMenuClicked = {
-                scope.launch {
-                    drawerState.open()
-                }
-            },
-            onSignOutClicked = {
-                signOutDialogOpened = true
-            },
-            onDeleteAllClicked = {
-                deleteAllDialogOpened = true
-            },
-            navigateToWrite = navigateToWrite,
-            navigateToWriteWithArgs = navigateToWriteWithArgs
-        )
-
-        DisplayAlertDialog(
-            title = stringResource(id = R.string.home_screen_signout),
-            message = stringResource(id = R.string.home_screen_signout_description),
-            dialogOpened = signOutDialogOpened,
-            onCloseDialog = { signOutDialogOpened = false },
-            onYesClicked = {
-                scope.launch(Dispatchers.IO) {
-                    val user = App.Companion.create(APP_ID).currentUser
-                    if (user != null) {
-                        user.logOut()
-                        withContext(Dispatchers.Main) {
-                            navigateToAuth()
-                        }
-                    }
-                }
-            }
-        )
-        DisplayAlertDialog(
-            title = stringResource(id = R.string.home_screen_delete_all),
-            message = stringResource(id = R.string.home_screen_delete_all_description),
-            dialogOpened = deleteAllDialogOpened,
-            onCloseDialog = { deleteAllDialogOpened = false },
-            onYesClicked = {
-                viewModel.deleteAllDiaries(
-                    onSuccess = {
-                        Toast.makeText(
-                            context,
-                            UiText.StringResource(R.string.home_screen_all_deleted_successfully)
-                                .asString(context),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        scope.launch { drawerState.close() }
-                        deleteAllDialogOpened = false
-                    },
-                    onError = {
-                        Toast.makeText(
-                            context,
-                            if (it.message == "No Internet connection") {
-                                UiText.StringResource(R.string.all_screens_no_internet)
-                                    .asString(context)
-                            } else {
-                                it.message
-                            },
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                )
             }
         )
     }

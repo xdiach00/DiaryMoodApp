@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.screens.home
+package com.xdiach.home.presentation.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -19,8 +19,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import com.xdiach.home.presentation.components.HomeTopBar
 import com.xdiach.translations.R as RT
-import com.xdiach.diarymoodapp.R as RA
+import com.xdiach.ui.R as RU
 import com.xdiach.mongo.repository.Diaries
 import com.xdiach.util.model.RequestState
 import java.time.ZonedDateTime
@@ -127,7 +128,7 @@ fun NavigationDrawer(
                     ) {
                         Image(
                             modifier = Modifier.size(250.dp),
-                            painter = painterResource(id = RA.drawable.app_icon),
+                            painter = painterResource(id = RU.drawable.app_icon),
                             contentDescription = stringResource(id = RT.string.app_name)
                         )
                     }
@@ -135,7 +136,7 @@ fun NavigationDrawer(
                         label = {
                             Row(modifier = Modifier.padding(horizontal = 12.dp)) {
                                 Image(
-                                    painter = painterResource(id = RA.drawable.google_logo),
+                                    painter = painterResource(id = RU.drawable.google_logo),
                                     contentDescription = "Google logo"
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))

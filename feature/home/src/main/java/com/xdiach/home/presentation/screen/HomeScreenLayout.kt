@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.screens.home
+package com.xdiach.home.presentation.screen
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background

@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.xdiach.auth
+package com.xdiach.auth.presentation.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*

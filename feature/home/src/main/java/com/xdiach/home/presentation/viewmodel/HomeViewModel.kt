@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp.presentation.screens.home
+package com.xdiach.home.presentation.viewmodel
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue

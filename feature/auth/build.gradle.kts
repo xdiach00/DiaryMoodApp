@@ -35,7 +35,7 @@ android {
         kotlinCompilerExtensionVersion = ProjectConfig.extensionVersion
     }
     packagingOptions {
-        resources.excludes.add("META-INF/gradle/incremental.annotation.processors")
+        resources.excludes.add("META-INF/*")
     }
 }
 
