@@ -12,5 +12,5 @@ plugins {
 subprojects {
     apply { from("${rootProject.projectDir}/${ProjectConfig.buildScriptsFolder}/ktlint.gradle") }
     apply { from("${rootProject.projectDir}/${ProjectConfig.buildScriptsFolder}/detekt.gradle") }
-    apply { from("${rootProject.projectDir}/${ProjectConfig.buildScriptsFolder}/translations.gradle") }
 }
+apply { from("${rootProject.projectDir}/${ProjectConfig.buildScriptsFolder}/translations.gradle") }
