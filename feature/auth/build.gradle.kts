@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("io.realm.kotlin")
+    id(Plugins.Android.Library.id)
+    id(Plugins.Jetbrains.Kotlin.Android.id)
+    id(Plugins.Realm.id)
 }
 
 android {
@@ -18,7 +18,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -26,13 +29,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ProjectConfig.jvmTarget
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = ProjectConfig.extensionVersion
+        kotlinCompilerExtensionVersion = ProjectConfig.composeExtensionVersion
     }
     packagingOptions {
         resources.excludes.add("META-INF/*")
@@ -52,7 +55,7 @@ dependencies {
 
     implementation(libs.firebase.auth)
 
-    implementation(project(":core:translations"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:util"))
+    implementation(project(Modules.Core.translations))
+    implementation(project(Modules.Core.ui))
+    implementation(project(Modules.Core.util))
 }

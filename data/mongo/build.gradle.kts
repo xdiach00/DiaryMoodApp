@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("io.realm.kotlin")
-    id("kotlin-kapt")
+    id(Plugins.Android.Library.id)
+    id(Plugins.Jetbrains.Kotlin.Android.id)
+    id(Plugins.Realm.id)
+    id(Plugins.Kotlin.Kapt.id)
 }
 
 android {
@@ -19,7 +19,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -27,7 +30,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ProjectConfig.jvmTarget
     }
     packagingOptions {
         resources.excludes.add("META-INF/*")
@@ -44,5 +47,5 @@ dependencies {
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
 
-    implementation(project(":core:util"))
+    implementation(project(Modules.Core.util))
 }
