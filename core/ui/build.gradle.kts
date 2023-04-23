@@ -50,5 +50,8 @@ dependencies {
     implementation(libs.realm.sync)
     implementation(libs.coroutines.core)
 
+    implementation(libs.junit)
+    implementation(libs.junit.ext)
+
     implementation(project(Modules.Core.translations))
 }

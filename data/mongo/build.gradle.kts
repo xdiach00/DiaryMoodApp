@@ -47,5 +47,8 @@ dependencies {
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
 
+    implementation(libs.junit)
+    implementation(libs.junit.ext)
+
     implementation(project(Modules.Core.util))
 }
