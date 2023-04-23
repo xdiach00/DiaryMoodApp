@@ -50,7 +50,7 @@ import java.time.ZonedDateTime
 @Composable
 internal fun WriteScreen(
     uiState: UiState,
-    moodName: () -> String,
+    moodName: () -> Int,
     pagerState: PagerState,
     galleryState: GalleryState,
     onTitleChanged: (String) -> Unit,

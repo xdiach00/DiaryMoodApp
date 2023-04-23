@@ -47,7 +47,7 @@ fun NavGraphBuilder.writeRoute(
 
         WriteScreen(
             uiState = uiState,
-            moodName = { Mood.values()[pageNumber].name },
+            moodName = { Mood.values()[pageNumber].stringResourceId },
             pagerState = pagerState,
             galleryState = galleryState,
             onTitleChanged = {

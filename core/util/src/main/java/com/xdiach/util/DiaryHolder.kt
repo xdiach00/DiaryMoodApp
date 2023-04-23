@@ -165,6 +165,7 @@ fun DiaryHeader(
     time: Instant
 ) {
     val mood by remember { mutableStateOf(Mood.valueOf(moodName)) }
+    val context = LocalContext.current
 
     Row(
         modifier = Modifier
@@ -182,7 +183,7 @@ fun DiaryHeader(
             )
             Spacer(modifier = Modifier.width(7.dp))
             Text(
-                text = mood.name,
+                text = stringResource(id = mood.stringResourceId),
                 color = mood.contentColor,
                 style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize)
             )

@@ -51,7 +51,7 @@ import java.util.Locale
 @Composable
 internal fun WriteTopBar(
     selectedDiary: Diary?,
-    moodName: () -> String,
+    moodName: () -> Int,
     onDateTimeUpdated: (ZonedDateTime) -> Unit,
     onBackPressed: () -> Unit,
     onDeleteConfirmed: () -> Unit
@@ -110,7 +110,7 @@ internal fun WriteTopBar(
             Column {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = moodName(),
+                    text = stringResource(id = moodName()),
                     style = TextStyle(
                         fontSize = MaterialTheme.typography.titleLarge.fontSize,
                         fontWeight = FontWeight.Bold
