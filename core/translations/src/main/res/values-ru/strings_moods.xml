@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="mood_angry">"Злобно"</string>
+  <string name="mood_awful">"Ужасно"</string>
+  <string name="mood_bored">"Скучно"</string>
+  <string name="mood_calm">"Спокойно"</string>
+  <string name="mood_depressed">"Депрессивно"</string>
+  <string name="mood_disappointed">"Огорченно"</string>
+  <string name="mood_happy">"Счастливо"</string>
+  <string name="mood_humorous">"Весело"</string>
+  <string name="mood_lonely">"Одиноко"</string>
+  <string name="mood_mysterious">"Таинственно"</string>
+  <string name="mood_neutral">"Нейтрально"</string>
+  <string name="mood_romantic">"Романтично"</string>
+  <string name="mood_shameful">"Постыдно"</string>
+  <string name="mood_surprised">"Удивленно"</string>
+  <string name="mood_suspicious">"Подозрительно"</string>
+  <string name="mood_tense">"Напряженно"</string>
+</resources>
