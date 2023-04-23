@@ -20,6 +20,7 @@ open class Diary : RealmObject {
     var title: String = ""
     var description: String = ""
     var images: RealmList<String> = realmListOf()
+
     @SuppressLint("NewApi")
     var date: RealmInstant = Instant.now().toRealmInstant()
 }

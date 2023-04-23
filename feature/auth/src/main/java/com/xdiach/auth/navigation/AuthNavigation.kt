@@ -9,8 +9,8 @@ import androidx.navigation.compose.composable
 import com.stevdzasan.messagebar.rememberMessageBarState
 import com.stevdzasan.onetap.rememberOneTapSignInState
 import com.xdiach.auth.presentation.screen.AuthenticationScreen
-import com.xdiach.translations.R
 import com.xdiach.auth.presentation.viewmodel.AuthenticationViewModel
+import com.xdiach.translations.R
 import com.xdiach.ui.UiText
 import com.xdiach.util.Screen
 

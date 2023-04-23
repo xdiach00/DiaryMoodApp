@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod")
+
 package com.xdiach.home.navigation
 
 import android.widget.Toast
@@ -15,8 +17,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.xdiach.home.presentation.screen.HomeScreen
-import com.xdiach.translations.R
 import com.xdiach.home.presentation.viewmodel.HomeViewModel
+import com.xdiach.translations.R
 import com.xdiach.ui.UiText
 import com.xdiach.ui.components.DisplayAlertDialog
 import com.xdiach.util.PrivateConstants.APP_ID

@@ -37,9 +37,9 @@ import coil.request.ImageRequest
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.xdiach.translations.R
-import com.xdiach.util.model.Diary
 import com.xdiach.ui.GalleryImage
 import com.xdiach.ui.GalleryState
+import com.xdiach.util.model.Diary
 import com.xdiach.util.model.Mood
 import com.xdiach.write.presentation.components.WriteTopBar
 import com.xdiach.write.presentation.viewmodel.UiState

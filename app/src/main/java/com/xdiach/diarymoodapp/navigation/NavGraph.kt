@@ -1,5 +1,3 @@
-@file:Suppress("LongMethod")
-
 package com.xdiach.diarymoodapp.navigation
 
 import androidx.compose.runtime.*

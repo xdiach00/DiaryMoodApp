@@ -14,9 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.xdiach.util.model.Diary
-import com.xdiach.util.model.Mood
-import com.xdiach.util.model.RequestState
 import com.xdiach.mongo.database.ImageToDeleteDao
 import com.xdiach.mongo.database.ImageToUploadDao
 import com.xdiach.mongo.database.entity.ImageToDeleteEntity
@@ -26,6 +23,9 @@ import com.xdiach.ui.GalleryImage
 import com.xdiach.ui.GalleryState
 import com.xdiach.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
 import com.xdiach.util.fetchImagesFromFirebase
+import com.xdiach.util.model.Diary
+import com.xdiach.util.model.Mood
+import com.xdiach.util.model.RequestState
 import com.xdiach.util.toRealmInstant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.realm.kotlin.types.RealmInstant

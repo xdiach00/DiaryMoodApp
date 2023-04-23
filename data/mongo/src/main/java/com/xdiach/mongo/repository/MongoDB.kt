@@ -1,9 +1,9 @@
 package com.xdiach.mongo.repository
 
 import android.annotation.SuppressLint
+import com.xdiach.util.PrivateConstants.APP_ID
 import com.xdiach.util.model.Diary
 import com.xdiach.util.model.RequestState
-import com.xdiach.util.PrivateConstants.APP_ID
 import com.xdiach.util.toInstant
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
@@ -12,14 +12,14 @@ import io.realm.kotlin.mongodb.App
 import io.realm.kotlin.mongodb.sync.SyncConfiguration
 import io.realm.kotlin.query.Sort
 import io.realm.kotlin.types.RealmInstant
+import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import org.mongodb.kbson.ObjectId
-import java.time.LocalDateTime
-import java.time.LocalTime
 
 object MongoDB : MongoRepository {
     private val app = App.Companion.create(APP_ID)
@@ -83,13 +83,15 @@ object MongoDB : MongoRepository {
                         LocalDateTime.of(
                             zonedDateTime.toLocalDate().plusDays(1),
                             LocalTime.MIDNIGHT
-                        ).toEpochSecond(zonedDateTime.offset), 0
+                        ).toEpochSecond(zonedDateTime.offset),
+                        0
                     ),
                     RealmInstant.from(
                         LocalDateTime.of(
                             zonedDateTime.toLocalDate(),
                             LocalTime.MIDNIGHT
-                        ).toEpochSecond(zonedDateTime.offset), 0
+                        ).toEpochSecond(zonedDateTime.offset),
+                        0
                     )
                 ).asFlow().map { result ->
                     RequestState.Success(

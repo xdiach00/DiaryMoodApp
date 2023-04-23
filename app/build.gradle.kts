@@ -1,53 +1,54 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'dagger.hilt.android.plugin'
-    id 'io.realm.kotlin'
-    id 'com.google.gms.google-services'
-    id 'kotlin-kapt'
+    id(Plugins.Android.Application.id)
+    id(Plugins.Jetbrains.Kotlin.Android.id)
+    id(Plugins.DaggerHilt.Plugin.id)
+    id(Plugins.Realm.id)
+    id(Plugins.Google.Gms.GoogleServices.id)
+    id(Plugins.Kotlin.Kapt.id)
 }
 
 android {
-    namespace 'com.xdiach.diarymoodapp'
-    compileSdk ProjectConfig.compileSdk
+    namespace = "com.xdiach.diarymoodapp"
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
-        applicationId "com.xdiach.diarymoodapp"
-        minSdk ProjectConfig.minSdk
-        targetSdk ProjectConfig.targetSdk
-        versionCode 1
-        versionName "1.0"
+        applicationId = ProjectConfig.applicationId
+        minSdk = ProjectConfig.minSdk
+        targetSdk = ProjectConfig.targetSdk
+        versionCode = ProjectConfig.versionCode
+        versionName = ProjectConfig.versionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
-        multiDexEnabled true
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-        coreLibraryDesugaringEnabled true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = ProjectConfig.jvmTarget
     }
     buildFeatures {
-        compose true
+        compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion ProjectConfig.composeExtensionVersion
+        kotlinCompilerExtensionVersion = ProjectConfig.composeExtensionVersion
     }
     packagingOptions {
         resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }
@@ -55,34 +56,34 @@ android {
 dependencies {
 
     // Compose Navigation
-    implementation libs.navigation.compose
+    implementation(libs.navigation.compose)
 
     // Firebase
-    implementation libs.firebase.storage
+    implementation(libs.firebase.storage)
 
     // Room components
-    implementation libs.room.runtime
-    kapt libs.room.compiler
-    implementation libs.room.ktx
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
 
     // Splash API
-    implementation libs.splash.api
+    implementation(libs.splash.api)
 
     // Mongo DB Realm
-    implementation libs.realm.sync
+    implementation(libs.realm.sync)
 
     // Dagger Hilt
-    implementation libs.hilt.android
-    kapt libs.hilt.compiler
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     // Desugar JDK
-    coreLibraryDesugaring libs.desugar.jdk
+    coreLibraryDesugaring(libs.desugar.jdk)
 
-    implementation(project(":core:ui"))
-    implementation(project(":core:translations"))
-    implementation(project(":core:util"))
-    implementation(project(":data:mongo"))
-    implementation(project(":feature:auth"))
-    implementation(project(":feature:home"))
-    implementation(project(":feature:write"))
+    implementation(project(Modules.Core.ui))
+    implementation(project(Modules.Core.translations))
+    implementation(project(Modules.Core.util))
+    implementation(project(Modules.Data.mongo))
+    implementation(project(Modules.Feature.auth))
+    implementation(project(Modules.Feature.home))
+    implementation(project(Modules.Feature.write))
 }

@@ -18,8 +18,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.xdiach.ui.R as RU
 import com.xdiach.translations.R as RT
+import com.xdiach.ui.R as RU
 import com.xdiach.ui.theme.DiaryMoodAppTheme
 import com.xdiach.ui.values.Dimensions
 

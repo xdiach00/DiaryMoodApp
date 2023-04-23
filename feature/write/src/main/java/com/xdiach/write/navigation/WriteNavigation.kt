@@ -1,3 +1,5 @@
+@file:Suppress("LongMethod")
+
 package com.xdiach.write.navigation
 
 import android.widget.Toast

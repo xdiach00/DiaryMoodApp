@@ -41,12 +41,12 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.xdiach.translations.R
-import com.xdiach.util.model.Diary
-import com.xdiach.util.model.Mood
 import com.xdiach.ui.GalleryImage
 import com.xdiach.ui.GalleryState
 import com.xdiach.ui.UiText
 import com.xdiach.util.GalleryUploader
+import com.xdiach.util.model.Diary
+import com.xdiach.util.model.Mood
 import com.xdiach.write.presentation.viewmodel.UiState
 import io.realm.kotlin.ext.toRealmList
 import kotlinx.coroutines.launch

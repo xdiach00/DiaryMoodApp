@@ -2,9 +2,9 @@ package com.xdiach.diarymoodapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.xdiach.util.connectivity.NetworkConnectivityObserver
 import com.xdiach.mongo.database.ImagesDatabase
 import com.xdiach.util.Constants.IMAGES_DATABASE
+import com.xdiach.util.connectivity.NetworkConnectivityObserver
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
