@@ -18,9 +18,11 @@
   <string name="home_screen_all_deleted_successfully">"Všechny poznámky byly úspěšně smazány!"</string>
   <string name="home_screen_delete_all">"Smazat všechno"</string>
   <string name="home_screen_delete_all_description">"Opravdu chcete trvale smazat všechny své poznámky?"</string>
+  <string name="home_screen_home">"Domů"</string>
   <string name="home_screen_no">"Ne"</string>
   <string name="home_screen_signout">"Odhlásit se"</string>
   <string name="home_screen_signout_description">"Jste si jisti, že se chcete odhlásit?"</string>
+  <string name="home_screen_statistic">"Statistika nálady"</string>
   <string name="home_screen_yes">"Ano"</string>
   <string name="write_diary_button_save">"Uložit"</string>
   <string name="write_diary_delete">"Smazat"</string>

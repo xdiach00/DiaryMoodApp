@@ -18,9 +18,11 @@
   <string name="home_screen_all_deleted_successfully">"All diaries successfully deleted!"</string>
   <string name="home_screen_delete_all">"Delete All Diaries"</string>
   <string name="home_screen_delete_all_description">"Are you sure you want to permanently delete all your diaries?"</string>
+  <string name="home_screen_home">"Home"</string>
   <string name="home_screen_no">"No"</string>
   <string name="home_screen_signout">"Sign out"</string>
   <string name="home_screen_signout_description">"Are you sure you want to Sign Out?"</string>
+  <string name="home_screen_statistic">"Mood Statistics"</string>
   <string name="home_screen_yes">"Yes"</string>
   <string name="write_diary_button_save">"Save"</string>
   <string name="write_diary_delete">"Delete"</string>
