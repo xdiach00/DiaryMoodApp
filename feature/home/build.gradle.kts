@@ -67,6 +67,9 @@ dependencies {
     implementation(libs.junit)
     implementation(libs.junit.ext)
 
+    implementation(libs.vico.compose)
+    implementation(libs.vico.compose.m3)
+
     implementation(project(Modules.Core.translations))
     implementation(project(Modules.Core.ui))
     implementation(project(Modules.Core.util))
