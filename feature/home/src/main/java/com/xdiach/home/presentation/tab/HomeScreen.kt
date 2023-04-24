@@ -1,4 +1,4 @@
-package com.xdiach.home.presentation.screen
+package com.xdiach.home.presentation.tab
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -23,9 +23,8 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.xdiach.home.navigation.HomeTabs
 import com.xdiach.home.presentation.components.HomeTopBar
-import com.xdiach.home.presentation.screen.statistics.StatisticsScreenLayout
+import com.xdiach.home.presentation.tab.statistics.StatisticsScreenLayout
 import com.xdiach.mongo.repository.Diaries
-import com.xdiach.util.Screen
 import com.xdiach.translations.R as RT
 import com.xdiach.ui.R as RU
 import com.xdiach.util.model.RequestState

@@ -1,4 +1,4 @@
-package com.xdiach.home.presentation.screen
+package com.xdiach.home.presentation.tab
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi

@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.xdiach.home.presentation.screen.HomeScreen
+import com.xdiach.home.presentation.tab.HomeScreen
 import com.xdiach.home.presentation.viewmodel.HomeViewModel
 import com.xdiach.translations.R
 import com.xdiach.ui.UiText
@@ -38,6 +38,7 @@ fun NavGraphBuilder.homeRoute(
     composable(route = Screen.Home.route) {
         val viewModel: HomeViewModel = hiltViewModel()
         val diaries by viewModel.diaries
+        var selectedHomeTab by remember { mutableStateOf(HomeTabs.Home) }
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
         val context = LocalContext.current
@@ -54,12 +55,21 @@ fun NavGraphBuilder.homeRoute(
             diaries = diaries,
             drawerState = drawerState,
             dateIsSelected = viewModel.dateIsSelected,
+            selectedHomeTab = selectedHomeTab,
             onDateSelected = { viewModel.getDiaries(zonedDateTime = it) },
             onDateReset = { viewModel.getDiaries() },
             onMenuClicked = {
                 scope.launch {
                     drawerState.open()
                 }
+            },
+            onHomeClicked = {
+                selectedHomeTab = HomeTabs.Home
+                scope.launch { drawerState.close() }
+            },
+            onStatisticsClicked = {
+                selectedHomeTab = HomeTabs.Statistics
+                scope.launch { drawerState.close() }
             },
             onSignOutClicked = {
                 signOutDialogOpened = true
