@@ -23,6 +23,8 @@
   <string name="home_screen_signout">"Odhlásit se"</string>
   <string name="home_screen_signout_description">"Jste si jisti, že se chcete odhlásit?"</string>
   <string name="home_screen_statistic">"Statistika nálady"</string>
+  <string name="home_screen_stats_empty_description">"Přidejte několik poznámek pro zobrazení statistik nálady"</string>
+  <string name="home_screen_stats_empty_title">"Žádné statistiky k dispozici"</string>
   <string name="home_screen_yes">"Ano"</string>
   <string name="write_diary_button_save">"Uložit"</string>
   <string name="write_diary_delete">"Smazat"</string>

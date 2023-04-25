@@ -23,6 +23,8 @@
   <string name="home_screen_signout">"Sign out"</string>
   <string name="home_screen_signout_description">"Are you sure you want to Sign Out?"</string>
   <string name="home_screen_statistic">"Mood Statistics"</string>
+  <string name="home_screen_stats_empty_description">"Add some notes to display your mood statistics"</string>
+  <string name="home_screen_stats_empty_title">"No statistics available"</string>
   <string name="home_screen_yes">"Yes"</string>
   <string name="write_diary_button_save">"Save"</string>
   <string name="write_diary_delete">"Delete"</string>

@@ -23,6 +23,8 @@
   <string name="home_screen_signout">"Выйти"</string>
   <string name="home_screen_signout_description">"Вы уверены, что хотите выйти?"</string>
   <string name="home_screen_statistic">"Статистика настроения"</string>
+  <string name="home_screen_stats_empty_description">"Добавьте несколько заметок для отображения статистики настроения"</string>
+  <string name="home_screen_stats_empty_title">"Статистика отсутствует"</string>
   <string name="home_screen_yes">"Да"</string>
   <string name="write_diary_button_save">"Сохранить"</string>
   <string name="write_diary_delete">"Удалить"</string>
