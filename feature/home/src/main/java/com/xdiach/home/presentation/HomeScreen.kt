@@ -1,6 +1,8 @@
-package com.xdiach.home.presentation.tab
+package com.xdiach.home.presentation
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -21,8 +23,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import com.xdiach.home.navigation.HomeTabs
+import com.xdiach.home.model.HomeTabs
+import com.xdiach.home.presentation.components.EmptyPage
 import com.xdiach.home.presentation.components.HomeTopBar
+import com.xdiach.home.presentation.tab.home.HomeScreenLayout
 import com.xdiach.home.presentation.tab.statistics.StatisticsScreenLayout
 import com.xdiach.mongo.repository.Diaries
 import com.xdiach.translations.R as RT
@@ -30,6 +34,7 @@ import com.xdiach.ui.R as RU
 import com.xdiach.util.model.RequestState
 import java.time.ZonedDateTime
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -52,7 +57,8 @@ internal fun HomeScreen(
     var padding by remember {
         mutableStateOf(PaddingValues())
     }
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val homeTabScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val statisticsScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
     NavigationDrawer(
         drawerState = drawerState,
@@ -63,10 +69,14 @@ internal fun HomeScreen(
         onDeleteAllClicked = onDeleteAllClicked
     ) {
         Scaffold(
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+            modifier = Modifier.nestedScroll(homeTabScrollBehavior.nestedScrollConnection),
             topBar = {
                 HomeTopBar(
-                    scrollBehavior = scrollBehavior,
+                    scrollBehavior = if (selectedHomeTab == HomeTabs.Home) {
+                        homeTabScrollBehavior
+                    } else {
+                        statisticsScrollBehavior
+                    },
                     onMenuClicked = onMenuClicked,
                     dateIsSelected = dateIsSelected,
                     onDateSelected = onDateSelected,
@@ -87,10 +97,10 @@ internal fun HomeScreen(
             },
             content = {
                 padding = it
-                when (selectedHomeTab) {
-                    HomeTabs.Home -> {
-                        when (diaries) {
-                            is RequestState.Success -> {
+                when (diaries) {
+                    is RequestState.Success -> {
+                        when (selectedHomeTab) {
+                            HomeTabs.Home -> {
                                 HomeScreenLayout(
                                     paddingValues = it,
                                     diaryNotes = diaries.data,
@@ -98,29 +108,30 @@ internal fun HomeScreen(
                                 )
                             }
 
-                            is RequestState.Error -> {
-                                EmptyPage(
-                                    title = stringResource(id = RT.string.home_diary_error_title),
-                                    subtitle = "${diaries.error.message}"
-                                )
+                            HomeTabs.Statistics -> {
+                                StatisticsScreenLayout(diaryNotes = diaries.data, dateIsSelected = dateIsSelected)
                             }
+                        }
 
-                            is RequestState.Loading -> {
-                                Box(
-                                    modifier = Modifier.fillMaxSize(),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    CircularProgressIndicator()
-                                }
-                            }
+                    }
 
-                            else -> {}
+                    is RequestState.Error -> {
+                        EmptyPage(
+                            title = stringResource(id = RT.string.home_diary_error_title),
+                            subtitle = "${diaries.error.message}"
+                        )
+                    }
+
+                    is RequestState.Loading -> {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CircularProgressIndicator()
                         }
                     }
 
-                    HomeTabs.Statistics -> {
-                        StatisticsScreenLayout()
-                    }
+                    else -> {}
                 }
             }
         )

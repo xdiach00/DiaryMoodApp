@@ -16,7 +16,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.xdiach.home.presentation.tab.HomeScreen
+import com.xdiach.home.model.HomeTabs
+import com.xdiach.home.presentation.HomeScreen
 import com.xdiach.home.presentation.viewmodel.HomeViewModel
 import com.xdiach.translations.R
 import com.xdiach.ui.UiText

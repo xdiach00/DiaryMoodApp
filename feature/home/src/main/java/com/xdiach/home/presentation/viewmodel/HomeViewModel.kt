@@ -1,5 +1,6 @@
 package com.xdiach.home.presentation.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -8,13 +9,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
+import com.patrykandpatrick.vico.core.entry.ChartEntry
+import com.patrykandpatrick.vico.core.entry.FloatEntry
+import com.xdiach.home.model.Entry
 import com.xdiach.mongo.database.ImageToDeleteDao
 import com.xdiach.mongo.database.entity.ImageToDeleteEntity
 import com.xdiach.mongo.repository.Diaries
 import com.xdiach.mongo.repository.MongoDB
 import com.xdiach.util.connectivity.ConnectivityObserver
 import com.xdiach.util.connectivity.NetworkConnectivityObserver
+import com.xdiach.util.model.Diary
+import com.xdiach.util.model.Mood
 import com.xdiach.util.model.RequestState
+import com.xdiach.util.toInstant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.ZonedDateTime
 import javax.inject.Inject
@@ -23,6 +30,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.Instant
+import java.time.LocalDate
 
 @HiltViewModel
 internal class HomeViewModel @Inject constructor(
@@ -76,6 +85,21 @@ internal class HomeViewModel @Inject constructor(
                 diaries.value = result
             }
         }
+    }
+
+    fun generateStats(diaries: Map<LocalDate, List<Diary>>): List<Entry> {
+        for (diary in diaries) Log.d("STATS:", "$diary")
+        val stats = mutableListOf<Entry>()
+        var index = 0
+        for ((date, diaryList) in diaries.toSortedMap()) {
+            var totalPower = 0
+            for (diary in diaryList) {
+                totalPower += Mood.valueOf(diary.mood).power
+            }
+            stats.add(Entry(date, index.toFloat(), totalPower.toFloat()))
+            index++
+        }
+        return stats
     }
 
     fun deleteAllDiaries(

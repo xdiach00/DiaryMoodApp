@@ -1,14 +1,12 @@
-package com.xdiach.home.presentation.tab
+package com.xdiach.home.presentation.tab.home
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -20,12 +18,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.xdiach.translations.R
+import com.xdiach.home.presentation.components.EmptyPage
 import com.xdiach.ui.values.Dimensions
 import com.xdiach.util.DiaryHolder
 import com.xdiach.util.model.Diary
@@ -123,35 +120,6 @@ private fun DateHeader(localDate: LocalDate) {
                 )
             )
         }
-    }
-}
-
-@Composable
-internal fun EmptyPage(
-    title: String = stringResource(id = R.string.home_diary_empty_title),
-    subtitle: String = stringResource(id = R.string.home_diary_empty_subtitle)
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = title,
-            style = TextStyle(
-                fontSize = MaterialTheme.typography.titleMedium.fontSize,
-                fontWeight = FontWeight.Medium
-            )
-        )
-        Text(
-            text = subtitle,
-            style = TextStyle(
-                fontSize = MaterialTheme.typography.bodyMedium.fontSize,
-                fontWeight = FontWeight.Normal
-            )
-        )
     }
 }
 

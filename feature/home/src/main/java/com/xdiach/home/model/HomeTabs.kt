@@ -1,4 +1,4 @@
-package com.xdiach.home.navigation
+package com.xdiach.home.model
 
 enum class HomeTabs {
     Home,
