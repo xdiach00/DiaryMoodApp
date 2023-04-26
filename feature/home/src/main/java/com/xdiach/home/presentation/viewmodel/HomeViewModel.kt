@@ -1,6 +1,5 @@
 package com.xdiach.home.presentation.viewmodel
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -9,8 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
-import com.patrykandpatrick.vico.core.entry.ChartEntry
-import com.patrykandpatrick.vico.core.entry.FloatEntry
 import com.xdiach.home.model.Entry
 import com.xdiach.mongo.database.ImageToDeleteDao
 import com.xdiach.mongo.database.entity.ImageToDeleteEntity
@@ -21,7 +18,6 @@ import com.xdiach.util.connectivity.NetworkConnectivityObserver
 import com.xdiach.util.model.Diary
 import com.xdiach.util.model.Mood
 import com.xdiach.util.model.RequestState
-import com.xdiach.util.toInstant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.ZonedDateTime
 import javax.inject.Inject
@@ -30,7 +26,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.Instant
 import java.time.LocalDate
 
 @HiltViewModel
@@ -42,6 +37,7 @@ internal class HomeViewModel @Inject constructor(
     private lateinit var filteredDiariesJob: Job
 
     var diaries: MutableState<Diaries> = mutableStateOf(RequestState.Idle)
+    var stats =  mutableListOf<Entry>()
     private var network by mutableStateOf(ConnectivityObserver.Status.Unavailable)
     var dateIsSelected by mutableStateOf(false)
         private set
@@ -87,20 +83,13 @@ internal class HomeViewModel @Inject constructor(
         }
     }
 
-    fun generateStats(diaries: Map<LocalDate, List<Diary>>): List<Entry> {
-        for (diary in diaries) Log.d("STATS:", "$diary")
-        val stats = mutableListOf<Entry>()
-        var index = 0
-        for ((date, diaryList) in diaries.toSortedMap()) {
-            var totalPower = 0
-            for (diary in diaryList) {
-                totalPower += Mood.valueOf(diary.mood).power
+    fun getMoodStatistics(diaries: Map<LocalDate, List<Diary>>): List<Entry> =
+        diaries.entries.sortedBy { it.key }
+            .mapIndexed { index, (date, diaryList) ->
+                val totalPower = diaryList.sumOf { Mood.valueOf(it.mood).power }
+                    .coerceIn(-4, 4)
+                Entry(date, index.toFloat(), totalPower.toFloat())
             }
-            stats.add(Entry(date, index.toFloat(), totalPower.toFloat()))
-            index++
-        }
-        return stats
-    }
 
     fun deleteAllDiaries(
         onSuccess: () -> Unit,

@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.patrykandpatrick.vico.compose.axis.horizontal.bottomAxis
@@ -32,8 +31,7 @@ fun StatisticsScreenLayout(
     dateIsSelected: Boolean
 ) {
     val viewModel: HomeViewModel = hiltViewModel()
-    val chartEntryModelProducer = ChartEntryModelProducer(viewModel.generateStats(diaryNotes))
-    val context = LocalContext.current
+    val chartEntryModelProducer = ChartEntryModelProducer(viewModel.getMoodStatistics(diaryNotes))
 
     if (diaryNotes.isNotEmpty()) {
         Column(

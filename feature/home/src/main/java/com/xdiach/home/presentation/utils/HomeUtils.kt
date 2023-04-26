@@ -7,6 +7,7 @@ import com.patrykandpatrick.vico.core.axis.AxisPosition
 import com.patrykandpatrick.vico.core.axis.formatter.AxisValueFormatter
 import com.xdiach.home.model.Entry
 import com.xdiach.util.model.Mood
+import kotlin.math.roundToInt
 
 @RequiresApi(Build.VERSION_CODES.O)
 internal val bottomAxisValueFormatter = AxisValueFormatter<AxisPosition.Horizontal.Bottom> { value, chartValues ->
@@ -16,12 +17,8 @@ internal val bottomAxisValueFormatter = AxisValueFormatter<AxisPosition.Horizont
         .orEmpty()
 }
 
-internal val startAxisValueFormatter = AxisValueFormatter<AxisPosition.Vertical.Start> { value, chartValues ->
-    (value.toInt())
-        .run {
-            Log.d("VALUE:", "$this")
-            getMoodNameByPower(this)
-        }
+internal val startAxisValueFormatter = AxisValueFormatter<AxisPosition.Vertical.Start> { value, _ ->
+    if(value.isFinite() && value.roundToInt().toFloat() == value) getMoodNameByPower(value.roundToInt()) else ""
 }
 
 fun getMoodNameByPower(power: Int): String {
