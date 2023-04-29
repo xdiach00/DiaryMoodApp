@@ -1,10 +1,9 @@
 package com.xdiach.util.model
 
 import androidx.compose.ui.graphics.Color
+import com.xdiach.translations.R as RT
 import com.xdiach.ui.theme.*
 import com.xdiach.util.R
-import com.xdiach.translations.R as RT
-
 
 enum class Mood(
     val icon: Int,

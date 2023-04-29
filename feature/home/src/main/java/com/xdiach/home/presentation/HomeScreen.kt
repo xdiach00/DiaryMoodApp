@@ -109,10 +109,13 @@ internal fun HomeScreen(
                             }
 
                             HomeTabs.Statistics -> {
-                                StatisticsScreenLayout(diaryNotes = diaries.data, dateIsSelected = dateIsSelected)
+                                StatisticsScreenLayout(
+                                    paddingValues = it,
+                                    diaryNotes = diaries.data,
+                                    dateIsSelected = dateIsSelected
+                                )
                             }
                         }
-
                     }
 
                     is RequestState.Error -> {
