@@ -1,4 +1,4 @@
-package com.xdiach.diarymoodapp
+package com.xdiach.diarymoodapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

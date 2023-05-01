@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber")
+
 package com.xdiach.home.presentation.viewmodel
 
 import androidx.compose.runtime.MutableState
