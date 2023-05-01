@@ -25,6 +25,7 @@ message-bar-compose = "1.0.5"
 one-tap-compose = "1.0.0"
 desugar = "1.2.0"
 vico = "1.6.5"
+koin = "3.4.0"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx"}
@@ -63,3 +64,8 @@ one-tap-compose = { module = "com.github.stevdza-san:OneTapCompose", version.ref
 desugar-jdk = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar"}
 vico-compose = { module = "com.patrykandpatrick.vico:compose", version.ref = "vico" }
 vico-compose-m3 = { module = "com.patrykandpatrick.vico:compose-m3", version.ref = "vico" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+koin-androidx-navigation = { module = "io.insert-koin:koin-androidx-navigation", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
