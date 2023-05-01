@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="mood_angry">"Zloba"</string>
+  <string name="mood_awful">"Úžasné"</string>
+  <string name="mood_bored">"Nuda"</string>
+  <string name="mood_calm">"Klid"</string>
+  <string name="mood_depressed">"Deprese"</string>
+  <string name="mood_disappointed">"Smutek"</string>
+  <string name="mood_happy">"Šťastné"</string>
+  <string name="mood_humorous">"Vtipný"</string>
+  <string name="mood_lonely">"Osamělý"</string>
+  <string name="mood_mysterious">"Tajemnost"</string>
+  <string name="mood_neutral">"Neutrální"</string>
+  <string name="mood_romantic">"Romantika"</string>
+  <string name="mood_shameful">"Ostuda"</string>
+  <string name="mood_surprised">"Překvapení"</string>
+  <string name="mood_suspicious">"Podezřelé"</string>
+  <string name="mood_tense">"Napětí"</string>
+</resources>

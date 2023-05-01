@@ -1,0 +1,10 @@
+task updateTranslations(type: Exec) {
+    commandLine './localazy.exe', 'download'
+    doLast {
+        copy {
+            from 'core/translations/src/main/res/values-en/'
+            into 'core/translations/src/main/res/values'
+        }
+        delete 'core/translations/src/main/res/values-en'
+    }
+}

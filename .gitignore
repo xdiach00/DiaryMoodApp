@@ -283,3 +283,11 @@ obj/
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio,kotlin,intellij,gradle
+/.idea/deploymentTargetDropDown.xml
+/app/src/main/java/com/xdiach/diarymoodapp/util/Constants.kt
+/.idea/inspectionProfiles/
+/.idea/
+/localazy.exe
+/localazy.keys.json
+/app/google-services.json
+/core/util/src/main/java/com/xdiach/util/PrivateConstants.kt

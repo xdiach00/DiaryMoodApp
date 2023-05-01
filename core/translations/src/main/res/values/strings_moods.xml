@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="mood_angry">"Angry"</string>
+  <string name="mood_awful">"Awful"</string>
+  <string name="mood_bored">"Bored"</string>
+  <string name="mood_calm">"Calm"</string>
+  <string name="mood_depressed">"Depressed"</string>
+  <string name="mood_disappointed">"Disappointed"</string>
+  <string name="mood_happy">"Happy"</string>
+  <string name="mood_humorous">"Humorous"</string>
+  <string name="mood_lonely">"Lonely"</string>
+  <string name="mood_mysterious">"Mysterious"</string>
+  <string name="mood_neutral">"Neutral"</string>
+  <string name="mood_romantic">"Romantic"</string>
+  <string name="mood_shameful">"Shameful"</string>
+  <string name="mood_surprised">"Surprised"</string>
+  <string name="mood_suspicious">"Suspicious"</string>
+  <string name="mood_tense">"Tense"</string>
+</resources>
