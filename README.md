@@ -1,5 +1,9 @@
 # Diary Mood App
 
+  [Go to Code Documentation](#code-documentation)
+
+## App Description
+
 Hi! **DiaryMoodApp** is an app to store your notes and track your mood.
 
 <div style="text-align: center;">
@@ -75,3 +79,43 @@ Hi! **DiaryMoodApp** is an app to store your notes and track your mood.
   <br>
   <sub>Authorization Screen in Dark and Light modes</sub>
 </div>
+
+
+## Code Documentation
+  
+  [Go to App Description](#app-description)
+
+### Summary
+
+The application is developed in the **Kotlin** language using the latest technology and recommendations by Google. The application is based on a **multi-modular MVVM** architecture according to *SOLID* principles using *Dagger Hilt* for dependency injection. The UI is implemented using **Jetpack Compose** and **Material Design 3** design system. Kotlin **Coroutines** and **Flows** are used to work with asynchronous tasks.
+
+### Building
+
+To build this app on your own PC, you need to create a file `core/util/src/main/java/com/xdiach/util/PrivateConstants.kt` with the following content:
+```
+object PrivateConstants {
+    const val APP_ID = "<Mongo Atlas APP ID>"
+    const val CLIENT_ID = "<OAuth Google Cloud Key>"
+}
+```
+Create a project in [MongoDB](https://cloud.mongodb.com/)
+
+Get OAuth [Google Cloud](https://console.cloud.google.com/apis/credentials) key
+
+### Dependencies
+
+Project uses the following libraries:
+
+- [Jetpack Compose](https://developer.android.com/jetpack/compose)
+- [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
+- [Firebase Auth](https://firebase.google.com/docs/auth/android/start)
+- [Firebase Storage](https://firebase.google.com/docs/storage/android/start)
+- [Room](https://developer.android.com/training/data-storage/room)
+- [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+- [Coil](https://coil-kt.github.io/coil/compose/)
+- [Accompanist Pager](https://google.github.io/accompanist/pager/)
+- [Sheets Compose Dialog](https://github.com/maxkeppeler/sheets-compose-dialogs)
+- [Message Bar Compose](https://github.com/stevdza-san/MessageBarCompose)
+- [One Tap Compose](https://github.com/stevdza-san/OneTapCompose)
+- [Desugar JDK](https://github.com/google/desugar_jdk_libs)
+- [Vico](https://github.com/patrykandpatrick/vico)
