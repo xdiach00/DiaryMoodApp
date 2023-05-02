@@ -1,6 +1,8 @@
 # Diary Mood App
 
   [Go to Code Documentation](#code-documentation)
+  <br>
+  [Download latest APK](https://github.com/xdiach00/DiaryMoodApp/releases/tag/v1.0.0-beta) - v1.0.0-beta for debugging
 
 ## App Description
 
