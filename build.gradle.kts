@@ -5,12 +5,40 @@ plugins {
     id(Plugins.Realm.id) version Plugins.Realm.version apply false
     id(Plugins.DaggerHilt.Android.id) version Plugins.DaggerHilt.Android.version apply false
     id(Plugins.Google.Gms.GoogleServices.id) version Plugins.Google.Gms.GoogleServices.version apply false
-    id(Plugins.Ktlint.id) version Plugins.Ktlint.version
     id(Plugins.Detekt.id) version Plugins.Detekt.version
 }
 
-subprojects {
-    apply { from("${rootProject.projectDir}/${ProjectConfig.buildScriptsFolder}/ktlint.gradle") }
-    apply { from("${rootProject.projectDir}/${ProjectConfig.buildScriptsFolder}/detekt.gradle") }
+tasks.register("detektAll", io.gitlab.arturbosch.detekt.Detekt::class) {
+    val autoFix = true //project.hasProperty("detektAutoFix")
+
+    description = "Custom DETEKT build for all modules"
+    parallel = true
+    ignoreFailures = false
+    autoCorrect = autoFix
+    buildUponDefaultConfig = true
+    setSource(file(projectDir))
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+    baseline.set(file("$rootDir/config/detekt/baseline.xml"))
+    include("**/*.kt")
+    exclude("**/resources/**", "**/build/**")
+    reports {
+        html.required.set(true)
+        xml.required.set(true)
+        txt.required.set(true)
+    }
 }
+
+tasks.register("detektBaselineAll", io.gitlab.arturbosch.detekt.DetektCreateBaselineTask::class) {
+    description = "Custom DETEKT baseline for all modules"
+    setSource(file(projectDir))
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+    baseline.set(file("$rootDir/config/detekt/baseline.xml"))
+    include("**/*.kt")
+    exclude("**/resources/**", "**/build/**")
+}
+
+dependencies {
+    detektPlugins(Plugins.Detekt.formatting)
+}
+
 apply { from("${rootProject.projectDir}/${ProjectConfig.buildScriptsFolder}/translations.gradle") }

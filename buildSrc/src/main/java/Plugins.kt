@@ -52,13 +52,9 @@ object Plugins {
         }
     }
 
-    object Ktlint {
-        const val id = "org.jlleitschuh.gradle.ktlint"
-        const val version = "11.3.1"
-    }
-
     object Detekt {
         const val id = "io.gitlab.arturbosch.detekt"
         const val version = "1.23.0-RC1"
+        const val formatting = "io.gitlab.arturbosch.detekt:detekt-formatting:$version"
     }
 }
