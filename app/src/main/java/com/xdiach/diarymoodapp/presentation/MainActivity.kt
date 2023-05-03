@@ -21,10 +21,10 @@ import com.xdiach.util.PrivateConstants.APP_ID
 import com.xdiach.util.Screen
 import dagger.hilt.android.AndroidEntryPoint
 import io.realm.kotlin.mongodb.App
-import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
