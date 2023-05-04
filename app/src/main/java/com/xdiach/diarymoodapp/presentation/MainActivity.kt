@@ -19,21 +19,16 @@ import com.xdiach.mongo.database.entity.ImageToUploadEntity
 import com.xdiach.ui.theme.DiaryMoodAppTheme
 import com.xdiach.util.PrivateConstants.APP_ID
 import com.xdiach.util.Screen
-import dagger.hilt.android.AndroidEntryPoint
 import io.realm.kotlin.mongodb.App
-import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var imageToUploadDao: ImageToUploadDao
-
-    @Inject
-    lateinit var imageToDeleteDao: ImageToDeleteDao
+    private val imageToUploadDao: ImageToUploadDao by inject()
+    private val imageToDeleteDao: ImageToDeleteDao by inject()
     private var keepSplashOpened = true
 
     override fun onCreate(savedInstanceState: Bundle?) {

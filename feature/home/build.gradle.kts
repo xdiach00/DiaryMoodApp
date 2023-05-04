@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.Android.Library.id)
     id(Plugins.Jetbrains.Kotlin.Android.id)
-    id(Plugins.DaggerHilt.Plugin.id)
     id(Plugins.Kotlin.Kapt.id)
     id(Plugins.Realm.id)
 }
@@ -57,9 +56,8 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.realm.sync)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    implementation(libs.hilt.navigation.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
     implementation(libs.firebase.auth)
     implementation(libs.firebase.storage)

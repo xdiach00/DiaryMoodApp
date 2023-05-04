@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.patrykandpatrick.vico.compose.axis.horizontal.bottomAxis
 import com.patrykandpatrick.vico.compose.axis.vertical.startAxis
 import com.patrykandpatrick.vico.compose.chart.Chart
@@ -34,6 +33,7 @@ import com.xdiach.home.presentation.viewmodel.HomeViewModel
 import com.xdiach.translations.R
 import com.xdiach.ui.values.Dimensions
 import com.xdiach.util.model.Diary
+import org.koin.androidx.compose.viewModel
 import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -43,7 +43,7 @@ fun StatisticsScreenLayout(
     diaryNotes: Map<LocalDate, List<Diary>>,
     dateIsSelected: Boolean
 ) {
-    val viewModel: HomeViewModel = hiltViewModel()
+    val viewModel: HomeViewModel by viewModel()
     val chartEntryModelProducer = ChartEntryModelProducer(viewModel.getMoodStatistics(diaryNotes))
     val chartScrollState = rememberChartScrollState()
     val context = LocalContext.current

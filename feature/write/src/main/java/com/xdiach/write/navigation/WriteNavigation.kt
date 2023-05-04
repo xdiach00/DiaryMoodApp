@@ -7,7 +7,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -21,6 +20,7 @@ import com.xdiach.util.Screen
 import com.xdiach.util.model.Mood
 import com.xdiach.write.presentation.screen.WriteScreen
 import com.xdiach.write.presentation.viewmodel.WriteViewModel
+import org.koin.androidx.compose.viewModel
 
 @OptIn(ExperimentalPagerApi::class)
 fun NavGraphBuilder.writeRoute(
@@ -36,7 +36,7 @@ fun NavGraphBuilder.writeRoute(
             }
         )
     ) {
-        val viewModel: WriteViewModel = hiltViewModel()
+        val viewModel: WriteViewModel by viewModel()
         val context = LocalContext.current
         val uiState = viewModel.uiState
         val pagerState = rememberPagerState()
