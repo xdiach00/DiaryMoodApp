@@ -1,6 +1,6 @@
 package com.xdiach.diarymoodapp.navigation
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.xdiach.auth.navigation.authenticationRoute

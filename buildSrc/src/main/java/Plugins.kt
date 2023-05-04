@@ -21,17 +21,6 @@ object Plugins {
         }
     }
 
-    object DaggerHilt {
-        object Android {
-            const val id = "com.google.dagger.hilt.android"
-            const val version = "2.44"
-        }
-
-        object Plugin {
-            const val id = "dagger.hilt.android.plugin"
-        }
-    }
-
     object Realm {
         const val id = "io.realm.kotlin"
         const val version = "1.7.0"
@@ -52,13 +41,9 @@ object Plugins {
         }
     }
 
-    object Ktlint {
-        const val id = "org.jlleitschuh.gradle.ktlint"
-        const val version = "11.3.1"
-    }
-
     object Detekt {
         const val id = "io.gitlab.arturbosch.detekt"
         const val version = "1.23.0-RC1"
+        const val formatting = "io.gitlab.arturbosch.detekt:detekt-formatting:$version"
     }
 }

@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.Android.Application.id)
     id(Plugins.Jetbrains.Kotlin.Android.id)
-    id(Plugins.DaggerHilt.Plugin.id)
     id(Plugins.Realm.id)
     id(Plugins.Google.Gms.GoogleServices.id)
     id(Plugins.Kotlin.Kapt.id)
@@ -72,9 +71,8 @@ dependencies {
     // Mongo DB Realm
     implementation(libs.realm.sync)
 
-    // Dagger Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    // Koin
+    implementation(libs.koin.android)
 
     // Desugar JDK
     coreLibraryDesugaring(libs.desugar.jdk)
