@@ -89,7 +89,7 @@ Hi! **DiaryMoodApp** is an app to store your notes and track your mood.
 
 ### Summary
 
-The application is developed in the **Kotlin** language using the latest technology and recommendations by Google. The application is based on a **multi-modular MVVM** architecture according to *SOLID* principles using *Dagger Hilt* for dependency injection. The UI is implemented using **Jetpack Compose** and **Material Design 3** design system. Kotlin **Coroutines** and **Flows** are used to work with asynchronous tasks.
+The application is developed in the **Kotlin** language using the latest technology and recommendations by Google. The application is based on a **multi-modular MVVM** architecture according to *SOLID* principles using *Koin* (replaced *Dagger Hilt* in [c4653c6](https://github.com/xdiach00/DiaryMoodApp/commit/c4653c68016ac7f7b65b3e58879ee2170d8194dd)) for dependency injection. The UI is implemented using **Jetpack Compose** and **Material Design 3** design system. Kotlin **Coroutines** and **Flows** are used to work with asynchronous tasks.
 
 ### Building
 
