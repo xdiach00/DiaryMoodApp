@@ -3,7 +3,6 @@ plugins {
     id(Plugins.Jetbrains.Kotlin.Android.id)
     id(Plugins.Realm.id)
     id(Plugins.Kotlin.Kapt.id)
-    id(Plugins.DaggerHilt.Plugin.id)
 }
 
 android {
@@ -61,9 +60,8 @@ dependencies {
     implementation(libs.date.dialog)
     implementation(libs.time.dialog)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    implementation(libs.hilt.navigation.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
     implementation(libs.firebase.auth)
     implementation(libs.firebase.storage)
