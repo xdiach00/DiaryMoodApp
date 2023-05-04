@@ -16,8 +16,6 @@ runtime-compose = "2.6.1"
 splash = "1.0.0"
 realm = "1.7.0"
 kotlin-coroutines-core = "1.6.4"
-dagger-hilt = "2.44.2"
-hilt-navigation-compose = "1.0.0"
 coil = "2.2.2"
 accompanist = "0.27.0"
 date-time-picker = "1.1.1"
@@ -25,7 +23,7 @@ message-bar-compose = "1.0.5"
 one-tap-compose = "1.0.0"
 desugar = "1.2.0"
 vico = "1.6.5"
-koin = "3.4.0"
+koin = "3.1.6"
 
 [libraries]
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx"}
@@ -51,9 +49,6 @@ runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", ver
 splash-api = { module = "androidx.core:core-splashscreen", version.ref = "splash"}
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines-core"}
 realm-sync = { module = "io.realm.kotlin:library-sync", version.ref = "realm"}
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger-hilt"}
-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger-hilt"}
-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose"}
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil"}
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist"}
 date-time-picker = { module = "com.maxkeppeler.sheets-compose-dialogs:core", version.ref = "date-time-picker"}

@@ -21,17 +21,6 @@ object Plugins {
         }
     }
 
-    object DaggerHilt {
-        object Android {
-            const val id = "com.google.dagger.hilt.android"
-            const val version = "2.44"
-        }
-
-        object Plugin {
-            const val id = "dagger.hilt.android.plugin"
-        }
-    }
-
     object Realm {
         const val id = "io.realm.kotlin"
         const val version = "1.7.0"

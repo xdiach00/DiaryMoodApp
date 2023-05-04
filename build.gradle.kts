@@ -3,7 +3,6 @@ plugins {
     id(Plugins.Android.Library.id) version Plugins.Android.Library.version apply false
     id(Plugins.Jetbrains.Kotlin.Android.id) version Plugins.Jetbrains.Kotlin.Android.version apply false
     id(Plugins.Realm.id) version Plugins.Realm.version apply false
-    id(Plugins.DaggerHilt.Android.id) version Plugins.DaggerHilt.Android.version apply false
     id(Plugins.Google.Gms.GoogleServices.id) version Plugins.Google.Gms.GoogleServices.version apply false
     id(Plugins.Detekt.id) version Plugins.Detekt.version
 }

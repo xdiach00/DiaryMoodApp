@@ -20,7 +20,6 @@ import com.xdiach.util.connectivity.NetworkConnectivityObserver
 import com.xdiach.util.model.Diary
 import com.xdiach.util.model.Mood
 import com.xdiach.util.model.RequestState
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelAndJoin
@@ -28,18 +27,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.ZonedDateTime
-import javax.inject.Inject
 
-@HiltViewModel
-internal class HomeViewModel @Inject constructor(
+internal class HomeViewModel(
     private val connectivity: NetworkConnectivityObserver,
     private val imageToDeleteDao: ImageToDeleteDao
 ) : ViewModel() {
+
     private lateinit var allDiariesJob: Job
     private lateinit var filteredDiariesJob: Job
 
     var diaries: MutableState<Diaries> = mutableStateOf(RequestState.Idle)
-    var stats = mutableListOf<Entry>()
     private var network by mutableStateOf(ConnectivityObserver.Status.Unavailable)
     var dateIsSelected by mutableStateOf(false)
         private set
