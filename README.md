@@ -113,7 +113,7 @@ Project uses the following libraries:
 - [Firebase Auth](https://firebase.google.com/docs/auth/android/start)
 - [Firebase Storage](https://firebase.google.com/docs/storage/android/start)
 - [Room](https://developer.android.com/training/data-storage/room)
-- [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+- [Koin](https://insert-koin.io/docs/setup/koin/)
 - [Coil](https://coil-kt.github.io/coil/compose/)
 - [Accompanist Pager](https://google.github.io/accompanist/pager/)
 - [Sheets Compose Dialog](https://github.com/maxkeppeler/sheets-compose-dialogs)
