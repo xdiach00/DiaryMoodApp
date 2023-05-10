@@ -1,5 +1,6 @@
 package com.xdiach.common.data.repository
 
+import android.util.Log
 import com.xdiach.common.data.datasource.ThemeModeLocalDataSource
 import kotlinx.coroutines.flow.first
 
@@ -16,6 +17,7 @@ internal class ThemeModeRepositoryImpl(
     }
 
     override suspend fun setThemeMode(themeMode: String) {
+        Log.d("THEME MODE: ", themeMode)
         dataSource.setThemeMode(themeMode)
     }
 }

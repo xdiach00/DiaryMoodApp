@@ -75,6 +75,10 @@ fun NavGraphBuilder.homeRoute(
                 selectedHomeTab = HomeTabs.Statistics
                 scope.launch { drawerState.close() }
             },
+            onSettingsClicked = {
+                selectedHomeTab = HomeTabs.Settings
+                scope.launch { drawerState.close() }
+            },
             onSignOutClicked = {
                 signOutDialogOpened = true
             },

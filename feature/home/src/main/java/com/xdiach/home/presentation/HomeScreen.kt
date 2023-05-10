@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -48,6 +49,7 @@ import com.xdiach.home.model.HomeTabs
 import com.xdiach.home.presentation.components.EmptyPage
 import com.xdiach.home.presentation.components.HomeTopBar
 import com.xdiach.home.presentation.tab.home.HomeScreenLayout
+import com.xdiach.home.presentation.tab.settings.SettingsScreenLayout
 import com.xdiach.home.presentation.tab.statistics.StatisticsScreenLayout
 import com.xdiach.mongo.repository.Diaries
 import com.xdiach.util.model.RequestState
@@ -69,6 +71,7 @@ internal fun HomeScreen(
     onMenuClicked: () -> Unit,
     onHomeClicked: () -> Unit,
     onStatisticsClicked: () -> Unit,
+    onSettingsClicked: () -> Unit,
     onSignOutClicked: () -> Unit,
     onDeleteAllClicked: () -> Unit,
     navigateToWrite: () -> Unit,
@@ -86,6 +89,7 @@ internal fun HomeScreen(
         selectedHomeTab = selectedHomeTab,
         onHomeClicked = onHomeClicked,
         onStatisticsClicked = onStatisticsClicked,
+        onSettingsClicked = onSettingsClicked,
         onSignOutClicked = onSignOutClicked,
         onDeleteAllClicked = onDeleteAllClicked
     ) {
@@ -136,6 +140,12 @@ internal fun HomeScreen(
                                     dateIsSelected = dateIsSelected
                                 )
                             }
+
+                            HomeTabs.Settings -> {
+                                SettingsScreenLayout(
+                                    paddingValues = it
+                                )
+                            }
                         }
                     }
 
@@ -168,6 +178,7 @@ private fun NavigationDrawer(
     selectedHomeTab: HomeTabs,
     onHomeClicked: () -> Unit,
     onStatisticsClicked: () -> Unit,
+    onSettingsClicked: () -> Unit,
     onSignOutClicked: () -> Unit,
     onDeleteAllClicked: () -> Unit,
     content: @Composable () -> Unit
@@ -225,6 +236,24 @@ private fun NavigationDrawer(
                         },
                         selected = selectedHomeTab == HomeTabs.Statistics,
                         onClick = onStatisticsClicked
+                    )
+                    NavigationDrawerItem(
+                        label = {
+                            Row(modifier = Modifier.padding(horizontal = 12.dp)) {
+                                Icon(
+                                    imageVector = Icons.Default.Settings,
+                                    contentDescription = "Settings Icon",
+                                    tint = MaterialTheme.colorScheme.onSurface
+                                )
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Text(
+                                    text = "Settings",
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                            }
+                        },
+                        selected = selectedHomeTab == HomeTabs.Settings,
+                        onClick = onSettingsClicked
                     )
                     NavigationDrawerItem(
                         label = {
