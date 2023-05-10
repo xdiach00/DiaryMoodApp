@@ -88,4 +88,5 @@ dependencies {
     implementation(project(Modules.Feature.auth))
     implementation(project(Modules.Feature.home))
     implementation(project(Modules.Feature.write))
+    implementation(project(Modules.Feature.common))
 }

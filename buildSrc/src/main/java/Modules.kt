@@ -11,6 +11,7 @@ object Modules {
         const val auth = ":feature:auth"
         const val home = ":feature:home"
         const val write = ":feature:write"
+        const val common = ":feature:common"
     }
 
     object Data {
