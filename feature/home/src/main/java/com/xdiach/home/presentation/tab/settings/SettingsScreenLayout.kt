@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.xdiach.common.domain.model.ThemeMode
 import com.xdiach.home.presentation.viewmodel.SettingsViewModel
 import org.koin.androidx.compose.viewModel
 
@@ -30,8 +31,14 @@ fun SettingsScreenLayout(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = { settingsViewModel.saveThemeMode("Light") }) {
-            Text("Change Theme")
+        Button(onClick = { settingsViewModel.saveThemeMode(ThemeMode.DARK.id) }) {
+            Text("Dark")
+        }
+        Button(onClick = { settingsViewModel.saveThemeMode(ThemeMode.LIGHT.id) }) {
+            Text("Light")
+        }
+        Button(onClick = { settingsViewModel.saveThemeMode(ThemeMode.SYSTEM.id) }) {
+            Text("System")
         }
     }
 }

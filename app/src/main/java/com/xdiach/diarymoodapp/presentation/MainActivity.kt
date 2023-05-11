@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.FirebaseApp
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storageMetadata
+import com.xdiach.common.data.repository.ThemeModeRepository
 import com.xdiach.diarymoodapp.navigation.SetupNavGraph
 import com.xdiach.mongo.database.ImageToDeleteDao
 import com.xdiach.mongo.database.ImageToUploadDao
@@ -29,6 +30,7 @@ class MainActivity : ComponentActivity() {
 
     private val imageToUploadDao: ImageToUploadDao by inject()
     private val imageToDeleteDao: ImageToDeleteDao by inject()
+    private val themeModeRepository: ThemeModeRepository by inject()
     private var keepSplashOpened = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +41,7 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         FirebaseApp.initializeApp(this)
         setContent {
-            DiaryMoodAppTheme {
+            DiaryMoodAppTheme(themeMode = themeModeRepository.themeMode.value) {
                 val navController = rememberNavController()
                 SetupNavGraph(
                     startDestination = getStartDestination(),
