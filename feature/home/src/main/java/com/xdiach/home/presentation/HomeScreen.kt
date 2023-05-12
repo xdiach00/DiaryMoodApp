@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -45,6 +44,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import com.xdiach.common.domain.model.ThemeMode
 import com.xdiach.home.model.HomeTabs
 import com.xdiach.home.presentation.components.EmptyPage
 import com.xdiach.home.presentation.components.HomeTopBar
@@ -52,6 +52,7 @@ import com.xdiach.home.presentation.tab.home.HomeScreenLayout
 import com.xdiach.home.presentation.tab.settings.SettingsScreenLayout
 import com.xdiach.home.presentation.tab.statistics.StatisticsScreenLayout
 import com.xdiach.mongo.repository.Diaries
+import com.xdiach.ui.values.Dimensions
 import com.xdiach.util.model.RequestState
 import java.time.ZonedDateTime
 import com.xdiach.translations.R as RT
@@ -66,6 +67,10 @@ internal fun HomeScreen(
     drawerState: DrawerState,
     dateIsSelected: Boolean,
     selectedHomeTab: HomeTabs,
+    themeModeActive: ThemeMode,
+    onDarkModeClicked: () -> Unit,
+    onLightModeClicked: () -> Unit,
+    onSystemModeClicked: () -> Unit,
     onDateSelected: (ZonedDateTime) -> Unit,
     onDateReset: () -> Unit,
     onMenuClicked: () -> Unit,
@@ -89,9 +94,7 @@ internal fun HomeScreen(
         selectedHomeTab = selectedHomeTab,
         onHomeClicked = onHomeClicked,
         onStatisticsClicked = onStatisticsClicked,
-        onSettingsClicked = onSettingsClicked,
-        onSignOutClicked = onSignOutClicked,
-        onDeleteAllClicked = onDeleteAllClicked
+        onSettingsClicked = onSettingsClicked
     ) {
         Scaffold(
             modifier = Modifier.nestedScroll(homeTabScrollBehavior.nestedScrollConnection),
@@ -143,7 +146,13 @@ internal fun HomeScreen(
 
                             HomeTabs.Settings -> {
                                 SettingsScreenLayout(
-                                    paddingValues = it
+                                    paddingValues = it,
+                                    themeModeActive = themeModeActive,
+                                    onDarkModeClicked = onDarkModeClicked,
+                                    onLightModeClicked = onLightModeClicked,
+                                    onSystemModeClicked = onSystemModeClicked,
+                                    onDeleteAllClicked = onDeleteAllClicked,
+                                    onSignOutClicked = onSignOutClicked
                                 )
                             }
                         }
@@ -179,8 +188,6 @@ private fun NavigationDrawer(
     onHomeClicked: () -> Unit,
     onStatisticsClicked: () -> Unit,
     onSettingsClicked: () -> Unit,
-    onSignOutClicked: () -> Unit,
-    onDeleteAllClicked: () -> Unit,
     content: @Composable () -> Unit
 ) {
     ModalNavigationDrawer(
@@ -202,13 +209,13 @@ private fun NavigationDrawer(
                     }
                     NavigationDrawerItem(
                         label = {
-                            Row(modifier = Modifier.padding(horizontal = 12.dp)) {
+                            Row(modifier = Modifier.padding(horizontal = Dimensions.Spacer)) {
                                 Icon(
                                     imageVector = Icons.Default.Home,
                                     contentDescription = "Home Icon",
                                     tint = MaterialTheme.colorScheme.onSurface
                                 )
-                                Spacer(modifier = Modifier.width(12.dp))
+                                Spacer(modifier = Modifier.width(Dimensions.Spacer))
                                 Text(
                                     text = stringResource(id = RT.string.home_screen_home),
                                     color = MaterialTheme.colorScheme.onSurface
@@ -221,13 +228,13 @@ private fun NavigationDrawer(
                     )
                     NavigationDrawerItem(
                         label = {
-                            Row(modifier = Modifier.padding(horizontal = 12.dp)) {
+                            Row(modifier = Modifier.padding(horizontal = Dimensions.Spacer)) {
                                 Icon(
                                     imageVector = Icons.Default.Info,
                                     contentDescription = "Statistic Icon",
                                     tint = MaterialTheme.colorScheme.onSurface
                                 )
-                                Spacer(modifier = Modifier.width(12.dp))
+                                Spacer(modifier = Modifier.width(Dimensions.Spacer))
                                 Text(
                                     text = stringResource(id = RT.string.home_screen_statistic),
                                     color = MaterialTheme.colorScheme.onSurface
@@ -239,13 +246,13 @@ private fun NavigationDrawer(
                     )
                     NavigationDrawerItem(
                         label = {
-                            Row(modifier = Modifier.padding(horizontal = 12.dp)) {
+                            Row(modifier = Modifier.padding(horizontal = Dimensions.Spacer)) {
                                 Icon(
                                     imageVector = Icons.Default.Settings,
                                     contentDescription = "Settings Icon",
                                     tint = MaterialTheme.colorScheme.onSurface
                                 )
-                                Spacer(modifier = Modifier.width(12.dp))
+                                Spacer(modifier = Modifier.width(Dimensions.Spacer))
                                 Text(
                                     text = "Settings",
                                     color = MaterialTheme.colorScheme.onSurface
@@ -254,41 +261,6 @@ private fun NavigationDrawer(
                         },
                         selected = selectedHomeTab == HomeTabs.Settings,
                         onClick = onSettingsClicked
-                    )
-                    NavigationDrawerItem(
-                        label = {
-                            Row(modifier = Modifier.padding(horizontal = 12.dp)) {
-                                Icon(
-                                    imageVector = Icons.Default.Delete,
-                                    contentDescription = "Delete All Diaries Icon",
-                                    tint = MaterialTheme.colorScheme.onSurface
-                                )
-                                Spacer(modifier = Modifier.width(12.dp))
-                                Text(
-                                    text = stringResource(id = RT.string.home_screen_delete_all),
-                                    color = MaterialTheme.colorScheme.onSurface
-                                )
-                            }
-                        },
-                        selected = false,
-                        onClick = onDeleteAllClicked
-                    )
-                    NavigationDrawerItem(
-                        label = {
-                            Row(modifier = Modifier.padding(horizontal = 12.dp)) {
-                                Image(
-                                    painter = painterResource(id = RU.drawable.google_logo),
-                                    contentDescription = "Google logo"
-                                )
-                                Spacer(modifier = Modifier.width(12.dp))
-                                Text(
-                                    text = stringResource(id = RT.string.home_screen_signout),
-                                    color = MaterialTheme.colorScheme.onSurface
-                                )
-                            }
-                        },
-                        selected = false,
-                        onClick = onSignOutClicked
                     )
                 }
             )

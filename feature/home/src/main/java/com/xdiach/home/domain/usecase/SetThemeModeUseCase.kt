@@ -6,18 +6,13 @@ import com.xdiach.common.data.repository.ThemeModeRepository
 import com.xdiach.common.domain.model.ThemeMode
 
 interface SetThemeModeUseCase {
-    suspend operator fun invoke(themeMode: String)
+    suspend operator fun invoke(themeMode: ThemeMode)
 }
 
 class SetThemeModeUseCaseImpl(
     private val themeModeRepository: ThemeModeRepository
 ) : SetThemeModeUseCase {
-    override suspend fun invoke(themeMode: String) {
-        val enumValue = try {
-            enumValueOf<ThemeMode>(themeMode)
-        } catch (e: IllegalArgumentException) {
-            ThemeMode.SYSTEM
-        }
-        themeModeRepository.setThemeMode(enumValue)
+    override suspend fun invoke(themeMode: ThemeMode) {
+        themeModeRepository.setThemeMode(themeMode)
     }
 }

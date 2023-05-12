@@ -1,5 +1,7 @@
 package com.xdiach.home.di
 
+import com.xdiach.home.domain.usecase.GetActiveThemeModeUseCase
+import com.xdiach.home.domain.usecase.GetActiveThemeModeUseCaseImpl
 import com.xdiach.home.domain.usecase.SetThemeModeUseCase
 import com.xdiach.home.domain.usecase.SetThemeModeUseCaseImpl
 import com.xdiach.home.presentation.viewmodel.HomeViewModel
@@ -15,6 +17,12 @@ val homeModule = module {
         )
     }
 
+    factory<GetActiveThemeModeUseCase> {
+        GetActiveThemeModeUseCaseImpl(
+            themeModeRepository = get()
+        )
+    }
+
     viewModel {
         HomeViewModel(
             connectivity = get(),
@@ -24,7 +32,8 @@ val homeModule = module {
 
     viewModel {
         SettingsViewModel(
-            setThemeModeUseCase = get()
+            setThemeModeUseCase = get(),
+            getActiveThemeModeUseCase = get()
         )
     }
 }

@@ -44,6 +44,7 @@ import com.xdiach.translations.R
 import com.xdiach.ui.GalleryImage
 import com.xdiach.ui.GalleryState
 import com.xdiach.ui.UiText
+import com.xdiach.ui.values.Dimensions
 import com.xdiach.util.GalleryUploader
 import com.xdiach.util.model.Diary
 import com.xdiach.util.model.Mood
@@ -172,14 +173,14 @@ internal fun WriteScreenLayout(
             )
         }
         Column(verticalArrangement = Arrangement.Bottom) {
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(Dimensions.Spacer))
             GalleryUploader(
                 galleryState = galleryState,
                 onAddClicked = { focusManager.clearFocus() },
                 onImageSelect = onImageSelect,
                 onImageClicked = onImageClicked
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(Dimensions.Spacer))
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
