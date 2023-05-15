@@ -32,7 +32,7 @@ import io.realm.kotlin.mongodb.App
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.androidx.compose.viewModel
+import org.koin.androidx.compose.koinViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.homeRoute(
@@ -42,8 +42,8 @@ fun NavGraphBuilder.homeRoute(
     onDataLoaded: () -> Unit
 ) {
     composable(route = Screen.Home.route) {
-        val homeViewModel: HomeViewModel by viewModel()
-        val settingsViewModel: SettingsViewModel by viewModel()
+        val homeViewModel = koinViewModel<HomeViewModel>()
+        val settingsViewModel = koinViewModel<SettingsViewModel>()
         val diaries by homeViewModel.diaries
         var selectedHomeTab by remember { mutableStateOf(HomeTabs.Home) }
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
