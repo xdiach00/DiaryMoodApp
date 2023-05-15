@@ -20,7 +20,7 @@ import com.xdiach.util.Screen
 import com.xdiach.util.model.Mood
 import com.xdiach.write.presentation.screen.WriteScreen
 import com.xdiach.write.presentation.viewmodel.WriteViewModel
-import org.koin.androidx.compose.viewModel
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalPagerApi::class)
 fun NavGraphBuilder.writeRoute(
@@ -36,7 +36,7 @@ fun NavGraphBuilder.writeRoute(
             }
         )
     ) {
-        val viewModel: WriteViewModel by viewModel()
+        val viewModel = koinViewModel<WriteViewModel>()
         val context = LocalContext.current
         val uiState = viewModel.uiState
         val pagerState = rememberPagerState()

@@ -59,6 +59,10 @@ dependencies {
     implementation(libs.junit)
     implementation(libs.junit.ext)
 
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.androidx.navigation)
+
     implementation(project(Modules.Core.ui))
     implementation(project(Modules.Core.translations))
     implementation(project(Modules.Feature.common))

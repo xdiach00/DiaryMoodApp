@@ -2,12 +2,12 @@ package com.xdiach.diarymoodapp
 
 import android.app.Application
 import com.xdiach.common.di.commonModule
-import com.xdiach.diarymoodapp.di.dataModule
 import com.xdiach.home.di.homeModule
+import com.xdiach.mongo.di.mongoModule
+import com.xdiach.util.di.utilModule
 import com.xdiach.write.di.writeModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
-import org.koin.core.context.loadKoinModules
 
 class MyApp : Application() {
 
@@ -15,14 +15,15 @@ class MyApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MyApp)
-            modules(dataModule)
-        }
-        loadKoinModules(
-            listOf(
-                homeModule,
-                writeModule,
-                commonModule
+            modules(
+                listOf(
+                    mongoModule,
+                    utilModule,
+                    homeModule,
+                    writeModule,
+                    commonModule
+                )
             )
-        )
+        }
     }
 }
