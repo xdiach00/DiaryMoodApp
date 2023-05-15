@@ -37,6 +37,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.xdiach.ui.GalleryImage
 import com.xdiach.ui.GalleryState
+import com.xdiach.ui.values.Dimensions
 import com.xdiach.ui.values.Elevation
 import kotlin.math.max
 
@@ -96,7 +97,7 @@ fun GalleryUploader(
     galleryState: GalleryState,
     imageSize: Dp = 60.dp,
     imageShape: CornerBasedShape = Shapes().medium,
-    spaceBetween: Dp = 12.dp,
+    spaceBetween: Dp = Dimensions.Spacer,
     onAddClicked: () -> Unit,
     onImageSelect: (Uri) -> Unit,
     onImageClicked: (GalleryImage) -> Unit

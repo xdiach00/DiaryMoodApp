@@ -17,9 +17,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.xdiach.common.domain.model.ThemeMode
 import com.xdiach.home.model.HomeTabs
 import com.xdiach.home.presentation.HomeScreen
 import com.xdiach.home.presentation.viewmodel.HomeViewModel
+import com.xdiach.home.presentation.viewmodel.SettingsViewModel
 import com.xdiach.translations.R
 import com.xdiach.ui.UiText
 import com.xdiach.ui.components.DisplayAlertDialog
@@ -40,8 +42,9 @@ fun NavGraphBuilder.homeRoute(
     onDataLoaded: () -> Unit
 ) {
     composable(route = Screen.Home.route) {
-        val viewModel: HomeViewModel by viewModel()
-        val diaries by viewModel.diaries
+        val homeViewModel: HomeViewModel by viewModel()
+        val settingsViewModel: SettingsViewModel by viewModel()
+        val diaries by homeViewModel.diaries
         var selectedHomeTab by remember { mutableStateOf(HomeTabs.Home) }
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
@@ -58,10 +61,14 @@ fun NavGraphBuilder.homeRoute(
         HomeScreen(
             diaries = diaries,
             drawerState = drawerState,
-            dateIsSelected = viewModel.dateIsSelected,
+            dateIsSelected = homeViewModel.dateIsSelected,
             selectedHomeTab = selectedHomeTab,
-            onDateSelected = { viewModel.getDiaries(zonedDateTime = it) },
-            onDateReset = { viewModel.getDiaries() },
+            themeModeActive = settingsViewModel.getActiveThemeMode(),
+            onDarkModeClicked = { settingsViewModel.saveThemeMode(ThemeMode.DARK) },
+            onLightModeClicked = { settingsViewModel.saveThemeMode(ThemeMode.LIGHT) },
+            onSystemModeClicked = { settingsViewModel.saveThemeMode(ThemeMode.SYSTEM) },
+            onDateSelected = { homeViewModel.getDiaries(zonedDateTime = it) },
+            onDateReset = { homeViewModel.getDiaries() },
             onMenuClicked = {
                 scope.launch {
                     drawerState.open()
@@ -73,6 +80,10 @@ fun NavGraphBuilder.homeRoute(
             },
             onStatisticsClicked = {
                 selectedHomeTab = HomeTabs.Statistics
+                scope.launch { drawerState.close() }
+            },
+            onSettingsClicked = {
+                selectedHomeTab = HomeTabs.Settings
                 scope.launch { drawerState.close() }
             },
             onSignOutClicked = {
@@ -108,7 +119,7 @@ fun NavGraphBuilder.homeRoute(
             dialogOpened = deleteAllDialogOpened,
             onCloseDialog = { deleteAllDialogOpened = false },
             onYesClicked = {
-                viewModel.deleteAllDiaries(
+                homeViewModel.deleteAllDiaries(
                     onSuccess = {
                         Toast.makeText(
                             context,

@@ -1,6 +1,7 @@
 package com.xdiach.diarymoodapp
 
 import android.app.Application
+import com.xdiach.common.di.commonModule
 import com.xdiach.diarymoodapp.di.dataModule
 import com.xdiach.home.di.homeModule
 import com.xdiach.write.di.writeModule
@@ -19,7 +20,8 @@ class MyApp : Application() {
         loadKoinModules(
             listOf(
                 homeModule,
-                writeModule
+                writeModule,
+                commonModule
             )
         )
     }

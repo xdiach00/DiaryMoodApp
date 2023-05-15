@@ -54,4 +54,5 @@ dependencies {
     implementation(libs.junit.ext)
 
     implementation(project(Modules.Core.translations))
+    implementation(project(Modules.Feature.common))
 }

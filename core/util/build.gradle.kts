@@ -61,4 +61,5 @@ dependencies {
 
     implementation(project(Modules.Core.ui))
     implementation(project(Modules.Core.translations))
+    implementation(project(Modules.Feature.common))
 }
