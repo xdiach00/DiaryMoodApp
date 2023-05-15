@@ -254,7 +254,7 @@ private fun NavigationDrawer(
                                 )
                                 Spacer(modifier = Modifier.width(Dimensions.Spacer))
                                 Text(
-                                    text = "Settings",
+                                    text = stringResource(id = RT.string.home_screen_settings),
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                             }

@@ -20,12 +20,16 @@
   <string name="home_screen_delete_all_description">"Opravdu chcete trvale smazat všechny své poznámky?"</string>
   <string name="home_screen_home">"Domů"</string>
   <string name="home_screen_no">"Ne"</string>
+  <string name="home_screen_settings">"Nastavení"</string>
   <string name="home_screen_signout">"Odhlásit se"</string>
   <string name="home_screen_signout_description">"Jste si jisti, že se chcete odhlásit?"</string>
   <string name="home_screen_statistic">"Statistika nálady"</string>
   <string name="home_screen_stats_empty_description">"Přidejte několik poznámek pro zobrazení statistik nálady"</string>
   <string name="home_screen_stats_empty_title">"Žádné statistiky k dispozici"</string>
   <string name="home_screen_yes">"Ano"</string>
+  <string name="settings_theme_mode_dark">"Tmavá"</string>
+  <string name="settings_theme_mode_light">"Světlá"</string>
+  <string name="settings_theme_mode_system">"Systém"</string>
   <string name="write_diary_button_save">"Uložit"</string>
   <string name="write_diary_delete">"Smazat"</string>
   <string name="write_diary_delete_alert_message">"Opravdu chcete trvale smazat poznámku „%s“?"</string>

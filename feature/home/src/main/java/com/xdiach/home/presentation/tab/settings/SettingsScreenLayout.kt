@@ -73,21 +73,21 @@ fun SettingsScreenLayout(
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(topStart = Dimensions.L, bottomStart = Dimensions.L),
                 onClick = onDarkModeClicked,
-                text = "Dark",
+                text = stringResource(id = RT.string.settings_theme_mode_dark),
                 isActive = themeModeActive == ThemeMode.DARK
             )
             ThemeModeButton(
                 modifier = Modifier.weight(1f),
                 shape = RectangleShape,
                 onClick = onLightModeClicked,
-                text = "Light",
+                text = stringResource(id = RT.string.settings_theme_mode_light),
                 isActive = themeModeActive == ThemeMode.LIGHT
             )
             ThemeModeButton(
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(topEnd = Dimensions.L, bottomEnd = Dimensions.L),
                 onClick = onSystemModeClicked,
-                text = "System",
+                text = stringResource(id = RT.string.settings_theme_mode_system),
                 isActive = themeModeActive == ThemeMode.SYSTEM
             )
         }
