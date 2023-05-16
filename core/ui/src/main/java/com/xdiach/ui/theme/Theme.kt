@@ -84,27 +84,25 @@ private val DarkColorScheme = darkColorScheme(
 
 @Composable
 fun DiaryMoodAppTheme(
-    themeMode: ThemeMode = ThemeMode.SYSTEM,
+    isAppInDarkMode: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val darkTheme = if (themeMode == ThemeMode.SYSTEM) isSystemInDarkTheme() else themeMode == ThemeMode.DARK
-
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (isAppInDarkMode) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
+        isAppInDarkMode -> DarkColorScheme
         else -> LightColorScheme
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
-            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
+            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = isAppInDarkMode
         }
     }
 
@@ -120,8 +118,8 @@ fun DiaryMoodAppTheme(
 
         val windowInsetsController = WindowCompat.getInsetsController(window, view)
 
-        windowInsetsController.isAppearanceLightStatusBars = !darkTheme
-        windowInsetsController.isAppearanceLightNavigationBars = !darkTheme
+        windowInsetsController.isAppearanceLightStatusBars = !isAppInDarkMode
+        windowInsetsController.isAppearanceLightNavigationBars = !isAppInDarkMode
     }
 
     MaterialTheme(
@@ -129,4 +127,9 @@ fun DiaryMoodAppTheme(
         typography = Typography,
         content = content
     )
+}
+
+@Composable
+fun isAppInDarkMode(themeMode: ThemeMode): Boolean {
+    return if (themeMode == ThemeMode.SYSTEM) isSystemInDarkTheme() else themeMode == ThemeMode.DARK
 }
