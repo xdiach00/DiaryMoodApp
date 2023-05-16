@@ -94,7 +94,8 @@ internal fun HomeScreen(
         selectedHomeTab = selectedHomeTab,
         onHomeClicked = onHomeClicked,
         onStatisticsClicked = onStatisticsClicked,
-        onSettingsClicked = onSettingsClicked
+        onSettingsClicked = onSettingsClicked,
+        onDateReset = onDateReset
     ) {
         Scaffold(
             modifier = Modifier.nestedScroll(homeTabScrollBehavior.nestedScrollConnection),
@@ -106,6 +107,7 @@ internal fun HomeScreen(
                         statisticsScrollBehavior
                     },
                     onMenuClicked = onMenuClicked,
+                    isDatePickerVisible = selectedHomeTab == HomeTabs.Home,
                     dateIsSelected = dateIsSelected,
                     onDateSelected = onDateSelected,
                     onDateReset = onDateReset
@@ -139,8 +141,7 @@ internal fun HomeScreen(
                             HomeTabs.Statistics -> {
                                 StatisticsScreenLayout(
                                     paddingValues = it,
-                                    diaryNotes = diaries.data,
-                                    dateIsSelected = dateIsSelected
+                                    diaryNotes = diaries.data
                                 )
                             }
 
@@ -188,6 +189,7 @@ private fun NavigationDrawer(
     onHomeClicked: () -> Unit,
     onStatisticsClicked: () -> Unit,
     onSettingsClicked: () -> Unit,
+    onDateReset: () -> Unit,
     content: @Composable () -> Unit
 ) {
     ModalNavigationDrawer(
@@ -242,7 +244,10 @@ private fun NavigationDrawer(
                             }
                         },
                         selected = selectedHomeTab == HomeTabs.Statistics,
-                        onClick = onStatisticsClicked
+                        onClick = {
+                            onStatisticsClicked()
+                            onDateReset()
+                        }
                     )
                     NavigationDrawerItem(
                         label = {

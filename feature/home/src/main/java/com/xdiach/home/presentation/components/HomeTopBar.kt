@@ -33,6 +33,7 @@ import java.time.ZonedDateTime
 @Composable
 internal fun HomeTopBar(
     scrollBehavior: TopAppBarScrollBehavior,
+    isDatePickerVisible: Boolean,
     onMenuClicked: () -> Unit,
     dateIsSelected: Boolean,
     onDateSelected: (ZonedDateTime) -> Unit,
@@ -55,21 +56,23 @@ internal fun HomeTopBar(
             Text(text = stringResource(id = R.string.app_name))
         },
         actions = {
-            if (dateIsSelected) {
-                IconButton(onClick = onDateReset) {
-                    Icon(
-                        imageVector = Icons.Default.Clear,
-                        contentDescription = "Reset Date Icon",
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
-                }
-            } else {
-                IconButton(onClick = { dateDialog.show() }) {
-                    Icon(
-                        imageVector = Icons.Default.DateRange,
-                        contentDescription = "Date Icon",
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
+            if (isDatePickerVisible) {
+                if (dateIsSelected) {
+                    IconButton(onClick = onDateReset) {
+                        Icon(
+                            imageVector = Icons.Default.Clear,
+                            contentDescription = "Reset Date Icon",
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                } else {
+                    IconButton(onClick = { dateDialog.show() }) {
+                        Icon(
+                            imageVector = Icons.Default.DateRange,
+                            contentDescription = "Date Icon",
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
                 }
             }
         }

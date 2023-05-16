@@ -21,22 +21,13 @@ internal val bottomAxisValueFormatter =
 
 internal fun startAxisValueFormatter(context: Context) =
     AxisValueFormatter<AxisPosition.Vertical.Start> { value, _ ->
-        if (value.isFinite() && value.roundToInt().toFloat() == value) {
-            getMoodNameByPower(
-                power = value.roundToInt(),
-                context = context
-            )
-        } else {
-            ""
-        }
+        getMoodNameByPower(
+            power = value.roundToInt(),
+            context = context
+        )
     }
 
 fun getMoodNameByPower(power: Int, context: Context): String {
-    for (mood in Mood.values()) if (mood.power == power) {
-        return UiText.StringResource(
-            mood.stringResourceId
-        )
-            .asString(context)
-    }
-    return ""
+    val mood = Mood.values().find { it.power == power }
+    return mood?.let { UiText.StringResource(it.stringResourceId).asString(context) } ?: ""
 }

@@ -18,6 +18,7 @@ import com.xdiach.mongo.database.ImageToUploadDao
 import com.xdiach.mongo.database.entity.ImageToDeleteEntity
 import com.xdiach.mongo.database.entity.ImageToUploadEntity
 import com.xdiach.ui.theme.DiaryMoodAppTheme
+import com.xdiach.ui.theme.isAppInDarkMode
 import com.xdiach.util.PrivateConstants.APP_ID
 import com.xdiach.util.Screen
 import io.realm.kotlin.mongodb.App
@@ -41,7 +42,9 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         FirebaseApp.initializeApp(this)
         setContent {
-            DiaryMoodAppTheme(themeMode = themeModeRepository.themeMode.value) {
+            DiaryMoodAppTheme(
+                isAppInDarkMode = isAppInDarkMode(themeMode = themeModeRepository.themeMode.value)
+            ) {
                 val navController = rememberNavController()
                 SetupNavGraph(
                     startDestination = getStartDestination(),
