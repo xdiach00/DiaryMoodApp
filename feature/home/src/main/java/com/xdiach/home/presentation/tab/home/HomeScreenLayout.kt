@@ -22,9 +22,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.xdiach.home.presentation.components.DiaryHolder
 import com.xdiach.home.presentation.components.EmptyPage
 import com.xdiach.ui.values.Dimensions
-import com.xdiach.util.DiaryHolder
 import com.xdiach.util.model.Diary
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

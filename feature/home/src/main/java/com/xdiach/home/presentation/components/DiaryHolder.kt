@@ -1,4 +1,4 @@
-package com.xdiach.util
+package com.xdiach.home.presentation.components
 
 import android.net.Uri
 import android.widget.Toast
@@ -49,10 +49,12 @@ import com.xdiach.ui.UiText
 import com.xdiach.ui.theme.DiaryMoodAppTheme
 import com.xdiach.ui.values.Dimensions
 import com.xdiach.ui.values.Elevation
+import com.xdiach.util.Gallery
+import com.xdiach.util.fetchImagesFromFirebase
 import com.xdiach.util.model.Diary
 import com.xdiach.util.model.Mood
+import com.xdiach.util.toInstant
 import java.text.DateFormat
-import java.time.Instant
 import java.util.Date
 import java.util.Locale
 
@@ -124,7 +126,7 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
             tonalElevation = Elevation.Level1
         ) {
             Column(modifier = Modifier.fillMaxWidth()) {
-                DiaryHeader(moodName = diary.mood, time = diary.date.toInstant())
+                DiaryHeader(diary = diary)
                 Text(
                     modifier = Modifier.padding(Dimensions.Padding),
                     text = diary.description,
@@ -161,11 +163,9 @@ fun DiaryHolder(diary: Diary, onClick: (String) -> Unit) {
 
 @Composable
 fun DiaryHeader(
-    moodName: String,
-    time: Instant
+    diary: Diary
 ) {
-    val mood by remember { mutableStateOf(Mood.valueOf(moodName)) }
-    val context = LocalContext.current
+    val mood by remember { mutableStateOf(Mood.valueOf(diary.mood)) }
 
     Row(
         modifier = Modifier
@@ -183,14 +183,14 @@ fun DiaryHeader(
             )
             Spacer(modifier = Modifier.width(7.dp))
             Text(
-                text = stringResource(id = mood.stringResourceId),
+                text = diary.title,
                 color = mood.contentColor,
                 style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize)
             )
         }
         Text(
             text = DateFormat.getTimeInstance(DateFormat.SHORT, Locale.getDefault())
-                .format(Date.from(time)),
+                .format(Date.from(diary.date.toInstant())),
             color = mood.contentColor,
             style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize)
         )
