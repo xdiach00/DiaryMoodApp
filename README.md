@@ -2,7 +2,7 @@
 
   [Go to Code Documentation](#code-documentation)
   <br>
-  [Download latest APK](https://github.com/xdiach00/DiaryMoodApp/releases/tag/v1.0.0-beta) - v1.0.0-beta for debugging
+  [Download latest APK](https://github.com/xdiach00/DiaryMoodApp/releases/tag/v1.1.0-beta) - v1.1.0-beta for debugging
 
 ## App Description
 
@@ -40,18 +40,29 @@ Hi! **DiaryMoodApp** is an app to store your notes and track your mood.
 
 <div style="text-align: center;">
   <img src="res/img/dark_theme_side_menu.jpg" alt="Dark Theme Side menu" style="height: 240px; width: 108px;"/>
+  <img src="res/img/light_theme_side_menu.jpg" alt="Dark Theme Side menu" style="height: 240px; width: 108px;"/>
   <br>
-  <sub>Side menu in Dark mode</sub>
+  <sub>Side menu in Dark and Light modes</sub>
 </div>
 <br>
 
-- Statistics screen display your tracked mood as a Line Chart. You can also filter statistics by date, in this case  it will be displayed as a Column Chart.
+- Statistics screen displays your tracked mood as a Line Chart. You can also filter statistics by date, in this case  it will be displayed as a Column Chart.
 
 <div style="text-align: center;">
-  <img src="res/img/dark_theme_home_stats.jpg" alt="Dark Theme Stats" style="height: 240px; width: 108px;"/>
-  <img src="res/img/light_theme_stats_sorted.jpg" alt="Light Theme Stats filtered" style="height: 240px; width: 108px;"/>
+  <img src="res/img/dark_theme_stats.jpg" alt="Dark Theme Stats" style="height: 240px; width: 108px;"/>
+  <img src="res/img/light_theme_stats.jpg" alt="Light Theme Stats filtered" style="height: 240px; width: 108px;"/>
   <br>
-  <sub>Statistics tab in Dark mode; Filtered stats in Light mode</sub>
+  <sub>Statistics tab in Dark and Light modes</sub>
+</div>
+<br>
+
+- Settings tab allows you to change app theme mode, delete all added diaries and sign out.
+
+<div style="text-align: center;">
+  <img src="res/img/dark_theme_settings.jpg" alt="Dark Theme Stats" style="height: 240px; width: 108px;"/>
+  <img src="res/img/light_theme_settings.jpg" alt="Light Theme Stats filtered" style="height: 240px; width: 108px;"/>
+  <br>
+  <sub>Statistics tab in Dark and Light modes</sub>
 </div>
 <br>
 
@@ -73,7 +84,7 @@ Hi! **DiaryMoodApp** is an app to store your notes and track your mood.
 </div>
 <br>
 
-- Application allows users to simply log in using their Google accounts.
+- Application allows users to simply log in using their Google account.
 
 <div style="text-align: center;">
   <img src="res/img/dark_theme_auth.jpg" alt="Dark Theme Authorization Screen" style="height: 240px; width: 108px;"/>
