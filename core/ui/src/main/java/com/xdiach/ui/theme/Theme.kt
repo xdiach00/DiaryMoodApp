@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import com.xdiach.common.domain.model.ThemeMode
 
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
@@ -83,7 +84,7 @@ private val DarkColorScheme = darkColorScheme(
 
 @Composable
 fun DiaryMoodAppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    isAppInDarkMode: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
@@ -91,16 +92,17 @@ fun DiaryMoodAppTheme(
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (isAppInDarkMode) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-        darkTheme -> DarkColorScheme
+
+        isAppInDarkMode -> DarkColorScheme
         else -> LightColorScheme
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
-            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
+            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = isAppInDarkMode
         }
     }
 
@@ -116,8 +118,8 @@ fun DiaryMoodAppTheme(
 
         val windowInsetsController = WindowCompat.getInsetsController(window, view)
 
-        windowInsetsController.isAppearanceLightStatusBars = !darkTheme
-        windowInsetsController.isAppearanceLightNavigationBars = !darkTheme
+        windowInsetsController.isAppearanceLightStatusBars = !isAppInDarkMode
+        windowInsetsController.isAppearanceLightNavigationBars = !isAppInDarkMode
     }
 
     MaterialTheme(
@@ -125,4 +127,9 @@ fun DiaryMoodAppTheme(
         typography = Typography,
         content = content
     )
+}
+
+@Composable
+fun isAppInDarkMode(themeMode: ThemeMode): Boolean {
+    return if (themeMode == ThemeMode.SYSTEM) isSystemInDarkTheme() else themeMode == ThemeMode.DARK
 }

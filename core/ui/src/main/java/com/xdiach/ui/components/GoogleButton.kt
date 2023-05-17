@@ -73,7 +73,7 @@ fun GoogleButton(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp)
+                .padding(Dimensions.Spacer)
                 .animateContentSize(
                     animationSpec = tween(
                         durationMillis = ANIMATION_DURATION,

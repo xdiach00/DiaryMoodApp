@@ -4,6 +4,7 @@ package com.xdiach.write.presentation.viewmodel
 
 import android.annotation.SuppressLint
 import android.net.Uri
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -47,6 +48,8 @@ internal class WriteViewModel(
     init {
         getDiaryIdArgument()
         fetchSelectedDiary()
+        Log.d("ImageToUpload: ", imageToUploadDao.toString())
+        Log.d("SavedStateHandle: ", savedStateHandle.toString())
     }
 
     private fun getDiaryIdArgument() {

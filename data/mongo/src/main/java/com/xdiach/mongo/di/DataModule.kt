@@ -1,17 +1,16 @@
-package com.xdiach.diarymoodapp.di
+package com.xdiach.mongo.di
 
 import androidx.room.Room
 import com.xdiach.mongo.database.ImagesDatabase
-import com.xdiach.util.Constants.IMAGES_DATABASE
-import com.xdiach.util.connectivity.NetworkConnectivityObserver
+import com.xdiach.util.Constants
 import org.koin.dsl.module
 
-val dataModule = module {
+val mongoModule = module {
     single {
         Room.databaseBuilder(
             context = get(),
             klass = ImagesDatabase::class.java,
-            name = IMAGES_DATABASE
+            name = Constants.IMAGES_DATABASE
         ).build()
     }
 
@@ -21,11 +20,5 @@ val dataModule = module {
 
     single {
         get<ImagesDatabase>().imageToDeleteDao()
-    }
-
-    single {
-        NetworkConnectivityObserver(
-            context = get(),
-        )
     }
 }

@@ -72,4 +72,5 @@ dependencies {
     implementation(project(Modules.Core.ui))
     implementation(project(Modules.Core.util))
     implementation(project(Modules.Data.mongo))
+    implementation(project(Modules.Feature.common))
 }
